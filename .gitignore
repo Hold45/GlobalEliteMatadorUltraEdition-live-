@@ -30,12 +30,10 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-.project
 .externalToolBuilders/
 *.launch
 *.pydevproject
 .cproject
-.classpath
 .factorypath
 .buildpath
 .target
