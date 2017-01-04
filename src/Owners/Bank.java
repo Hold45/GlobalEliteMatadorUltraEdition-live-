@@ -1,17 +1,18 @@
-package Finance;
+package Owners;
 
 import Buildings.Building;
 import Buildings.House;
+import Finance.Account;
+import Owners.Owner;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
 
-public class Bank {
-    private Account account;
+public class Bank extends Owner {
     private Hashtable<Class, Stack<Building>> buildings;
 
     public Bank(){
+        super();
         this.account = new Account(10000);
         this.buildings = new Hashtable<>();
         Stack<Building> houses = new Stack<>();

@@ -1,6 +1,6 @@
 package Cards.ChanceCards;
 
-import Player.Player;
+import Owners.Player;
 
 public abstract class ChanceCard {
     protected String description;

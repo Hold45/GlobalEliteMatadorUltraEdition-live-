@@ -1,6 +1,6 @@
 package Finance;
 
-import Player.Player;
+import Owners.Player;
 
 public class PersonalAccount extends Account {
 

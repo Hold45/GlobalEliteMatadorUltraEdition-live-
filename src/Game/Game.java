@@ -1,6 +1,6 @@
 package Game;
 
-import Player.Player;
+import Owners.Player;
 
 /**
  *

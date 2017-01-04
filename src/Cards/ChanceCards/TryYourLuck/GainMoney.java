@@ -1,7 +1,7 @@
 package Cards.ChanceCards.TryYourLuck;
 
 import Cards.ChanceCards.ChanceCard;
-import Player.Player;
+import Owners.Player;
 
 public class GainMoney extends ChanceCard {
     private int amount;

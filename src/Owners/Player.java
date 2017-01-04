@@ -1,13 +1,14 @@
-package Player;
+package Owners;
 
 import Finance.Account;
+import Owners.Owner;
 import Game.Game;
 
-public class Player {
+public class Player extends Owner{
     private Game game;
-    private Account account;
 
     public Player(Game game) {
+        super();
         this.game = game;
         this.account = new Account(1000);
     }

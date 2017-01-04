@@ -11,7 +11,7 @@ public class Account {
         return balance;
     }
 
-    public void transfer(Account transferTo, int payment){
+    public void transferTo(Account transferTo, int payment){
         transferTo.deposit(this.withdraw(payment));
     }
 
