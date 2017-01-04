@@ -14,19 +14,22 @@ import java.util.Stack;
  */
 public class Game {
 	private ArrayList<Player> players;
+	private ArrayList<Player> losers;
 	private Stack<Turn> turns;
 	private Bank bank;
 
 	public Game() {
 		this.players = new ArrayList<>();
+		this.losers = new ArrayList<>();
 		this.turns = new Stack<Turn>();
 		this.bank = new Bank();
 	}
 
 	public void start(){
 		Player player = new Player(this);
+		Player player2 = new Player(this);
 		turns.push(player.getTurn());
-		addPlayers(player);
+		addPlayers(player, player2);
 
 		while (!this.turns.isEmpty()){
 			this.turns.pop().take();
@@ -43,6 +46,8 @@ public class Game {
 	}
 
     public void addLoser(Player player) {
+		losers.add(player);
+		players.remove(player);
     }
 
 	public Bank getBank() {
@@ -51,5 +56,13 @@ public class Game {
 
 	public Stack<Turn> getTurns() {
 		return this.turns;
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return this.players;
+	}
+
+	public ArrayList<Player> getLosers() {
+		return this.losers;
 	}
 }
