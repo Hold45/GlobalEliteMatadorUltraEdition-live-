@@ -11,7 +11,7 @@ public abstract class Ownable extends Field {
 	public Ownable(Game game, String name, String description, int price) {
 		super(game, name, description);
 
-		this.deed = new Deed(this, price);
+		this.deed = new Deed(this, price, game.getBank());
 	}
 }
 
