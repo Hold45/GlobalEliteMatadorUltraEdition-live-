@@ -1,4 +1,4 @@
-package GUI;
+apackage GUI;
 
 public class LarmanGUI implements GUI {
     @Override

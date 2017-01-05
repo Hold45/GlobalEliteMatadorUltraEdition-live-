@@ -1,5 +1,13 @@
 package Board.Fields.Ownables.Plots.BluePlots;
 
-public class Hvidovrevej {
+import Board.Fields.Ownables.Plots.BluePlots.BluePlot;
+import Game.Game;
 
+/**
+ *
+ */
+public class Hvidovrevej extends BluePlot {
+	public Hvidovrevej(Game game) {
+		super(game, "Hvidovrevej");
+	}
 }

@@ -1,6 +1,6 @@
 package Board.Fields.Ownables.Plots.PurplePlot;
 
-import Board.Fields.Ownables.Plots.PurplePlots.PurplePlot;
+import Board.Fields.Ownables.Plots.PurplePlot.PurplePlot;
 import Game.Game;
 
 /**

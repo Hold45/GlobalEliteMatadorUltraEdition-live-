@@ -1,5 +1,13 @@
 package Board.Fields.Ownables.Plots.WhitePlots;
 
-public class Oestergade {
+import Board.Fields.Ownables.Plots.WhitePlots.WhitePlot;
+import Game.Game;
 
+/**
+ *
+ */
+public class Oestergade extends WhitePlot {
+	public Oestergade(Game game) {
+		super(game, "Østergade");
+	}
 }
