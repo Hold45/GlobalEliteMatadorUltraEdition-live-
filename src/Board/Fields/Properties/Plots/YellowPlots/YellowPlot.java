@@ -1,6 +1,6 @@
-package Board.Fields.Ownables.Plots.YellowPlots;
+package Board.Fields.Properties.Plots.YellowPlots;
 
-import Board.Fields.Ownables.Plots.Plot;
+import Board.Fields.Properties.Plots.Plot;
 import Game.Game;
 
 /**

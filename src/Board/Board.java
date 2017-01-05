@@ -1,9 +1,9 @@
 package Board;
 
 import Board.Fields.Field;
-import Board.Fields.Ownables.Plots.YellowPlots.Amagertorv;
-import Board.Fields.Ownables.Plots.YellowPlots.Nygade;
-import Board.Fields.Ownables.Plots.YellowPlots.VimmelSkaffet;
+import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
+import Board.Fields.Properties.Plots.YellowPlots.Nygade;
+import Board.Fields.Properties.Plots.YellowPlots.VimmelSkaffet;
 import Game.Game;
 
 public class Board {
