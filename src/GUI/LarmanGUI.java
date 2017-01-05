@@ -1,4 +1,4 @@
-apackage GUI;
+package GUI;
 
 import Cards.Tradable;
 import Finance.Account;

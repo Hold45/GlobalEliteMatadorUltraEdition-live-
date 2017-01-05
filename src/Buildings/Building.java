@@ -1,11 +1,6 @@
 package Buildings;
 
 public abstract class Building {
-<<<<<<< HEAD
-	
-	
-	
-=======
 	private int upgradeValue;
 
 	protected Building(int upgradeValue) {
@@ -15,5 +10,4 @@ public abstract class Building {
 	public int getUpgradeValue(){
 		return this.upgradeValue;
 	}
->>>>>>> branch 'master' of https://github.com/Hold45/GlobalEliteMatadorUltraEdition-live-.git
 }
