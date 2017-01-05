@@ -12,6 +12,7 @@ public class GameTest {
 	@Before
 	public void setUp() throws Exception {
 		game = new Game();
+
 	}
 
 	@After
