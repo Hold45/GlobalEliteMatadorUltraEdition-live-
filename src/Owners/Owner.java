@@ -21,6 +21,10 @@ public abstract class Owner {
 		return this.account;
 	}
 
+	public boolean isOwnerOf(Tradable tradable){
+		return this.owns.contains(tradable);
+	}
+
 	public void addTradable(Tradable tradable){
 		this.owns.add(tradable);
 	}

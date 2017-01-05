@@ -2,6 +2,7 @@ package Cards;
 
 import Cards.ChanceCards.ChanceCard;
 import Cards.ChanceCards.TryYourLuck.GainMoney;
+import Finance.Account;
 import Owners.Owner;
 import Owners.Player;
 
@@ -13,6 +14,7 @@ public class CardPile extends Owner {
 
     public CardPile(){
         super();
+        this.account = new Account(0);
         this.cards = new LinkedList<>();
         for (int i=0; i<10; i++){
             this.cards.add(new GainMoney(this,"Du er heldig"+i,1000*i));
@@ -24,8 +26,11 @@ public class CardPile extends Owner {
         Collections.shuffle(this.cards);
     }
 
-    public ChanceCard drawCard(Player drawer){
-        return this.cards.poll();
+    public void drawCard(Player drawer){
+        ChanceCard card = this.cards.poll();
+        card.draw(drawer);
+        if (this.isOwnerOf(card))
+            this.addCard(card);
     }
 
     public void addCard(ChanceCard card){
