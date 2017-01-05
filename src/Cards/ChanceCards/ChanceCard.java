@@ -1,19 +1,33 @@
 package Cards.ChanceCards;
 
+import Cards.Tradable;
+import Owners.Owner;
 import Owners.Player;
 
-public abstract class ChanceCard {
+public abstract class ChanceCard extends Tradable{
     protected String description;
+    private Owner owner;
 
-    public ChanceCard(String description){
-        this.description = description;
+    public ChanceCard(Owner owner, String description){
+	    this.description = description;
+	    this.owner = owner;
     }
 
-    public void resolve(Player player){
+    public void draw(Player player){
 
     }
 
-    public String getDescription() {
+	@Override
+	public Owner getOwner() {
+		return this.owner;
+	}
+
+	@Override
+	public boolean canBeTraded() {
+		return false;
+	}
+
+	public String getDescription() {
         return this.description;
     }
 }

@@ -1,7 +1,7 @@
 package Owners;
 
-import Board.Fields.Ownables.Deeds.Deed;
-import Board.Fields.Ownables.Ownable;
+import Board.Fields.Properties.Deeds.Deed;
+import Cards.Tradable;
 import Finance.Account;
 
 import java.util.ArrayList;
@@ -10,28 +10,31 @@ import java.util.ArrayList;
  *
  */
 public abstract class Owner {
-	protected ArrayList<Deed> owns;
-	protected Account account;
+	protected ArrayList<Tradable> owns;
 
 	public Owner(){
 		this.owns = new ArrayList<>();
 	}
 
-	public Account getAccount() {
-		return this.account;
+	public boolean isOwnerOf(Tradable tradable){
+		return this.owns.contains(tradable);
 	}
 
-	public void addDeed(Deed deed){
-		this.owns.add(deed);
+	public void addTradable(Tradable tradable){
+		this.owns.add(tradable);
 	}
 
-	public boolean removeDeed(Deed deed){
-		return this.owns.remove(deed);
-	}
-	public void transferDeedTo(Owner to, Deed deed){
-		if(this.removeDeed(deed))
-			to.addDeed(deed);
+	public boolean removeTradable(Tradable tradable){
+		return this.owns.remove(tradable);
 	}
 
+	public void transferTradableTo(Owner to, Tradable tradable){
+		if(this.removeTradable(tradable))
+			to.addTradable(tradable);
+	}
+
+	public ArrayList<Tradable> getOwns() {
+		return this.owns;
+	}
 }
 

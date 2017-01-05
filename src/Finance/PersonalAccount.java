@@ -1,5 +1,6 @@
 package Finance;
 
+import Game.Actions.ProposeTrade;
 import Owners.Player;
 
 public class PersonalAccount extends Account {
@@ -11,7 +12,10 @@ public class PersonalAccount extends Account {
         this.owner = player;
     }
 
+    @Override
     public int withdraw(int value){
+    	this.owner.takeActions(ProposeTrade.self);
+
         if (value>this.balance){
             int beforeWithdraw = this.getBalance();
             this.owner.getGame().addLoser(this.owner);

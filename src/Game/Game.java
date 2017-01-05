@@ -1,5 +1,6 @@
 package Game;
 
+import GUI.*;
 import Owners.Bank;
 import Owners.Owner;
 import Owners.Player;
@@ -17,12 +18,14 @@ public class Game {
 	private ArrayList<Player> losers;
 	private Stack<Turn> turns;
 	private Bank bank;
+	private GUI gui;
 
-	public Game() {
+	public Game(GUI gui) {
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
 		this.turns = new Stack<Turn>();
 		this.bank = new Bank();
+		this.gui = gui;
 	}
 
 	public void start(){
@@ -64,5 +67,9 @@ public class Game {
 
 	public ArrayList<Player> getLosers() {
 		return this.losers;
+	}
+
+	public GUI getGUI() {
+		return this.gui;
 	}
 }
