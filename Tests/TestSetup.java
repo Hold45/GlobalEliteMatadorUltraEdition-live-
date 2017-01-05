@@ -1,4 +1,4 @@
-import GUI.DummyGUI;
+import GUI.SmartGUI;
 import Game.Game;
 import Owners.Player;
 import org.junit.After;
@@ -14,7 +14,7 @@ public abstract class TestSetup {
 
 	@Before
 	public void setUp() throws Exception {
-		game = new Game(new DummyGUI());
+		game = new Game(new SmartGUI());
 		p1 = new Player(game);
 		p2 = new Player(game);
 		game.addPlayers(p1, p2);

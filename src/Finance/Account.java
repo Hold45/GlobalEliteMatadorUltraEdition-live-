@@ -19,7 +19,11 @@ public class Account {
         this.balance += value;
     }
 
-    /**
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	/**
      * @param value to withdraw.
      * @return amount withdrawn.
      */

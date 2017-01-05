@@ -29,5 +29,9 @@ public abstract class Property extends Field {
 	public boolean isPawned() {
 		return this.pawned;
 	}
+
+	public Deed getDeed() {
+		return this.deed;
+	}
 }
 

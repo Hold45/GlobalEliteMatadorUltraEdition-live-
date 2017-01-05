@@ -1,14 +1,11 @@
 package Owners;
 
-import GUI.DummyGUI;
+import GUI.SmartGUI;
 import Game.Actions.ProposeTrade;
 import Game.Game;
-import junit.extensions.TestSetup;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PlayerTest{
 	protected Game game;
@@ -17,7 +14,7 @@ public class PlayerTest{
 
 	@Before
 	public void setUp() throws Exception {
-		game = new Game(new DummyGUI());
+		game = new Game(new SmartGUI());
 		p1 = new Player(game);
 		p2 = new Player(game);
 		game.addPlayers(p1, p2);
@@ -28,7 +25,6 @@ public class PlayerTest{
 		game = null;
 		p1 = null;
 		p2 = null;
-
 	}
 
 	@Test
