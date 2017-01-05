@@ -8,7 +8,7 @@ import Owners.Owner;
 import java.util.Hashtable;
 import java.util.Stack;
 
-public class Bank extends Owner {
+public class Bank extends Accountable {
     private Hashtable<Class, Stack<Building>> buildings;
 
     public Bank(){

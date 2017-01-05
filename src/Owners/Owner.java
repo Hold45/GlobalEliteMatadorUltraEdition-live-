@@ -11,14 +11,9 @@ import java.util.ArrayList;
  */
 public abstract class Owner {
 	protected ArrayList<Tradable> owns;
-	protected Account account;
 
 	public Owner(){
 		this.owns = new ArrayList<>();
-	}
-
-	public Account getAccount() {
-		return this.account;
 	}
 
 	public boolean isOwnerOf(Tradable tradable){
@@ -38,5 +33,8 @@ public abstract class Owner {
 			to.addTradable(tradable);
 	}
 
+	public ArrayList<Tradable> getOwns() {
+		return this.owns;
+	}
 }
 

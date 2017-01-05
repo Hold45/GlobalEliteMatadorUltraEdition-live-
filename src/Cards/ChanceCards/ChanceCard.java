@@ -6,15 +6,21 @@ import Owners.Player;
 
 public abstract class ChanceCard extends Tradable{
     protected String description;
+    private Owner owner;
 
     public ChanceCard(Owner owner, String description){
-	    super(owner);
 	    this.description = description;
+	    this.owner = owner;
     }
 
     public void draw(Player player){
 
     }
+
+	@Override
+	public Owner getOwner() {
+		return this.owner;
+	}
 
 	@Override
 	public boolean canBeTraded() {

@@ -14,7 +14,6 @@ public class CardPile extends Owner {
 
     public CardPile(){
         super();
-        this.account = new Account(0);
         this.cards = new LinkedList<>();
         for (int i=0; i<10; i++){
             this.cards.add(new GainMoney(this,"Du er heldig"+i,1000*i));
@@ -39,6 +38,7 @@ public class CardPile extends Owner {
 
 	@Override
 	public void addTradable(Tradable tradable) {
+    	super.addTradable(tradable);
 		this.addCard((ChanceCard) tradable);
 	}
 }

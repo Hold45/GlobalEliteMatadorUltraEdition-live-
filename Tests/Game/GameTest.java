@@ -1,5 +1,6 @@
 package Game;
 
+import GUI.DummyGUI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class GameTest {
 
 	@Before
 	public void setUp() throws Exception {
-		game = new Game();
+		game = new Game(new DummyGUI());
 
 	}
 
