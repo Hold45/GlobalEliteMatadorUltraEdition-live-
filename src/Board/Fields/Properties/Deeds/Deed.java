@@ -1,19 +1,18 @@
-package Board.Fields.Ownables.Deeds;
+package Board.Fields.Properties.Deeds;
 
-import Board.Fields.Ownables.Ownable;
+import Board.Fields.Properties.Property;
+import Cards.Tradable;
 import Owners.Owner;
-import Owners.Player;
 
 /**
  *
  */
-public class Deed {
+public class Deed extends Tradable {
 	private final int price;
-	private final Ownable field;
-	private Owner owner;
+	private final Property field;
 
-	public Deed(Ownable field, int price, Owner owner){
-		this.owner = owner;
+	public Deed(Property field, int price, Owner owner){
+		super(owner);
 		this.field = field;
 		this.price = price;
 	}
@@ -22,8 +21,13 @@ public class Deed {
 		return this.price;
 	}
 
-	public Ownable getField() {
+	public Property getField() {
 		return this.field;
+	}
+
+	@Override
+	public boolean canBeTraded() {
+		return this.field.getBuildings().isEmpty() && !this.field.isPawned();
 	}
 
 	public Owner getOwner() {
@@ -31,7 +35,7 @@ public class Deed {
 	}
 
 	public void setOwner(Owner newOwner){
-		this.owner.transferDeedTo(newOwner,this);
+		this.owner.transferTradableTo(newOwner,this);
 		this.owner = newOwner;
 	}
 

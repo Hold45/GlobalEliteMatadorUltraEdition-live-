@@ -1,6 +1,13 @@
 package Buildings;
 
 public abstract class Building {
+	private int upgradeValue;
 
-	public abstract int getUpgradeValue();
+	protected Building(int upgradeValue) {
+		this.upgradeValue = upgradeValue;
+	}
+
+	public int getUpgradeValue(){
+		return this.upgradeValue;
+	}
 }

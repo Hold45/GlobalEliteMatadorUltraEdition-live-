@@ -1,13 +1,13 @@
-package Board.Fields.Ownables.Plots;
+package Board.Fields.Properties.Plots;
 
-import Board.Fields.Ownables.Ownable;
+import Board.Fields.Properties.Property;
 import Buildings.Building;
 import Game.Game;
 
 /**
  *
  */
-public abstract class Plot extends Ownable {
+public abstract class Plot extends Property {
 	private int[] rentScheme;
 
 	public Plot(Game game, String name, int price, int[] rentScheme) {
