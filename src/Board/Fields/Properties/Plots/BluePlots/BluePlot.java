@@ -4,7 +4,8 @@ package Board.Fields.Properties.Plots.BluePlots;
 import Board.Fields.Properties.Plots.Plot;
 import Game.Game;
 
-public abstract class BluePlot extends Plot {
+public abstract class
+BluePlot extends Plot {
 	
 	public BluePlot(Game game, String name, int price, int[] rentScheme) {
 		super(game, name, price, rentScheme);
