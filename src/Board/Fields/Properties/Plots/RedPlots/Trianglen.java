@@ -2,11 +2,8 @@ package Board.Fields.Properties.Plots.RedPlots;
 
 import Game.Game;
 
-/**
- *
- */
 public class Trianglen extends RedPlot {
 	public Trianglen(Game game) {
-		super(game, "Trianglen");
+		super(game, "PropertyRedTrianglen");
 	}
 }
