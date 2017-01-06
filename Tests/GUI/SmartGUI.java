@@ -45,7 +45,7 @@ public class SmartGUI implements GUI{
 	}
 
 	@Override
-	public int selectPayment(Player player, String message, Account account) {
+	public int selectInteger(Player player, String message, Account account) {
 		return (int) actionsStack.pop();
 	}
 }

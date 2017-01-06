@@ -18,4 +18,20 @@ public class Board {
 
 	}
 
+	public Field[] getFields() {
+		return this.fields;
+	}
+
+	public int getIndex(Class field){
+		for (int i = 0; i < this.fields.length; i++) {
+			if(this.fields[i].getClass().isAssignableFrom(field)){
+				return i;
+			}
+		}
+		throw new ArithmeticException();
+	}
+
+	public Field getField(int index){
+		return this.fields[index];
+	}
 }

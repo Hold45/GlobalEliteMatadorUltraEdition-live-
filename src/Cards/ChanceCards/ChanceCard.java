@@ -9,6 +9,7 @@ public abstract class ChanceCard extends Tradable{
     private Owner owner;
 
     public ChanceCard(Owner owner, String description){
+    	super(0);
 	    this.description = description;
 	    this.owner = owner;
     }

@@ -27,7 +27,7 @@ public class LarmanGUI implements GUI {
     }
 
     @Override
-    public int selectPayment(Player player, String message, Account account) {
+    public int selectInteger(Player player, String message, Account account) {
         return 0;
     }
 }

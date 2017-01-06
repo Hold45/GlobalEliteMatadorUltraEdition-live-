@@ -1,6 +1,8 @@
 package Dice;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public abstract class DiceCup {
@@ -26,4 +28,8 @@ public abstract class DiceCup {
         Stream.of(this.dice).forEach(Die::roll);
         return this;
     }
+    public boolean yahtzee(){
+        return Arrays.stream(this.getValues()).allMatch(i -> i == this.dice[0].getValue());
+    }
+
 }

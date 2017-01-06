@@ -13,11 +13,9 @@ public class ProposeTrade implements Action{
 	public void run(Player player) {
 		Tradable chosenTradable = player.getGame().getGUI().chooseTradable(player, "ChooseTradableSell",player.getOwns().stream().filter(Tradable::canBeTraded).toArray(Tradable[]::new));
 		Player tradePartner = player.getGame().getGUI().choosePlayer(player, "ChooseSellToPlayer", player.getGame().getPlayers().stream().filter(other -> other != player).toArray(Player[]::new));
-		int price = player.getGame().getGUI().selectPayment(player,"ChooseSellPrice", tradePartner.getAccount());
+		int price = player.getGame().getGUI().selectInteger(player,"ChooseSellPrice");
 
-		assert tradePartner.getAccount().getBalance() > price;
-		tradePartner.getAccount().transferTo(player.getAccount(), price);
-		player.transferTradableTo(tradePartner, chosenTradable);
+		chosenTradable.tryPurchase(tradePartner, price);
 	}
 
 	@Override

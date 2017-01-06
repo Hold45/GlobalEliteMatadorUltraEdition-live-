@@ -28,7 +28,7 @@ public class Account {
      * @return amount withdrawn.
      */
     public int withdraw(int value){
-        if (value>this.balance){
+        if (value > this.balance){
             int beforeWithdraw = this.balance;
             this.balance = 0;
             return beforeWithdraw;
