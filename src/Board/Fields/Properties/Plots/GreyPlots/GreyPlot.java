@@ -3,17 +3,14 @@ package Board.Fields.Properties.Plots.GreyPlots;
 import Board.Fields.Properties.Plots.Plot;
 import Game.Game;
 
-/**
- *
- */
-public abstract class GreyPlot extends Plot {
+abstract class GreyPlot extends Plot {
 
-	public GreyPlot(Game game, String name, int price, int[] rentScheme) {
+	GreyPlot(Game game, String name, int price, int[] rentScheme) {
 		super(game, name, price, rentScheme);
 	}
 
-	public GreyPlot(Game game, String name){
-		super(game, name, 6000, new int[]{550, 2600, 7800, 1800, 22000, 25000});
+	GreyPlot(Game game, String name){
+		super(game, name, 3600, new int[]{300, 1400, 4000, 11000, 15000, 19000});
 	}
 
 

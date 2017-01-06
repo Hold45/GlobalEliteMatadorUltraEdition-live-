@@ -3,7 +3,7 @@ package Board;
 import Board.Fields.Field;
 import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
 import Board.Fields.Properties.Plots.YellowPlots.Nygade;
-import Board.Fields.Properties.Plots.YellowPlots.VimmelSkaffet;
+import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaffet;
 import Game.Game;
 
 public class Board {
@@ -13,7 +13,7 @@ public class Board {
 		fields = new Field[]{
 				new Amagertorv(game),
 				new Nygade(game),
-				new VimmelSkaffet(game)
+				new Vimmelskaffet(game)
 		};
 
 	}
