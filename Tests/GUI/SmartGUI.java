@@ -1,5 +1,6 @@
 package GUI;
 
+import Board.Fields.Field;
 import Cards.Tradable;
 import Finance.Account;
 import Game.Actions.Action;
@@ -45,7 +46,17 @@ public class SmartGUI implements GUI{
 	}
 
 	@Override
-	public int selectPayment(Player player, String message, Account account) {
+	public int selectInteger(Player player, String message) {
 		return (int) actionsStack.pop();
+	}
+
+	@Override
+	public Field chooseField(Player player, String message, Field... fields) {
+		return (Field) actionsStack.pop();
+	}
+
+	@Override
+	public boolean acceptAction(Player player, String message) {
+		return (boolean) actionsStack.pop();
 	}
 }

@@ -1,5 +1,6 @@
 package GUI;
 
+import Board.Fields.Field;
 import Cards.Tradable;
 import Finance.Account;
 import Game.Actions.Action;
@@ -14,6 +15,10 @@ public interface GUI {
 
 	Player choosePlayer(Player player, String message, Player... players);
 
-	int selectPayment(Player player, String message, Account account);
+	int selectInteger(Player player, String message);
+
+	Field chooseField(Player player, String message, Field... fields);
+
+	boolean acceptAction(Player player, String message);
 
 }

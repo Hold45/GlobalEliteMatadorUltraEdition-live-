@@ -16,7 +16,7 @@ public class Account {
     }
 
     public void deposit(int value){
-        this.balance += value;
+	    this.balance += value;
     }
 
 	public void setBalance(int balance) {
@@ -28,7 +28,7 @@ public class Account {
      * @return amount withdrawn.
      */
     public int withdraw(int value){
-        if (value>this.balance){
+        if (value > this.balance){
             int beforeWithdraw = this.balance;
             this.balance = 0;
             return beforeWithdraw;
