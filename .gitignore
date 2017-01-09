@@ -50,3 +50,11 @@ local.properties
 markdown.xml
 _mac/
 /inspection/
+!/debugger.xml
+!/ignore.xml
+!/github_settings.xml
+!/colors.scheme.xml
+/colors.scheme.xml
+/ignore.xml
+/github_settings.xml
+/debugger.xml
