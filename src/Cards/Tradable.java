@@ -1,5 +1,6 @@
 package Cards;
 
+import Finance.Account;
 import Owners.Accountable;
 import Owners.Owner;
 
@@ -36,7 +37,7 @@ public abstract class Tradable {
 		if(owner instanceof Accountable){
 			if(buyer.getAccount().getBalance() < price || buyer.equals(this.owner))
 				return false;
-			((Accountable)this.owner).getAccount().transferTo(buyer.getAccount(), price);
+			buyer.getAccount().transferTo(((Accountable)this.owner).getAccount(), price);
 			this.setOwner(buyer);
 			return true;
 		}

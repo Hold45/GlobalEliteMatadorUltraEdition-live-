@@ -11,11 +11,23 @@ public class ProposeTrade implements Action{
 
 	@Override
 	public void run(Player player) {
-		Tradable chosenTradable = player.getGame().getGUI().chooseTradable(player, "ChooseTradableSell",player.getOwns().stream().filter(Tradable::canBeTraded).toArray(Tradable[]::new));
-		Player tradePartner = player.getGame().getGUI().choosePlayer(player, "ChooseSellToPlayer", player.getGame().getPlayers().stream().filter(other -> other != player).toArray(Player[]::new));
+		Tradable chosenTradable = player.getGame().getGUI().chooseTradable(
+				player,
+				"ChooseTradableSell",
+				player.getOwns().stream().
+						filter(Tradable::canBeTraded).
+							toArray(Tradable[]::new));
+		Player tradePartner = player.getGame().getGUI().choosePlayer(
+				player,
+				"ChooseSellToPlayer",
+				player.getGame().getPlayers().stream().
+						filter(other -> other != player).
+							toArray(Player[]::new));
 		int price = player.getGame().getGUI().selectInteger(player,"ChooseSellPrice");
 
-		chosenTradable.tryPurchase(tradePartner, price);
+		if(tradePartner.getGame().getGUI().acceptAction(tradePartner, "AcceptTrade")){
+			chosenTradable.tryPurchase(tradePartner, price);
+		}
 	}
 
 	@Override

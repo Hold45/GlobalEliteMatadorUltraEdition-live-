@@ -30,7 +30,7 @@ public class Game {
 	public Game(GUI gui) {
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
-		this.turns = new Stack<Turn>();
+		this.turns = new Stack<>();
 		this.bank = new Bank();
 		this.gui = gui;
 		this.board = new Board(this);

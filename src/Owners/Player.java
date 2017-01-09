@@ -8,9 +8,7 @@ import Game.Actions.*;
 import Game.Turns.RegularTurn;
 import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
-
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class Player extends Accountable{
     private Game game;
@@ -77,14 +75,18 @@ public class Player extends Accountable{
 	}
 
 	public Player moveTo(Class field){
-		return moveTo(this.game.getBoard().getIndex(field));
+		return this.moveTo(this.game.getBoard().getIndex(field));
+	}
+
+	public Player moveTo(Field field){
+		return this.moveTo(this.getGame().getBoard().getIndex(field));
 	}
 
 	public Player rollAndMove(){
 		this.getGame().getCup().roll();
 
 		if (this.getGame().getCup().triple() && !this.isJailed()){
-
+			this.moveTo(this.getGame().getGUI().chooseField(this, "Choose a field", this.getGame().getBoard().getFields()));
 		}else {
 			if (this.getGame().getCup().yahtzee()) {
 				if (this.isJailed()) {
@@ -107,7 +109,6 @@ public class Player extends Accountable{
 			}
 		}
 		if (!this.isJailed()) {
-
 			switch (this.getGame().getCup().getSpeedDie().getValue()) {
 				case 1:
 				case 2:
@@ -118,8 +119,14 @@ public class Player extends Accountable{
 				case 5:
 					this.getGame().getTurns().push(this.mrMonopolyTurn);
 					break;
-				case 6://FIXME
-					this.getGame().getGUI().chooseField(this, "whatever", Arrays.stream(this.getGame().getCup().getCombinations()).map(this.getGame().getBoard()::getField).toArray())
+				case 6:
+					this.moveTo(this.getGame().getGUI().chooseField(
+							this,
+							"whatever",
+							Arrays.stream(this.getGame().getCup().getCombinations()).
+									 map(i -> this.getPosition()+i).
+										mapToObj(this.getGame().getBoard()::getField).
+											toArray(Field[]::new)));
 					break;
 			}
 		}

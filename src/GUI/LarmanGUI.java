@@ -1,5 +1,6 @@
 package GUI;
 
+import Board.Fields.Field;
 import Cards.Tradable;
 import Finance.Account;
 import Game.Actions.Action;
@@ -27,7 +28,18 @@ public class LarmanGUI implements GUI {
     }
 
     @Override
-    public int selectInteger(Player player, String message, Account account) {
+    public int selectInteger(Player player, String message) {
         return 0;
     }
+
+    @Override
+    public Field chooseField(Player player, String message, Field... fields) {
+        return null;
+    }
+
+    @Override
+    public boolean acceptAction(Player player, String message) {
+        return false;
+    }
+
 }

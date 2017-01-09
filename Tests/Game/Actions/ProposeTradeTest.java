@@ -40,7 +40,7 @@ public class ProposeTradeTest {
 		Deed deed = new Amagertorv(game).getDeed();
 		p1.addTradable(deed);
 
-		gui.addActions(EndActions.self, EndActions.self, 1000, p2, deed, ProposeTrade.self);
+		gui.addActions(EndActions.self, EndActions.self, true, 1000, p2, deed, ProposeTrade.self);
 
 		p1.takeActions(ProposeTrade.self);
 

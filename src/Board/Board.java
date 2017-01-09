@@ -6,6 +6,9 @@ import Board.Fields.Properties.Plots.YellowPlots.Nygade;
 import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaffet;
 import Game.Game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Board {
 	private Field[] fields;
 
@@ -33,5 +36,9 @@ public class Board {
 
 	public Field getField(int index){
 		return this.fields[index];
+	}
+
+	public int getIndex(Field field){
+		return Arrays.asList(this.fields).indexOf(field);
 	}
 }

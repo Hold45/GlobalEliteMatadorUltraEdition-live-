@@ -12,6 +12,6 @@ public class RegularTurn extends Turn {
 
 	public void take(){
 		super.take();
-
+		this.owner.rollAndMove();
 	}
 }

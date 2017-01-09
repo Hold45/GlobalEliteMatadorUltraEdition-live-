@@ -19,4 +19,6 @@ public interface GUI {
 
 	Field chooseField(Player player, String message, Field... fields);
 
+	boolean acceptAction(Player player, String message);
+
 }
