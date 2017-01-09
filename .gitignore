@@ -58,3 +58,5 @@ _mac/
 /ignore.xml
 /github_settings.xml
 /debugger.xml
+/baseRefactoring.xml
+/gradle.run.settings.xml
