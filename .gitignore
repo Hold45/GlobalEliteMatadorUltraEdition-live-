@@ -48,3 +48,5 @@ local.properties
 /IntelliLang.xml
 /ui.lnf.xml
 markdown.xml
+_mac/
+/inspection/
