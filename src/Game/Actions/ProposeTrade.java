@@ -25,13 +25,14 @@ public class ProposeTrade implements Action{
 							toArray(Player[]::new));
 		int price = player.getGame().getGUI().selectInteger(player,"ChooseSellPrice");
 
-		if(tradePartner.getGame().getGUI().acceptAction(tradePartner, "AcceptTrade")){
+		if(tradePartner.getGame().getGUI().acceptBuyProperty(tradePartner, "AcceptTrade", chosenTradable, price)){
 			chosenTradable.tryPurchase(tradePartner, price);
 		}
 	}
 
 	@Override
 	public boolean runnable(Player player) {
-		return player.getOwns().stream().anyMatch(Tradable::canBeTraded);
+		return player.getOwns().stream().
+					anyMatch(Tradable::canBeTraded);
 	}
 }

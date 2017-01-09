@@ -7,6 +7,7 @@ public class MonopolyCup extends DiceCup {
 
     public MonopolyCup() {
         super(new D6(), new D6());
+        this.speedDie = new SpeedDie();
     }
 
     @Override

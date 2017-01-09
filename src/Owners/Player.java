@@ -124,7 +124,7 @@ public class Player extends Accountable{
 							this,
 							"whatever",
 							Arrays.stream(this.getGame().getCup().getCombinations()).
-									 map(i -> this.getPosition()+i).
+									 map(this::getOffsetPosition).
 										mapToObj(this.getGame().getBoard()::getField).
 											toArray(Field[]::new)));
 					break;

@@ -42,4 +42,9 @@ public class LarmanGUI implements GUI {
         return false;
     }
 
+    @Override
+    public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
+        return false;
+    }
+
 }

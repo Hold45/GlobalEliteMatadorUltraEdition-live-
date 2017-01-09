@@ -2,66 +2,50 @@ package GUI;
 
 import Board.Fields.Field;
 import Cards.Tradable;
-import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
-
-import static org.junit.Assert.*;
-
-public class SmartGUI implements GUI{
-	private Stack<Object> actionsStack;
-
-	public SmartGUI() {
-		actionsStack = new Stack<>();
-	}
-
-	public void addActions(Object... actions){
-		for (Object action : actions) {
-			actionsStack.push(action);
-		}
-	}
-
+/**
+ *
+ */
+public class DummyGUI implements GUI {
 	@Override
 	public int getField(int[] options) {
-		return (int) actionsStack.pop();
+		return options[0];
 	}
 
 	@Override
 	public Action chooseAction(Player player, Action... options) {
-		return (Action) actionsStack.pop();
+		return options[0];
 	}
 
 	@Override
 	public Tradable chooseTradable(Player player, String message, Tradable... tradables) {
-		return (Tradable) actionsStack.pop();
+		return tradables[0];
 	}
 
 	@Override
 	public Player choosePlayer(Player player, String message, Player... players) {
-		return (Player) actionsStack.pop();
+		return players[0];
 	}
 
 	@Override
 	public int selectInteger(Player player, String message) {
-		return (int) actionsStack.pop();
+		return 1000;
 	}
 
 	@Override
 	public Field chooseField(Player player, String message, Field... fields) {
-		return (Field) actionsStack.pop();
+		return fields[0];
 	}
 
 	@Override
 	public boolean acceptAction(Player player, String message) {
-		return (boolean) actionsStack.pop();
+		return true;
 	}
 
 	@Override
 	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
-		return (boolean) actionsStack.pop();
+		return true;
 	}
 }

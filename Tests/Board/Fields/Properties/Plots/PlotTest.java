@@ -1,17 +1,18 @@
-package Game.Actions;
+package Board.Fields.Properties.Plots;
 
-import Board.Fields.Properties.Deeds.Deed;
-import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
 import GUI.SmartGUI;
 import Game.Game;
 import Owners.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import Board.Fields.Properties.Plots.BluePlots.*;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ProposeTradeTest {
+public class PlotTest {
 	private Game game;
 	private Player p1;
 	private Player p2;
@@ -37,18 +38,19 @@ public class ProposeTradeTest {
 	}
 
 	@Test
-	public void testRun() throws Exception{
-		Deed deed = new Amagertorv(game).getDeed();
-		p1.addTradable(deed);
+	public void getRent() throws Exception {
+		Plot[] plots = Arrays.stream(game.getBoard().getFields())
+				.filter(field -> field instanceof BluePlot)
+					.toArray(Plot[]::new);
 
-		gui.addActions(EndActions.self, EndActions.self, true, 1000, p2, deed, ProposeTrade.self);
 
-		p1.takeActions(ProposeTrade.self);
+		plots[0].getDeed().setOwner(p1);
+		assertThat(plots[0].getRent()).isEqualTo(plots[0].getRentScheme()[0]);
 
-		assertThat(p1.getAccount().getBalance()).isEqualTo(11000);
-		assertThat(p1.isOwnerOf(deed)).isFalse();
-		assertThat(p2.getAccount().getBalance()).isEqualTo(9000);
-		assertThat(p2.isOwnerOf(deed)).isTrue();
+		plots[1].getDeed().setOwner(p1);
+		assertThat(plots[1].getRent()).isEqualTo(plots[1].getRentScheme()[0]*2);
+
+
 	}
 
 }

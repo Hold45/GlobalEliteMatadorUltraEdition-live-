@@ -14,6 +14,7 @@ public class ScheduledTurn extends RegularTurn {
 	@Override
 	public void take() {
 		super.take();
-		this.owner.getGame().getTurns().push(this.owner.getGame().nextPlayer(this.owner).getTurn());
+		if(!this.owner.getGame().hasWinner())
+			this.owner.getGame().getTurns().push(this.owner.getGame().nextPlayer(this.owner).getTurn());
 	}
 }

@@ -3,6 +3,7 @@ package Board.Fields.Properties.Deeds;
 import Board.Fields.Properties.Property;
 import Cards.Tradable;
 import Owners.Accountable;
+import Owners.Bank;
 import Owners.Owner;
 
 /**
@@ -33,6 +34,11 @@ public class Deed extends Tradable {
 	@Override
 	public boolean canBeTraded() {
 		return this.field.getBuildings().isEmpty() && !this.isPawned();
+	}
+
+
+	public boolean isOwned(){
+		return !(this.owner instanceof Bank);
 	}
 
 }

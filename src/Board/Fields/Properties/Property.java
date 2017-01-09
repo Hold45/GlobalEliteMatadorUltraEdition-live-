@@ -4,6 +4,8 @@ import Board.Fields.Field;
 import Board.Fields.Properties.Deeds.Deed;
 import Buildings.Building;
 import Game.Game;
+import Owners.Accountable;
+import Owners.Player;
 
 import java.util.ArrayList;
 
@@ -16,6 +18,22 @@ public abstract class Property extends Field {
 		super(game, name, description);
 		this.deed = new Deed(this, price, game.getBank());
 		this.buildings = new ArrayList<>();
+	}
+
+
+	@Override
+	public void onLand(Player player) {
+		super.onLand(player);
+
+		if(this.getDeed().isOwned() && !this.getDeed().isPawned() && !(((Player)this.getDeed().getOwner()).isJailed()) && this.getDeed().getOwner() != player){
+			player.getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getRent());
+		}
+		else if(!this.getDeed().isOwned()){
+			if(player.getGame().getGUI().acceptBuyProperty(player, "BuyProperty??", this.getDeed(), this.getDeed().getPrice())){
+				this.getDeed().tryPurchase(player);
+			}
+			//TODO: add auction.
+		}
 	}
 
 	public abstract int getRent();

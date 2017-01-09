@@ -21,4 +21,6 @@ public interface GUI {
 
 	boolean acceptAction(Player player, String message);
 
+	boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price);
+
 }

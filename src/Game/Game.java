@@ -99,4 +99,8 @@ public class Game {
 	public ArrayList<Turn> getTurnLog() {
 		return this.turnLog;
 	}
+
+	public boolean hasWinner(){
+		return this.getPlayers().size() == 1;
+	}
 }

@@ -26,4 +26,8 @@ public abstract class Field {
 	public String getName() {
 		return this.name;
 	}
+
+	public Game getGame() {
+		return this.game;
+	}
 }
