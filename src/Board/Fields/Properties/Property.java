@@ -6,13 +6,17 @@ import Buildings.Building;
 import Game.Game;
 import Owners.Accountable;
 import Owners.Player;
+import org.apache.commons.collections.CollectionUtils;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class Property extends Field {
 
 	protected Deed deed;
 	protected ArrayList<Building> buildings;
+	protected Class[][] upgradeSignature;
 
 	public Property(Game game, String name, String description, int price) {
 		super(game, name, description);
@@ -20,20 +24,25 @@ public abstract class Property extends Field {
 		this.buildings = new ArrayList<>();
 	}
 
-
 	@Override
 	public void onLand(Player player) {
 		super.onLand(player);
 
-		if(this.getDeed().isOwned() && !this.getDeed().isPawned() && !(((Player)this.getDeed().getOwner()).isJailed()) && this.getDeed().getOwner() != player){
+		if(this.getDeed().isPlayerOwned() && !this.getDeed().isPawned() && !(((Player)this.getDeed().getOwner()).isJailed()) && this.getDeed().getOwner() != player){
 			player.getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getRent());
 		}
-		else if(!this.getDeed().isOwned()){
+		else if(!this.getDeed().isPlayerOwned()){
 			if(player.getGame().getGUI().acceptBuyProperty(player, "BuyProperty??", this.getDeed(), this.getDeed().getPrice())){
 				this.getDeed().tryPurchase(player);
 			}
 			//TODO: add auction.
 		}
+	}
+
+	protected Stream<Property> getSameColorProperties() {
+		return Arrays.stream(this.getGame().getBoard().getFields())
+				.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
+					.map(field -> (Property) field);
 	}
 
 	public abstract int getRent();
@@ -44,6 +53,90 @@ public abstract class Property extends Field {
 
 	public Deed getDeed() {
 		return this.deed;
+	}
+
+	public int getUpgradeValue() {
+		for (int i = this.upgradeSignature.length-1; i >= 0 ; i--) {
+			if(CollectionUtils.isSubCollection(Arrays.asList(this.upgradeSignature[i]), Arrays.asList(this.buildings.stream().map(Building::getClass).toArray(Class[]::new)))){
+				return i;
+			}
+		}
+		return 0;
+	}
+
+
+	public boolean canBeUpgraded(){
+		return
+				getUpgradeValue() < this.upgradeSignature.length
+				&& !this.getDeed().isPawned()
+				&& this.getSameColorProperties()
+						.noneMatch(property -> property.getUpgradeValue() > this.getUpgradeValue());
+	}
+
+	public boolean canBeDowngraded(){
+		return
+				getUpgradeValue() < 0
+				&& this.getSameColorProperties()
+						.noneMatch(property -> property.getUpgradeValue() < this.getUpgradeValue());
+	}
+
+	public boolean tryUpgrade(){
+		if(
+			canBeUpgraded()
+			&& CollectionUtils.isSubCollection(
+				this.requiredBuildingsForUpgrade(),
+				this.getGame().getBank().getBuildings().stream()
+						.map(Building::getClass)
+							.collect(Collectors.toList())
+			)
+			&& ((Accountable)this.getDeed().getOwner()).getAccount().payTo(
+				this.getGame().getBank().getAccount(),
+				this.getDeed().getUpgradePrice()
+			)
+		){
+			this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForUpgrade().toArray());
+			this.getGame().getBank().takeBuildings(this, (Class[]) this.requiredBuildingsForUpgrade().toArray());
+			return true;
+		}
+		return false;
+	}
+
+	public boolean tryDowngrade(){
+		if(!canBeDowngraded()){
+			return false;
+		}
+		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
+		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuldingsForDowngrade().toArray());
+		return true;
+	}
+
+	/**
+	 * Returns an Collection with buildings which are obsolete for the upgrade.
+	 *
+	 * @return Buildings to remove when upgrading
+	 */
+	private Collection obsoleteBuildingsForUpgrade() {
+		return buildingsSignatureChange(0,1);
+	}
+
+	private Collection buildingsSignatureChange(int indexFrom, int indexTo){
+		return CollectionUtils.subtract(
+				Arrays.asList(this.upgradeSignature[getUpgradeValue()+indexFrom]),
+				Arrays.asList(this.upgradeSignature[getUpgradeValue()+indexTo])
+		);
+	}
+
+	/**
+	 * Returns an Collection with buildings needed for the next upgrade.
+	 *
+	 * @return Buildings need for upgrading
+	 */
+	private Collection requiredBuildingsForUpgrade() {
+		return buildingsSignatureChange(1,0);
+	}
+
+	private Collection obsoleteBuldingsForDowngrade(){
+		return buildingsSignatureChange(0,-1);
 	}
 }
 

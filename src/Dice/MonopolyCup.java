@@ -14,7 +14,7 @@ public class MonopolyCup extends DiceCup {
     public DiceCup roll() {
         super.roll();
         this.speedDie.roll();
-        return this;
+	    return this;
     }
 
     public SpeedDie getSpeedDie() {

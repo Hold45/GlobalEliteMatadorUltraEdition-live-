@@ -123,10 +123,10 @@ public class Player extends Accountable{
 					this.moveTo(this.getGame().getGUI().chooseField(
 							this,
 							"whatever",
-							Arrays.stream(this.getGame().getCup().getCombinations()).
-									 map(this::getOffsetPosition).
-										mapToObj(this.getGame().getBoard()::getField).
-											toArray(Field[]::new)));
+							Arrays.stream(this.getGame().getCup().getCombinations())
+								.map(this::getOffsetPosition)
+									.mapToObj(this.getGame().getBoard()::getField)
+										.toArray(Field[]::new)));
 					break;
 			}
 		}

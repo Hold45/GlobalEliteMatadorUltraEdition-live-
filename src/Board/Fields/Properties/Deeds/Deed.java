@@ -3,8 +3,7 @@ package Board.Fields.Properties.Deeds;
 import Board.Fields.Properties.Property;
 import Cards.Tradable;
 import Owners.Accountable;
-import Owners.Bank;
-import Owners.Owner;
+import Owners.Player;
 
 /**
  *
@@ -12,11 +11,13 @@ import Owners.Owner;
 public class Deed extends Tradable {
 	private final Property field;
 	private boolean pawned;
+	private final int upgradePrice;
 
 	public Deed(Property field, int price, Accountable owner){
 		super(price);
 		this.field = field;
 		this.owner = owner;
+		this.upgradePrice = 1000;
 	}
 
 	public int getPrice() {
@@ -25,6 +26,10 @@ public class Deed extends Tradable {
 
 	public Property getField() {
 		return this.field;
+	}
+
+	public int getUpgradePrice() {
+		return this.upgradePrice;
 	}
 
 	public boolean isPawned() {
@@ -36,9 +41,45 @@ public class Deed extends Tradable {
 		return this.field.getBuildings().isEmpty() && !this.isPawned();
 	}
 
-
-	public boolean isOwned(){
-		return !(this.owner instanceof Bank);
+	public boolean canBePawned(){
+		return this.canBeTraded() && this.isPlayerOwned();
 	}
 
+	public boolean canBeUnpawned(){
+		return this.isPawned() && this.isPlayerOwned() && ((Accountable)this.owner).getAccount().getBalance() >= (int) (this.getPrice()* 0.55);
+	}
+
+	public boolean isPlayerOwned(){
+		return this.owner instanceof Player;
+	}
+
+	public void pawn() {
+		((Player)this.owner).getGame().getBank().getAccount().transferTo(
+				((Player)this.owner).getAccount(),
+				this.getPrice()/2
+		);
+		this.pawned = true;
+	}
+
+	public boolean tryPawn() {
+		if(!this.canBePawned())
+			return false;
+		this.pawn();
+		return true;
+	}
+
+	public boolean tryUnpawn(){
+		if (!this.canBeUnpawned())
+			return false;
+		this.unPawn();
+		return true;
+	}
+
+	public void unPawn(){
+		((Accountable)this.owner).getAccount().transferTo(
+				((Player)this.owner).getGame().getBank().getAccount(),
+				(int) (this.getPrice()* 0.55)
+		);
+		this.pawned = false;
+	}
 }

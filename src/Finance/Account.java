@@ -11,12 +11,20 @@ public class Account {
         return balance;
     }
 
-    public void transferTo(Account transferTo, int payment){
-        transferTo.deposit(this.withdraw(payment));
+    public void transferTo(Account transferee, int payment){
+        transferee.deposit(this.withdraw(payment));
     }
 
     public void deposit(int value){
 	    this.balance += value;
+    }
+
+    public boolean payTo(Account transferee, int value){
+    	if(this.balance >= value){
+		    transferTo(transferee, value);
+		    return true;
+	    }
+	    return false;
     }
 
 	public void setBalance(int balance) {
