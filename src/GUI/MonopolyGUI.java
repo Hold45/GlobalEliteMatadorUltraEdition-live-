@@ -6,7 +6,7 @@ import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-public interface GUI {
+public interface MonopolyGUI {
     int getField(int[] options);
 
 	Action chooseAction(Player player, Action... options);

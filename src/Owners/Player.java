@@ -47,14 +47,13 @@ public class Player extends Accountable{
 
 	public void takeActions(Action... actions){
 		Action chosenAction;
-    	do {
-		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this)).toArray(Action[]::new);
+		do {
+		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this) && !this.getGame().hasWinner()).toArray(Action[]::new);
 		    options = Arrays.copyOf(options, options.length+1);
 		    options[options.length-1] = EndActions.self;
-
-		    chosenAction = this.game.getGUI().chooseAction(this, options);
+			chosenAction = this.game.getGUI().chooseAction(this, options);
 		    chosenAction.run(this);
-	    }
+		}
     	while (!(chosenAction instanceof EndActions));
 	}
 

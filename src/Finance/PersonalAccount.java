@@ -2,7 +2,7 @@ package Finance;
 
 import Board.Fields.Properties.Deeds.Deed;
 import Game.Actions.PawnDeed;
-import Game.Actions.downgradeProperty;
+import Game.Actions.DowngradeProperty;
 import Game.Actions.SellDeedToBank;
 import Owners.Player;
 
@@ -18,7 +18,7 @@ public class PersonalAccount extends Account {
     @Override
     public int withdraw(int value){
     	while (value > this.balance && this.owner.getOwns().stream().filter(tradable -> tradable instanceof Deed).anyMatch(tradable -> !((Deed) tradable).isPawned())){
-		    this.owner.takeActions(PawnDeed.self, downgradeProperty.self, SellDeedToBank.self);
+		    this.owner.takeActions(PawnDeed.self, DowngradeProperty.self, SellDeedToBank.self);
 	    }
 
         if (value > this.balance){

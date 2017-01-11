@@ -2,17 +2,12 @@ package GUI;
 
 import Board.Fields.Field;
 import Cards.Tradable;
-import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
-import static org.junit.Assert.*;
-
-public class SmartGUI implements GUI{
+public class SmartGUI implements MonopolyGUI {
 	private Stack<Object> actionsStack;
 
 	public SmartGUI() {

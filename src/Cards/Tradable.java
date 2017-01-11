@@ -22,7 +22,6 @@ public abstract class Tradable {
 	}
 
 	public void setOwner(Owner newOwner){
-		this.owner.transferTradableTo(newOwner,this);
 		this.owner = newOwner;
 	}
 
@@ -37,7 +36,7 @@ public abstract class Tradable {
 		if(owner instanceof Accountable){
 			if(buyer.getAccount().getBalance() < price || buyer.equals(this.owner))
 				return false;
-			purchase(buyer, price);
+			this.purchase(buyer, price);
 			return true;
 		}
 		return false;
@@ -45,7 +44,8 @@ public abstract class Tradable {
 
 	public void purchase(Accountable buyer, int price){
 		buyer.getAccount().transferTo(((Accountable)this.owner).getAccount(), price);
-		this.setOwner(buyer);
+
+		this.owner.transferTradableTo(buyer,this);
 	}
 
 	public void purchase(Accountable buyer){

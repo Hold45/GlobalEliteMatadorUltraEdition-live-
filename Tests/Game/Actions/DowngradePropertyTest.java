@@ -2,6 +2,7 @@ package Game.Actions;
 
 import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
+import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
 import Board.Fields.Properties.Property;
 import GUI.SmartGUI;
@@ -13,7 +14,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ProposeTradeTest {
+public class DowngradePropertyTest {
 	private Game game;
 	private Player p1;
 	private Player p2;
@@ -39,18 +40,22 @@ public class ProposeTradeTest {
 	}
 
 	@Test
-	public void testRun() throws Exception{
-		Deed deed = ((Property)game.getBoard().getField(Hvidovrevej.class)).getDeed();
-		game.getBank().transferTradableTo(p1, deed);
+	public void testRunnable() throws Exception {
+		Deed hvid = ((Property)game.getBoard().getField(Hvidovrevej.class)).getDeed();
+		Deed roed = ((Property)game.getBoard().getField(Roedovrevej.class)).getDeed();
+		game.getBank().transferTradableTo(p1, hvid);
+		game.getBank().transferTradableTo(p1, roed);
 
-		gui.addActions(EndActions.self, EndActions.self, true, 1000, p2, deed, ProposeTrade.self);
+		Action downgrade = DowngradeProperty.self;
 
-		p1.takeActions(ProposeTrade.self);
+		assertThat(downgrade.runnable(p1)).isFalse();
 
-		assertThat(p1.getAccount().getBalance()).isEqualTo(11000);
-		assertThat(p1.isOwnerOf(deed)).isFalse();
-		assertThat(p2.getAccount().getBalance()).isEqualTo(9000);
-		assertThat(p2.isOwnerOf(deed)).isTrue();
+
+		hvid.getProperty().upgrade();
+		assertThat(downgrade.runnable(p1)).isTrue();
+
+		roed.getProperty().upgrade();
+		roed.getProperty().upgrade();
+		assertThat(downgrade.runnable(p1)).isTrue();
 	}
-
 }

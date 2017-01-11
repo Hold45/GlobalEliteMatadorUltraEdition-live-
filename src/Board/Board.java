@@ -69,7 +69,11 @@ public class Board {
 				return i;
 			}
 		}
-		throw new ArithmeticException();
+		throw new ArrayIndexOutOfBoundsException();
+	}
+
+	public Field getField(Class c){
+		return Arrays.stream(this.fields).filter(field -> field.getClass().isAssignableFrom(c)).findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new);
 	}
 
 	public Field getField(int index){

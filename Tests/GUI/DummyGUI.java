@@ -5,47 +5,49 @@ import Cards.Tradable;
 import Game.Actions.Action;
 import Owners.Player;
 
+import java.util.Random;
+
 /**
  *
  */
-public class DummyGUI implements GUI {
+public class DummyGUI implements MonopolyGUI {
 	@Override
 	public int getField(int[] options) {
-		return options[0];
+		return options[new Random().nextInt(options.length)];
 	}
 
 	@Override
 	public Action chooseAction(Player player, Action... options) {
-		return options[0];
+		return options[new Random().nextInt(options.length)];
 	}
 
 	@Override
 	public Tradable chooseTradable(Player player, String message, Tradable... tradables) {
-		return tradables[0];
+		return tradables[new Random().nextInt(tradables.length)];
 	}
 
 	@Override
 	public Player choosePlayer(Player player, String message, Player... players) {
-		return players[0];
+		return players[new Random().nextInt(players.length)];
 	}
 
 	@Override
 	public int selectInteger(Player player, String message) {
-		return 1000;
+		return 0;
 	}
 
 	@Override
 	public Field chooseField(Player player, String message, Field... fields) {
-		return fields[0];
+		return fields[new Random().nextInt(fields.length)];
 	}
 
 	@Override
 	public boolean acceptAction(Player player, String message) {
-		return true;
+		return new Random().nextBoolean();
 	}
 
 	@Override
 	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
-		return true;
+		return new Random().nextBoolean();
 	}
 }

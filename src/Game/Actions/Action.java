@@ -21,5 +21,4 @@ public abstract class Action{
 						filter(other -> other != player).
 						toArray(Player[]::new));
 	}
-
 }

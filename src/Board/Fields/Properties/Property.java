@@ -28,7 +28,12 @@ public abstract class Property extends Field {
 	public void onLand(Player player) {
 		super.onLand(player);
 
-		if(this.getDeed().isPlayerOwned() && !this.getDeed().isPawned() && !(((Player)this.getDeed().getOwner()).isJailed()) && this.getDeed().getOwner() != player){
+		if (
+			this.getDeed().isPlayerOwned()
+			&& !this.getDeed().isPawned()
+			&& !(((Player)this.getDeed().getOwner()).isJailed())
+			&& this.getDeed().getOwner() != player
+		){
 			player.getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getRent());
 		}
 		else if(!this.getDeed().isPlayerOwned()){
@@ -39,7 +44,7 @@ public abstract class Property extends Field {
 		}
 	}
 
-	protected Stream<Property> getSameColorProperties() {
+	public Stream<Property> getSameColorProperties() {
 		return Arrays.stream(this.getGame().getBoard().getFields())
 				.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
 					.map(field -> (Property) field);
@@ -64,20 +69,21 @@ public abstract class Property extends Field {
 		return 0;
 	}
 
-
 	public boolean canBeUpgraded(){
 		return
-				getUpgradeValue() < this.upgradeSignature.length
+				this.getUpgradeValue() < this.upgradeSignature.length
 				&& !this.getDeed().isPawned()
 				&& this.getSameColorProperties()
-						.noneMatch(property -> property.getUpgradeValue() > this.getUpgradeValue());
+						.noneMatch(property -> property.getUpgradeValue() < this.getUpgradeValue())
+				&& this.getSameColorProperties()
+						.allMatch(property -> property.getDeed().getOwner().equals(this.getDeed().getOwner()));
 	}
 
 	public boolean canBeDowngraded(){
 		return
-				getUpgradeValue() < 0
+				getUpgradeValue() > 0
 				&& this.getSameColorProperties()
-						.noneMatch(property -> property.getUpgradeValue() < this.getUpgradeValue());
+						.noneMatch(property -> property.getUpgradeValue() > this.getUpgradeValue());
 	}
 
 	public boolean tryUpgrade(){
@@ -94,20 +100,28 @@ public abstract class Property extends Field {
 				this.getDeed().getUpgradePrice()
 			)
 		){
-			this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForUpgrade().toArray());
-			this.getGame().getBank().takeBuildings(this, (Class[]) this.requiredBuildingsForUpgrade().toArray());
+			upgrade();
 			return true;
 		}
 		return false;
+	}
+
+	public void upgrade() {
+		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForUpgrade().toArray(new Class[this.obsoleteBuildingsForDowngrade().size()]));
+		this.getGame().getBank().takeBuildings(this, (Class[]) this.requiredBuildingsForUpgrade().toArray(new Class[this.requiredBuildingsForUpgrade().size()]));
 	}
 
 	public boolean tryDowngrade(){
 		if(!canBeDowngraded()){
 			return false;
 		}
-		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
-		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuldingsForDowngrade().toArray());
+		downgrade();
 		return true;
+	}
+
+	public void downgrade() {
+		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
+		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForDowngrade().toArray());
 	}
 
 	/**
@@ -135,8 +149,10 @@ public abstract class Property extends Field {
 		return buildingsSignatureChange(1,0);
 	}
 
-	private Collection obsoleteBuldingsForDowngrade(){
-		return buildingsSignatureChange(0,-1);
+	private Collection obsoleteBuildingsForDowngrade(){
+		if(this.getUpgradeValue() < 0)
+			return buildingsSignatureChange(0,-1);
+		return new ArrayList<Class>();
 	}
 }
 

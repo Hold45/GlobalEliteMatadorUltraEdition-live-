@@ -9,14 +9,15 @@ import Owners.Player;
  *
  */
 public class Deed extends Tradable {
-	private final Property field;
+	private final Property property;
 	private boolean pawned;
 	private final int upgradePrice;
 
 	public Deed(Property field, int price, Accountable owner){
 		super(price);
-		this.field = field;
-		this.owner = owner;
+		this.property = field;
+		this.setOwner(owner);
+		owner.addTradable(this);
 		this.upgradePrice = 1000;
 	}
 
@@ -24,8 +25,8 @@ public class Deed extends Tradable {
 		return this.price;
 	}
 
-	public Property getField() {
-		return this.field;
+	public Property getProperty() {
+		return this.property;
 	}
 
 	public int getUpgradePrice() {
@@ -38,7 +39,9 @@ public class Deed extends Tradable {
 
 	@Override
 	public boolean canBeTraded() {
-		return this.field.getBuildings().isEmpty() && !this.isPawned();
+		return
+				!this.isPawned()
+				&& this.getProperty().getSameColorProperties().allMatch(property -> property.getBuildings().isEmpty());
 	}
 
 	public boolean canBePawned(){

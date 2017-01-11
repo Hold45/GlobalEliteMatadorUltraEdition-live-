@@ -2,11 +2,10 @@ package GUI;
 
 import Board.Fields.Field;
 import Cards.Tradable;
-import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-public class LarmanGUI implements GUI {
+public class LarmanGUI implements MonopolyGUI {
     @Override
     public int getField(int[] options) {
         return 0;

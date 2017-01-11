@@ -35,7 +35,9 @@ public class GameTest {
 
 	@Test
 	public void testStart() throws Exception {
-		game.start();
+		for (int i = 0; i < 100; i++) {
+			game.start();
+		}
 	}
 
 }

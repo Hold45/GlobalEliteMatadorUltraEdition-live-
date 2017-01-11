@@ -21,13 +21,13 @@ public class Game {
 	private ArrayList<Player> losers;
 	private Stack<Turn> turns;
 	private Bank bank;
-	private GUI gui;
+	private MonopolyGUI gui;
 	private Board board;
 	private CardPile cardPile;
 	private MonopolyCup cup;
 	private ArrayList<Turn> turnLog;
 
-	public Game(GUI gui) {
+	public Game(MonopolyGUI gui) {
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
 		this.turns = new Stack<>();
@@ -80,7 +80,7 @@ public class Game {
 		return this.losers;
 	}
 
-	public GUI getGUI() {
+	public MonopolyGUI getGUI() {
 		return this.gui;
 	}
 

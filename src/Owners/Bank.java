@@ -9,6 +9,7 @@ import Finance.Account;
 import Owners.Owner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Stack;
 
@@ -52,12 +53,12 @@ public class Bank extends Accountable {
 
 
 	public boolean takeBuilding(Property property, Class c){
-		return this.moveBuilding(this.buildings, property.getBuildings(), c);
+		return this.moveBuilding(property.getBuildings(), this.buildings, c);
 	}
 
 	public void takeBuildings(Property property, Class... classes){
 		for (Class c: classes) {
-			this.moveBuilding(property.getBuildings(), this.buildings, c);
+			this.moveBuilding(this.buildings, property.getBuildings(), c);
 		}
 	}
 
