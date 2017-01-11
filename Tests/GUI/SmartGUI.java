@@ -2,17 +2,13 @@ package GUI;
 
 import Board.Fields.Field;
 import Cards.Tradable;
-import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
-import static org.junit.Assert.*;
-
-public class SmartGUI implements GUI{
+public class SmartGUI implements MonopolyGUI {
 	private Stack<Object> actionsStack;
 
 	public SmartGUI() {
@@ -26,12 +22,7 @@ public class SmartGUI implements GUI{
 	}
 
 	@Override
-	public int getField(int[] options) {
-		return (int) actionsStack.pop();
-	}
-
-	@Override
-	public Action chooseAction(Player player, Action... options) {
+	public Action chooseAction(Player player, String message, Action... options) {
 		return (Action) actionsStack.pop();
 	}
 

@@ -5,7 +5,7 @@ import Owners.Player;
 /**
  *
  */
-public class EndActions implements Action {
+public class EndActions extends Action {
 	public static final Action self = new EndActions();
 
 	@Override
@@ -15,6 +15,6 @@ public class EndActions implements Action {
 
 	@Override
 	public boolean runnable(Player player) {
-		return false;
+		return true;
 	}
 }

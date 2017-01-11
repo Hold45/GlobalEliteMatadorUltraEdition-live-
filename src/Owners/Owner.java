@@ -21,8 +21,8 @@ public abstract class Owner {
 	}
 
 	public void addTradable(Tradable tradable){
-		this.owns.add(tradable);
 		tradable.setOwner(this);
+		this.owns.add(tradable);
 	}
 
 	public boolean removeTradable(Tradable tradable){

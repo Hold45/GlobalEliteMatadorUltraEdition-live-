@@ -10,6 +10,7 @@ import Owners.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -22,13 +23,14 @@ public class Game {
 	private ArrayList<Player> losers;
 	private Stack<Turn> turns;
 	private Bank bank;
-	private GUI gui;
+	private MonopolyGUI gui;
 	private Board board;
 	private CardPile cardPile;
 	private MonopolyCup cup;
 	private ArrayList<Turn> turnLog;
+	public static Random random = new Random();
 
-	public Game(GUI gui) {
+	public Game(MonopolyGUI gui) {
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
 		this.turns = new Stack<>();
@@ -85,7 +87,7 @@ public class Game {
 		return this.losers;
 	}
 
-	public GUI getGUI() {
+	public MonopolyGUI getGUI() {
 		return this.gui;
 	}
 
@@ -107,5 +109,9 @@ public class Game {
 
 	public boolean hasWinner(){
 		return this.getPlayers().size() == 1;
+	}
+
+	public static Random getRandom() {
+		return random;
 	}
 }

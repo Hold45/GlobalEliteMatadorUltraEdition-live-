@@ -17,14 +17,17 @@ public class Player extends Accountable{
     private int position;
     private boolean jailed;
     private Turn mrMonopolyTurn;
+    private String name;
 
     public Player(Game game) {
         super();
+        this.position = 0;
         this.game = game;
         this.account = new PersonalAccount(this,1000);
         this.turn = new ScheduledTurn(this);
         this.additionalTurn = new RegularTurn(this);
         this.jailed = false;
+        this.name = "name";
         this.mrMonopolyTurn = new Turn(this) {
 	        @Override
 	        public void take() {
@@ -47,14 +50,13 @@ public class Player extends Accountable{
 
 	public void takeActions(Action... actions){
 		Action chosenAction;
-    	do {
-		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this)).toArray(Action[]::new);
+		do {
+		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this) && !this.getGame().hasWinner()).toArray(Action[]::new);
 		    options = Arrays.copyOf(options, options.length+1);
 		    options[options.length-1] = EndActions.self;
-
-		    chosenAction = this.game.getGUI().chooseAction(this, options);
+			chosenAction = this.game.getGUI().chooseAction(this, "ChooseAction", options);
 		    chosenAction.run(this);
-	    }
+		}
     	while (!(chosenAction instanceof EndActions));
 	}
 
@@ -95,7 +97,7 @@ public class Player extends Accountable{
 		this.getGame().getCup().roll();
 
 		if (this.getGame().getCup().triple() && !this.isJailed()){
-			this.moveTo(this.getGame().getGUI().chooseField(this, "Choose a field", this.getGame().getBoard().getFields()));
+			this.moveTo(this.getGame().getGUI().chooseField(this, "ChooseFieldMoveTo", this.getGame().getBoard().getFields()));
 		}else {
 			if (this.getGame().getCup().yahtzee()) {
 				if (this.isJailed()) {
@@ -127,20 +129,25 @@ public class Player extends Accountable{
 				case 4:
 				case 5:
 					this.getGame().getTurns().push(this.mrMonopolyTurn);
+					this.move(this.getGame().getCup().getSum());
 					break;
 				case 6:
-					this.moveTo(this.getGame().getGUI().chooseField(
-							this,
-							"whatever",
-							Arrays.stream(this.getGame().getCup().getCombinations()).
-									 map(this::getOffsetPosition).
-										mapToObj(this.getGame().getBoard()::getField).
-											toArray(Field[]::new)));
+					moveWithBus();
 					break;
 			}
 		}
 
 		return this;
+	}
+
+	private void moveWithBus() {
+		this.moveTo(this.getGame().getGUI().chooseField(
+				this,
+				"ChooseBusFieldMoveTo",
+				Arrays.stream(this.getGame().getCup().getCombinations())
+					.map(this::getOffsetPosition)
+						.mapToObj(this.getGame().getBoard()::getField)
+							.toArray(Field[]::new)));
 	}
 
 	public int getPosition() {
@@ -157,6 +164,19 @@ public class Player extends Accountable{
 
 	public void release(){
 		this.jailed = false;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return this.getName();
 	}
 }
 
