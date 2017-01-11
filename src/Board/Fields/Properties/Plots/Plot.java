@@ -1,11 +1,9 @@
 package Board.Fields.Properties.Plots;
 
 import Board.Fields.Properties.Property;
-import Buildings.Building;
+import Buildings.Hotel;
+import Buildings.House;
 import Game.Game;
-import Owners.Player;
-
-import java.util.Arrays;
 
 /**
  *
@@ -16,6 +14,16 @@ public abstract class Plot extends Property {
 	public Plot(Game game, String name, int price, int[] rentScheme) {
 		super(game, name, "", price);
 		this.rentScheme = rentScheme;
+
+		this.upgradeSignature = new Class[][]{
+				{},
+				{House.class},
+				{House.class, House.class},
+				{House.class, House.class, House.class},
+				{House.class, House.class, House.class, House.class},
+				{Hotel.class}
+		};
+
 	}
 
 	@Override
@@ -24,33 +32,17 @@ public abstract class Plot extends Property {
 	}
 
 	private int rentMultiplier(){
-		if(
-			Arrays.stream(this.getGame().getBoard().getFields())
-				.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
-					.filter(field -> ((Plot)field).getDeed().getOwner() == this.getDeed().getOwner())
-						.count()
-														==
-			Arrays.stream(this.getGame().getBoard().getFields())
-					.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
-						.count()
-				){
+		if (
+			this.getUpgradeValue() == 0 &&
+			getSameColorProperties()
+				.filter(field -> field.getDeed().getOwner() == this.getDeed().getOwner())
+					.count()
+			== getSameColorProperties()
+				.count()
+		){
 			return 2;
 		}
 		return 1;
-	}
-
-	public int getUpgradeValue() {
-		return this.buildings.stream()
-					.mapToInt(Building::getUpgradeValue)
-						.sum();
-	}
-
-	public boolean canUpgrade(){
-		return getUpgradeValue() < 5 && this.getDeed().isPawned(); //TODO: move 5 to another place.
-	}
-
-	public boolean tryUpgrade(){
-		return true;
 	}
 
 	public int[] getRentScheme() {

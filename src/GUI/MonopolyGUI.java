@@ -6,10 +6,9 @@ import Finance.Account;
 import Game.Actions.Action;
 import Owners.Player;
 
-public interface GUI {
-    int getField(int[] options);
+public interface MonopolyGUI {
 
-	Action chooseAction(Player player, Action... options);
+	Action chooseAction(Player player, String message, Action... options);
 
 	Tradable chooseTradable(Player player, String message, Tradable... tradables);
 

@@ -6,7 +6,7 @@ import Owners.Player;
 /**
  *
  */
-public class ProposeTrade implements Action{
+public class ProposeTrade extends Action{
 	public static final Action self = new ProposeTrade();
 
 	@Override
@@ -17,12 +17,7 @@ public class ProposeTrade implements Action{
 				player.getOwns().stream().
 						filter(Tradable::canBeTraded).
 							toArray(Tradable[]::new));
-		Player tradePartner = player.getGame().getGUI().choosePlayer(
-				player,
-				"ChooseSellToPlayer",
-				player.getGame().getPlayers().stream().
-						filter(other -> other != player).
-							toArray(Player[]::new));
+		Player tradePartner = chooseOtherPlayer(player);
 		int price = player.getGame().getGUI().selectInteger(player,"ChooseSellPrice");
 
 		if(tradePartner.getGame().getGUI().acceptBuyProperty(tradePartner, "AcceptTrade", chosenTradable, price)){
