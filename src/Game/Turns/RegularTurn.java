@@ -1,8 +1,6 @@
 package Game.Turns;
 
 import Game.Actions.*;
-import Game.Game;
-import Game.Turns.Turn;
 import Owners.Player;
 
 public class RegularTurn extends Turn {
@@ -17,7 +15,7 @@ public class RegularTurn extends Turn {
 				//PawnDeed.self,
 				DowngradeProperty.self,
 				SellDeedToBank.self,
-				UnPawnDeed.self,
+				UnpawnDeed.self,
 				UpgradeProperty.self,
 				ProposeTrade.self
 		);

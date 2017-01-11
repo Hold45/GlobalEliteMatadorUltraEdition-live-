@@ -14,7 +14,7 @@ public class PawnDeed extends Action {
 	public void run(Player player) {
 		((Deed)player.getGame().getGUI().chooseTradable(
 				player,
-				"chose that shit!",
+				"ChooseDeedPawn",
 				player.getOwns().stream()
 					.filter(tradable -> tradable instanceof Deed && ((Deed)tradable).canBePawned())
 						.toArray(Deed[]::new)

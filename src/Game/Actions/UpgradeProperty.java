@@ -13,10 +13,9 @@ public class UpgradeProperty extends Action {
 
 	@Override
 	public void run(Player player) {
-		System.out.println("upgrade");
 		((Deed) player.getGame().getGUI().chooseTradable(
 				player,
-				"chooseThatShit",
+				"ChoosePropertyUpgrade",
 				player.getOwns().stream()
 					.filter(tradable -> tradable instanceof Deed)
 						.filter(tradable -> ((Deed)tradable).getProperty().canBeUpgraded())

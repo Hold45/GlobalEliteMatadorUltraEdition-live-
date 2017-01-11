@@ -7,9 +7,8 @@ import Game.Actions.Action;
 import Owners.Player;
 
 public interface MonopolyGUI {
-    int getField(int[] options);
 
-	Action chooseAction(Player player, Action... options);
+	Action chooseAction(Player player, String message, Action... options);
 
 	Tradable chooseTradable(Player player, String message, Tradable... tradables);
 

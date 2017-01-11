@@ -11,13 +11,9 @@ import java.util.Random;
  *
  */
 public class DummyGUI implements MonopolyGUI {
-	@Override
-	public int getField(int[] options) {
-		return options[new Random().nextInt(options.length)];
-	}
 
 	@Override
-	public Action chooseAction(Player player, Action... options) {
+	public Action chooseAction(Player player, String message, Action... options) {
 		return options[new Random().nextInt(options.length)];
 	}
 

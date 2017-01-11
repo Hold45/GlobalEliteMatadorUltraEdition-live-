@@ -6,16 +6,11 @@ import Game.Actions.Action;
 import Owners.Player;
 
 public class LarmanGUI implements MonopolyGUI {
-    @Override
-    public int getField(int[] options) {
-        return 0;
-    }
 
-    @Override
-    public Action chooseAction(Player player, Action... options) {
+	@Override
+    public Action chooseAction(Player player, String message, Action... options) {
         return null;
     }
-
     @Override
     public Tradable chooseTradable(Player player, String message, Tradable... tradables) {
         return null;

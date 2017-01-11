@@ -21,12 +21,7 @@ public class SmartGUI implements MonopolyGUI {
 	}
 
 	@Override
-	public int getField(int[] options) {
-		return (int) actionsStack.pop();
-	}
-
-	@Override
-	public Action chooseAction(Player player, Action... options) {
+	public Action chooseAction(Player player, String message, Action... options) {
 		return (Action) actionsStack.pop();
 	}
 

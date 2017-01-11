@@ -15,7 +15,7 @@ public class DowngradeProperty extends Action {
 		System.out.println("downgrade");
 		((Deed) player.getGame().getGUI().chooseTradable(
 				player,
-				"chooseThatShit",
+				"ChooseDowngradeProperty",
 				player.getOwns().stream()
 						.filter(tradable -> tradable instanceof Deed)
 						.filter(tradable -> ((Deed)tradable).getProperty().canBeDowngraded())

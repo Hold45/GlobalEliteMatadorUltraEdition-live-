@@ -21,4 +21,9 @@ public abstract class Action{
 						filter(other -> other != player).
 						toArray(Player[]::new));
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName();
+	}
 }
