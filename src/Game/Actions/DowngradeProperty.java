@@ -12,7 +12,6 @@ public class DowngradeProperty extends Action {
 
 	@Override
 	public void run(Player player) {
-		System.out.println("downgrade");
 		((Deed) player.getGame().getGUI().chooseTradable(
 				player,
 				"ChooseDowngradeProperty",

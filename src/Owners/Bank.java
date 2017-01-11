@@ -8,10 +8,7 @@ import Buildings.House;
 import Finance.Account;
 import Owners.Owner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Stack;
+import java.util.*;
 
 public class Bank extends Accountable {
     private ArrayList<Building> buildings;
@@ -41,22 +38,14 @@ public class Bank extends Accountable {
 		return false;
 	}
 
-	public boolean giveBuilding(Property property, Class c){
-		return this.moveBuilding(property.getBuildings(), this.buildings, c);
-	}
-
-	public void giveBuildings(Property property, Class... classes){
+	public void giveBuildings(Property property, Collection<Class> classes){
 		for (Class c : classes) {
 			this.moveBuilding(property.getBuildings(), this.buildings, c);
 		}
 	}
 
 
-	public boolean takeBuilding(Property property, Class c){
-		return this.moveBuilding(property.getBuildings(), this.buildings, c);
-	}
-
-	public void takeBuildings(Property property, Class... classes){
+	public void takeBuildings(Property property, Collection<Class> classes){
 		for (Class c: classes) {
 			this.moveBuilding(this.buildings, property.getBuildings(), c);
 		}

@@ -110,8 +110,8 @@ public abstract class Property extends Field {
 	}
 
 	public void upgrade() {
-		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForUpgrade().toArray(new Class[this.obsoleteBuildingsForDowngrade().size()]));
-		this.getGame().getBank().takeBuildings(this, (Class[]) this.requiredBuildingsForUpgrade().toArray(new Class[this.requiredBuildingsForUpgrade().size()]));
+		this.getGame().getBank().giveBuildings(this, this.obsoleteBuildingsForUpgrade());
+		this.getGame().getBank().takeBuildings(this, this.requiredBuildingsForUpgrade());
 	}
 
 	public boolean tryDowngrade(){
@@ -124,7 +124,7 @@ public abstract class Property extends Field {
 
 	public void downgrade() {
 		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
-		this.getGame().getBank().giveBuildings(this, (Class[]) this.obsoleteBuildingsForDowngrade().toArray());
+		this.getGame().getBank().giveBuildings(this, this.obsoleteBuildingsForDowngrade());
 	}
 
 	/**
@@ -132,11 +132,11 @@ public abstract class Property extends Field {
 	 *
 	 * @return Buildings to remove when upgrading
 	 */
-	private Collection obsoleteBuildingsForUpgrade() {
+	private Collection<Class> obsoleteBuildingsForUpgrade() {
 		return buildingsSignatureChange(0,1);
 	}
 
-	private Collection buildingsSignatureChange(int indexFrom, int indexTo){
+	private Collection<Class> buildingsSignatureChange(int indexFrom, int indexTo){
 		return CollectionUtils.subtract(
 				Arrays.asList(this.upgradeSignature[getUpgradeValue()+indexFrom]),
 				Arrays.asList(this.upgradeSignature[getUpgradeValue()+indexTo])
@@ -148,14 +148,14 @@ public abstract class Property extends Field {
 	 *
 	 * @return Buildings need for upgrading
 	 */
-	private Collection requiredBuildingsForUpgrade() {
+	private Collection<Class> requiredBuildingsForUpgrade() {
 		return buildingsSignatureChange(1,0);
 	}
 
-	private Collection obsoleteBuildingsForDowngrade(){
+	private Collection<Class> obsoleteBuildingsForDowngrade(){
 		if(this.getUpgradeValue() < 0)
 			return buildingsSignatureChange(0,-1);
-		return new ArrayList<Class>();
+		return new ArrayList<>();
 	}
 
 	public Stream<Field> getFriends(){

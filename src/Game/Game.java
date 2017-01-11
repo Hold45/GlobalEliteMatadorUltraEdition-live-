@@ -114,4 +114,8 @@ public class Game {
 	public static Random getRandom() {
 		return random;
 	}
+
+	public static void setRandom(Random random) {
+		Game.random = random;
+	}
 }

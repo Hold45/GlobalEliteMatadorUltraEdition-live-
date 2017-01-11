@@ -20,7 +20,7 @@ public class PayForBuildings800 extends ChanceCard {
         int sum = 0;
         for (Tradable tradable : player.getOwns()){
             if (tradable instanceof Deed){
-                for (Building building : ((Deed) tradable).getField().getBuildings()){
+                for (Building building : ((Deed) tradable).getProperty().getBuildings()){
                     if (building instanceof House){
                         sum += 800;
                     } else if (building instanceof Hotel){

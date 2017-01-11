@@ -5,6 +5,8 @@ import Owners.Player;
 import org.junit.After;
 import org.junit.Before;
 
+import java.util.Random;
+
 /**
  *
  */
@@ -23,6 +25,7 @@ public abstract class DumTemplateTest {
 		p2 = new Player(game);
 		p2.getAccount().setBalance(10000);
 		game.addPlayers(p1, p2);
+		Game.setRandom(new Random());
 	}
 
 	@After
