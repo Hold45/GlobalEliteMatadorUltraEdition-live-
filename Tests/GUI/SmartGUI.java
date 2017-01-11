@@ -5,6 +5,7 @@ import Cards.Tradable;
 import Game.Actions.Action;
 import Owners.Player;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class SmartGUI implements MonopolyGUI {

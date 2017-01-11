@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public abstract class DiceCup {
-    protected Die[] dice;
+    Die[] dice;
 
-    public DiceCup(Die... dice){
+    DiceCup(Die... dice){
         this.dice = dice;
     }
 
@@ -20,7 +20,7 @@ public abstract class DiceCup {
         return Arrays.stream(this.getValues()).sum();
     }
 
-    public Die[] getDice(){
+    Die[] getDice(){
         return this.dice;
     }
 

@@ -10,6 +10,7 @@ import Owners.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -26,6 +27,7 @@ public class Game {
 	private CardPile cardPile;
 	private MonopolyCup cup;
 	private ArrayList<Turn> turnLog;
+	public static Random random = new Random();
 
 	public Game(MonopolyGUI gui) {
 		this.players = new ArrayList<>();
@@ -102,5 +104,9 @@ public class Game {
 
 	public boolean hasWinner(){
 		return this.getPlayers().size() == 1;
+	}
+
+	public static Random getRandom() {
+		return random;
 	}
 }
