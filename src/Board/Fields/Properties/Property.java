@@ -8,6 +8,8 @@ import Owners.Accountable;
 import Owners.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public abstract class Property extends Field {
 
@@ -44,6 +46,16 @@ public abstract class Property extends Field {
 
 	public Deed getDeed() {
 		return this.deed;
+	}
+
+	public Stream<Field> getFriends(){
+		return Arrays.stream(this.getGame().getBoard().getFields())
+				.filter(field -> field.getClass().getSuperclass().isAssignableFrom(this.getClass().getSuperclass()));
+	}
+
+	public Stream<Field> getOwnedFriends(){
+		return this.getFriends()
+			.filter(field -> ((Property)field).getDeed().getOwner() == this.getDeed().getOwner());
 	}
 }
 

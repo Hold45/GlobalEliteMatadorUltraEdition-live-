@@ -24,16 +24,7 @@ public abstract class Plot extends Property {
 	}
 
 	private int rentMultiplier(){
-		if(
-			Arrays.stream(this.getGame().getBoard().getFields())
-				.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
-					.filter(field -> ((Plot)field).getDeed().getOwner() == this.getDeed().getOwner())
-						.count()
-														==
-			Arrays.stream(this.getGame().getBoard().getFields())
-					.filter(field -> field.getClass().getSuperclass() == this.getClass().getSuperclass())
-						.count()
-				){
+		if (this.getFriends().count() == this.getOwnedFriends().count()){
 			return 2;
 		}
 		return 1;

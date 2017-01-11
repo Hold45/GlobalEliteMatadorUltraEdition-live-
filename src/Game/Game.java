@@ -11,6 +11,7 @@ import Owners.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 
 /**
@@ -74,6 +75,10 @@ public class Game {
 
 	public ArrayList<Player> getPlayers() {
 		return this.players;
+	}
+
+	public ArrayList<Player> getOtherPlayers(Player player) {
+		return this.getPlayers().stream().filter(other -> !player.equals(other)).collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public ArrayList<Player> getLosers() {

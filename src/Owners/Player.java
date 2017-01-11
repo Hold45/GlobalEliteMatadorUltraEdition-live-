@@ -62,6 +62,15 @@ public class Player extends Accountable{
 		return moveTo(getOffsetPosition(addToPos));
 	}
 
+	public Field getNextFieldOfType(Class c) {
+		for(int i = 1; i < this.getGame().getBoard().getFields().length; i++){
+			if(this.getGame().getBoard().getField(this.getOffsetPosition(i)).getClass().isAssignableFrom(c)){
+				return this.getGame().getBoard().getField(this.getOffsetPosition(i));
+			}
+		}
+		return null;
+	}
+
 	public int getOffsetPosition(int addToPos) {
 		return (this.position+addToPos)%this.game.getBoard().getFields().length;
 	}
