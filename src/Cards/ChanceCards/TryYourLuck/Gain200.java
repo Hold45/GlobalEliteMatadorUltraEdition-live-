@@ -18,4 +18,4 @@ public class Gain200 extends ChanceCard {
         player.getGame().getBank().getAccount().transferTo(player.getAccount(), 200);
     }
 }
-//1 kort
+//gg
