@@ -3,6 +3,7 @@ package Cards;
 import Finance.Account;
 import Owners.Accountable;
 import Owners.Owner;
+import Owners.Player;
 
 /**
  *
@@ -55,6 +56,8 @@ public abstract class Tradable {
 	public boolean tryPurchase(Accountable buyer){
 		return tryPurchase(buyer, this.price);
 	}
+
+
 
 
 }
