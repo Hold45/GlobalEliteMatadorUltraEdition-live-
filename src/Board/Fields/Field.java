@@ -19,6 +19,10 @@ public abstract class Field {
 
 	}
 
+    public void onMoveOver(Player player){
+
+    }
+
 	public String getDescription() {
 		return this.description;
 	}
@@ -30,4 +34,5 @@ public abstract class Field {
 	public Game getGame() {
 		return this.game;
 	}
+
 }

@@ -12,7 +12,7 @@ import Owners.Player;
 public class PayForBuildings800 extends ChanceCard {
 
     public PayForBuildings800(Owner owner) {
-        super(owner, "PayForBuildings800Description");
+        super(owner, "PCard25Desc");
     }
     /**
      * Makes the player pay for every house and hotel they own

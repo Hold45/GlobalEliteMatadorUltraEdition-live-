@@ -8,7 +8,7 @@ public class Gain200 extends ChanceCard {
 
 	    
     public Gain200(Owner owner) {
-        super(owner, "Gain200Description");
+        super(owner, "Card1Desc");
     }
     /**
 	 * Transfers 200 kr. from the bank to the player

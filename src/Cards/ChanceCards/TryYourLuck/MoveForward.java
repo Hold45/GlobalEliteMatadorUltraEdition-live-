@@ -7,7 +7,7 @@ import Owners.Player;
 public class MoveForward extends ChanceCard {
 
     public MoveForward(Owner owner) {
-        super(owner, "MoveForwardDescription");
+        super(owner, "Card21Desc");
     }
     /**
      * This method moves the player forward, using the getOffsetPosition method from player
