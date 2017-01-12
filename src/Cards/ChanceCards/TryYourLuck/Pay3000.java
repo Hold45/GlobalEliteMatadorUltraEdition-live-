@@ -9,7 +9,9 @@ public class Pay3000 extends ChanceCard {
     public Pay3000(Owner owner) {
         super(owner, "Pay3000Description");
     }
-
+    /**
+     * Withdraws 3000 kr. from the player and deposits them in the bank
+     */
     @Override
     public void draw(Player player) {
         player.getAccount().transferTo(player.getGame().getBank().getAccount(),3000);

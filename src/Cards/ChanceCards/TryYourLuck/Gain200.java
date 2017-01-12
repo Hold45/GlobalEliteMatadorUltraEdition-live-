@@ -6,10 +6,13 @@ import Owners.Player;
 
 public class Gain200 extends ChanceCard {
 
+	    
     public Gain200(Owner owner) {
         super(owner, "Gain200Description");
     }
-
+    /**
+	 * Transfers 200 kr. from the bank to the player
+	 */
     @Override
     public void draw(Player player) {
         player.getGame().getBank().getAccount().transferTo(player.getAccount(), 200);
