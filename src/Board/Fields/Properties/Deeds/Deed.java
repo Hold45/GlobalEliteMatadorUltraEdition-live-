@@ -10,7 +10,10 @@ import Owners.Player;
  * Deed
  *
  * A deed is an tradable, which means it can be owned.
- * This is need as a property cannot be owned, but the deed of the property can be owned.
+ * This is needed as a property cannot be owned, but the deed of the property can be owned.
+ *
+ * @see Property
+ * @see Accountable
  */
 public class Deed extends Tradable {
 	private final Property property;

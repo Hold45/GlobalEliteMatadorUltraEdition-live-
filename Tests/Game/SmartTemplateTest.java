@@ -2,6 +2,7 @@ package Game;
 
 import Dice.MonopolyCup;
 import GUI.SmartGUI;
+import Owners.Bank;
 import Owners.Player;
 import org.junit.After;
 import org.junit.Before;
@@ -18,6 +19,7 @@ public abstract class SmartTemplateTest {
 	protected SmartGUI gui;
 	protected MonopolyCup cup;
 	protected SmartRandom random;
+	protected Bank bank;
 
 	@Before
 	public void baseSetUp() throws Exception {
@@ -31,6 +33,7 @@ public abstract class SmartTemplateTest {
 		game.addPlayers(p1, p2);
 		cup = game.getCup();
 		random = (SmartRandom) Game.getRandom();
+		bank = game.getBank();
 	}
 
 	@After
@@ -41,5 +44,6 @@ public abstract class SmartTemplateTest {
 		p2 = null;
 		cup = null;
 		random = null;
+		bank = null;
 	}
 }

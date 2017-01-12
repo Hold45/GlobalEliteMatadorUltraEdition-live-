@@ -4,11 +4,29 @@ import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Board.Fields.Properties.Plots.Plot;
 import Game.SmartTemplateTest;
+import Owners.Accountable;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class DeedTest extends SmartTemplateTest{
+	private Deed hvidovrevej;
+	private Deed roedovrevej;
+
+
+	@Before
+	public void setup(){
+		hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
+		roedovrevej = ((Plot) game.getBoard().getField(Roedovrevej.class)).getDeed();
+	}
+
+	@After
+	public void tearDown(){
+		hvidovrevej = null;
+		roedovrevej = null;
+	}
 
 
 	/**
@@ -18,9 +36,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testCanBeTraded() throws Exception {
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
-		Deed roedovrevej = ((Plot) game.getBoard().getField(Roedovrevej.class)).getDeed();
-
 		//Can be traded when not pawned and no buildings on other types.
 		assertThat(hvidovrevej.canBeTraded()).isTrue();
 
@@ -44,8 +59,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testCanBePawned() {
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
-
 		//Cannot be pawned if owned by bank.
 		assertThat(hvidovrevej.canBePawned()).isFalse();
 
@@ -67,7 +80,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testCanBeUnpawned(){
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		hvidovrevej.setOwner(p1);
 		hvidovrevej.pawn();
 
@@ -86,8 +98,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testIsPlayerOwned() throws Exception {
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
-
 		//False as default is owned by bank.
 		assertThat(hvidovrevej.isPlayerOwned()).isFalse();
 
@@ -104,7 +114,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testPawn() throws Exception {
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		hvidovrevej.setOwner(p1);
 		p1.getAccount().setBalance(0);
 
@@ -115,19 +124,6 @@ public class DeedTest extends SmartTemplateTest{
 	}
 
 	/**
-	 * Only pawns the deed if can be pawned is true.
-	 *
-	 * @see Deed#tryPawn()
-	 * @see Deed#pawn()
-	 * @see Deed#canBePawned()
-	 * @see DeedTest#testPawn()
-	 */
-	@Test
-	public void testTryPawn() throws Exception {
-
-	}
-
-	/**
 	 * Checks if unpawning is successful, this does not check if the deed is unpawnable.
 	 *
 	 * @see Deed#unPawn()
@@ -135,7 +131,6 @@ public class DeedTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testUnPawn() throws Exception {
-		Deed hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		hvidovrevej.setOwner(p1);
 		hvidovrevej.pawn();
 		int balance = p1.getAccount().getBalance();
@@ -146,4 +141,47 @@ public class DeedTest extends SmartTemplateTest{
 		assertThat(hvidovrevej.isPawned()).isFalse();
 	}
 
+	/**
+	 * Checks if purchasing is successful, this does not check if the deed is purchasable.
+	 *
+	 * @see Deed#purchase(Accountable, int)
+	 * @see Deed#purchase(Accountable)
+	 */
+	@Test
+	public void testPurchase() {
+		assertThat(bank.getOwns()).contains(hvidovrevej);
+		assertThat(bank.getOwns()).contains(roedovrevej);
+
+		//Purchase for the price of the deed.
+		p1.getAccount().setBalance(1200);
+		hvidovrevej.purchase(p1);
+		assertThat(p1.getOwns()).contains(hvidovrevej);
+		assertThat(p1.getAccount().getBalance()).isEqualTo(0);
+		assertThat(bank.getOwns()).doesNotContain(hvidovrevej);
+
+		//Purchase for a specified price.
+		p1.getAccount().setBalance(10000);
+		roedovrevej.purchase(p1, 5000);
+		assertThat(p1.getOwns()).contains(roedovrevej);
+		assertThat(p1.getAccount().getBalance()).isEqualTo(5000);
+		assertThat(bank.getOwns()).doesNotContain(roedovrevej);
+	}
+
+	/**
+	 * Checks if purchasable returns true when needed.
+	 *
+	 * @see Deed#isPurchasable(Accountable, int)
+	 */
+	@Test
+	public void testIsPurchasable(){
+		//Is not owner, but does not have enough money.
+		assertThat(hvidovrevej.isPurchasable(p1, 11000)).isFalse();
+
+		//Has enough money and is not owner.
+		assertThat(hvidovrevej.isPurchasable(p1, 1000)).isTrue();
+
+		//has enough money but is owner.
+		hvidovrevej.setOwner(p1);
+		assertThat(hvidovrevej.isPurchasable(p1, 1000)).isFalse();
+	}
 }

@@ -2,7 +2,6 @@ package Cards;
 
 import Cards.ChanceCards.ChanceCard;
 import Cards.ChanceCards.TryYourLuck.GainMoney;
-import Finance.Account;
 import Owners.Owner;
 import Owners.Player;
 
