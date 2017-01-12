@@ -10,7 +10,9 @@ public class MoveToVimmelskaftet extends ChanceCard {
     public MoveToVimmelskaftet(Owner owner) {
         super(owner, "MoveToVimmelskaftetDescription");
     }
-
+    /**
+     * Moves the player to Vimmelskaftet
+     */
     @Override
     public void draw(Player player) {
         player.moveTo(player.getNextFieldOfType(Vimmelskaftet.class));

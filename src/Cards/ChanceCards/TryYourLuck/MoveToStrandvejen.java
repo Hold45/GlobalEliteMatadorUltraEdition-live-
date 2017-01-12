@@ -10,7 +10,9 @@ public class MoveToStrandvejen extends ChanceCard {
     public MoveToStrandvejen(Owner owner) {
         super(owner, "MoveToStrandvejenDescription");
     }
-
+    /**
+     * Moves the player to Strandvejen
+     */
     @Override
     public void draw(Player player) {
         player.moveTo(player.getNextFieldOfType(Strandvejen.class));

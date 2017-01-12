@@ -10,7 +10,9 @@ public class Gain1000 extends ChanceCard {
         super(owner, description);
     }
 
-
+/**
+ * Transfers 1000 kr. from the bank to the player
+ */
 
     @Override
     public void draw(Player player) {

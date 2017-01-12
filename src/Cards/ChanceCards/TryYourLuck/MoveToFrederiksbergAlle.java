@@ -10,7 +10,9 @@ public class MoveToFrederiksbergAlle extends ChanceCard {
     public MoveToFrederiksbergAlle(Owner owner) {
         super(owner, "MoveToFrederiksbergAlleDescription");
     }
-
+/**
+ * Moves the player to Frederiksberg Allé
+ */
     @Override
     public void draw(Player player) {
         player.moveTo(player.getNextFieldOfType(FrederiksbergAlle.class));

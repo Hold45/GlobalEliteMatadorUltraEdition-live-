@@ -14,7 +14,11 @@ public class PayForBuildings800 extends ChanceCard {
     public PayForBuildings800(Owner owner) {
         super(owner, "PayForBuildings800Description");
     }
-
+    /**
+     * Makes the player pay for every house and hotel they own
+     * The player pays 800 kr. for each house
+     * The player pays 2300 kr. for each hotel
+     */
     @Override
     public void draw(Player player) {
         int sum = 0;
