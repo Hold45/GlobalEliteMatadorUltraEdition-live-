@@ -20,6 +20,7 @@ public abstract class DumTemplateTest {
 	public void baseSetUp() throws Exception{
 		gui = new DummyGUI();
 		game = new Game(gui);
+		gui.game = game;
 		p1 = new Player(game);
 		p1.getAccount().setBalance(10000);
 		p2 = new Player(game);

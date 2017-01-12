@@ -1,8 +1,11 @@
 package GUI;
 
+import Board.Board;
 import Board.Fields.Field;
 import Cards.Tradable;
+import Dice.MonopolyCup;
 import Game.Actions.Action;
+import Game.Game;
 import Owners.Player;
 
 import java.util.Random;
@@ -11,39 +14,65 @@ import java.util.Random;
  *
  */
 public class DummyGUI implements MonopolyGUI {
+	public Game game;
 
 	@Override
-	public Action chooseAction(Player player, String message, Action... options) {
-		return options[new Random().nextInt(options.length)];
+	public String getSelectionFromPlayer(Player player, String message, String... actions) {
+		return actions[new Random().nextInt(actions.length)];
 	}
 
 	@Override
-	public Tradable chooseTradable(Player player, String message, Tradable... tradables) {
-		return tradables[new Random().nextInt(tradables.length)];
-	}
-
-	@Override
-	public Player choosePlayer(Player player, String message, Player... players) {
-		return players[new Random().nextInt(players.length)];
-	}
-
-	@Override
-	public int selectInteger(Player player, String message) {
+	public int getIntegerFromPlayer(Player player, String message) {
 		return 0;
 	}
 
 	@Override
-	public Field chooseField(Player player, String message, Field... fields) {
-		return fields[new Random().nextInt(fields.length)];
-	}
-
-	@Override
-	public boolean acceptAction(Player player, String message) {
+	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
 		return new Random().nextBoolean();
 	}
 
 	@Override
-	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
+	public boolean getBooleanFromPlayer(Player player, String message) {
 		return new Random().nextBoolean();
+	}
+
+	@Override
+	public void setDice(MonopolyCup cup) {
+
+	}
+
+	@Override
+	public void setPosition(Player player) {
+
+	}
+
+	@Override
+	public void setBalance(Player player) {
+
+	}
+
+	@Override
+	public void setOwners(Board board) {
+
+	}
+
+	@Override
+	public void playerLoose(Player player) {
+
+	}
+
+	@Override
+	public void addPlayer(Player player) {
+
+	}
+
+	@Override
+	public void createBoard(Field... fields) {
+
+	}
+
+	@Override
+	public Game getGame() {
+		return this.game;
 	}
 }

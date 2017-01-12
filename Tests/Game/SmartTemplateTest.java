@@ -7,8 +7,6 @@ import Owners.Player;
 import org.junit.After;
 import org.junit.Before;
 
-import java.util.Random;
-
 /**
  *
  */
@@ -25,6 +23,7 @@ public abstract class SmartTemplateTest {
 	public void baseSetUp() throws Exception {
 		gui = new SmartGUI();
 		game = new Game(gui);
+		gui.game = game;
 		Game.setRandom(new SmartRandom());
 		p1 = new Player(game);
 		p1.getAccount().setBalance(10000);

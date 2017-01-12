@@ -1,14 +1,17 @@
 package GUI;
 
+import Board.Board;
 import Board.Fields.Field;
 import Cards.Tradable;
+import Dice.MonopolyCup;
 import Game.Actions.Action;
+import Game.Game;
 import Owners.Player;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class SmartGUI implements MonopolyGUI {
+	public Game game;
 	private Stack<Object> actionsStack;
 
 	public SmartGUI() {
@@ -20,6 +23,9 @@ public class SmartGUI implements MonopolyGUI {
 			actionsStack.push(action);
 		}
 	}
+
+
+
 
 	@Override
 	public Action chooseAction(Player player, String message, Action... options) {
@@ -54,5 +60,67 @@ public class SmartGUI implements MonopolyGUI {
 	@Override
 	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
 		return (boolean) actionsStack.pop();
+	}
+
+
+
+	@Override
+	public int getIntegerFromPlayer(Player player, String message) {
+		return (int) actionsStack.pop();
+	}
+
+	@Override
+	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
+		return (boolean) actionsStack.pop();
+	}
+
+	@Override
+	public boolean getBooleanFromPlayer(Player player, String message) {
+		return (boolean) actionsStack.pop();
+	}
+
+	@Override
+	public void setDice(MonopolyCup cup) {
+
+	}
+
+	@Override
+	public void setPosition(Player player) {
+
+	}
+
+	@Override
+	public void setBalance(Player player) {
+
+	}
+
+	@Override
+	public void setOwners(Board board) {
+
+	}
+
+	@Override
+	public void playerLoose(Player player) {
+
+	}
+
+	@Override
+	public void addPlayer(Player player) {
+
+	}
+
+	@Override
+	public void createBoard(Field... fields) {
+
+	}
+
+	@Override
+	public String getSelectionFromPlayer(Player player, String message, String... actions) {
+		return (String) actionsStack.pop();
+	}
+
+	@Override
+	public Game getGame() {
+		return this.game;
 	}
 }
