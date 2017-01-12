@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PropertyTest extends SmartTemplateTest {
+public class SmartPropertyTest extends SmartTemplateTest {
 
 	@Test
 	public void getUpgradeValue() throws Exception {
@@ -31,5 +31,7 @@ public class PropertyTest extends SmartTemplateTest {
 		property.getBuildings().add(new Hotel());
 		assertThat(property.getUpgradeValue()).isEqualTo(5);
 	}
+
+
 
 }

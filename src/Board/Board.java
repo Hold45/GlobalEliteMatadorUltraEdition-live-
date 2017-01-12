@@ -22,10 +22,9 @@ import Board.Fields.Properties.Plots.WhitePlots.KongensNytorv;
 import Board.Fields.Properties.Plots.WhitePlots.Oestergade;
 import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
 import Board.Fields.Properties.Plots.YellowPlots.Nygade;
-import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaffet;
+import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaftet;
 import Game.Game;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Board {
@@ -51,7 +50,7 @@ public class Board {
 				new KongensNytorv(game),
 				new Oestergade(game),
 				new Amagertorv(game),
-				new Vimmelskaffet(game),
+				new Vimmelskaftet(game),
 				new Nygade(game),
 				new Frederiksberggade(game),
 				new Raadhuspladsen(game)
