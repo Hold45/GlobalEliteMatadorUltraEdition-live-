@@ -8,8 +8,8 @@ import Game.Game;
  */
 public abstract class Ship extends Property {
 
-    public Ship(Game game, String name, String description) {
-        super(game, name, description, 4000);
+    public Ship(Game game, String name) {
+        super(game, name, "", 4000);
     }
 
     @Override
