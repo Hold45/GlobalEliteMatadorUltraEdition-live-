@@ -1,6 +1,8 @@
 package Cards;
 
 import Cards.ChanceCards.ChanceCard;
+import Cards.ChanceCards.TryYourLuck.Gain1000;
+import Cards.ChanceCards.TryYourLuck.Gain200;
 import Cards.ChanceCards.TryYourLuck.GainMoney;
 import Owners.Owner;
 import Owners.Player;
@@ -14,9 +16,11 @@ public class CardPile extends Owner {
     public CardPile(){
         super();
         this.cards = new LinkedList<>();
-        for (int i=0; i<10; i++){
-            this.cards.add(new GainMoney(this,"Du er heldig"+i,1000*i));
-        }
+
+
+        this.addCard(new Gain200(this));
+	    this.addCard(new Gain1000(this, "Card1Desc"));
+
         this.shuffle();
     }
 

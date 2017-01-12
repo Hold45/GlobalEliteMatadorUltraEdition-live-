@@ -60,3 +60,5 @@ _mac/
 /debugger.xml
 /baseRefactoring.xml
 /gradle.run.settings.xml
+find.xml
+ide.general.xml

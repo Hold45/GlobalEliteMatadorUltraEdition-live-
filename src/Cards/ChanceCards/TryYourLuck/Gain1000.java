@@ -6,9 +6,11 @@ import Owners.Player;
 
 public class Gain1000 extends ChanceCard {
 
-    public Gain1000(Owner owner) {
-        super(owner, "Gain1000Description");
+    public Gain1000(Owner owner, String description) {
+        super(owner, description);
     }
+
+
 
     @Override
     public void draw(Player player) {
