@@ -59,7 +59,15 @@ public class SmartGUI implements MonopolyGUI {
 		return (boolean) actionsStack.pop();
 	}
 
+	@Override
+	public String getStringFromPlayer(Player player, String message) {
+		return (String) actionsStack.pop();
+	}
 
+	@Override
+	public String getString(String mesasge) {
+		return (String) actionsStack.pop();
+	}
 
 	@Override
 	public int getIntegerFromPlayer(Player player, String message) {

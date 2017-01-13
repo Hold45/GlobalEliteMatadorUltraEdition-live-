@@ -13,10 +13,8 @@ import desktop_fields.Street;
 import desktop_resources.GUI;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Stack;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -30,15 +28,12 @@ public class RonnyGUI implements MonopolyGUI {
 
 	public RonnyGUI() {
 		this.fields = new ArrayList<>();
-		this.game = new Game(this);
-
 		colors.push(Color.BLACK);
 		colors.push(Color.GREEN);
 		colors.push(Color.PINK);
 		colors.push(Color.CYAN);
 		colors.push(Color.MAGENTA);
 		colors.push(Color.LIGHT_GRAY);
-		
 		this.language = ResourceBundle.getBundle("LabelsBundle", Locale.getDefault());
 	}
 
@@ -56,30 +51,18 @@ public class RonnyGUI implements MonopolyGUI {
 
 	public static void main(String... args){
 		RonnyGUI gui = new RonnyGUI();
-		Player p1 = new Player(gui.game);
-		Player p2 = new Player(gui.game);
-
-		p1.setName("CE");
-		p2.setName("Oliver");
-		gui.game.addPlayers(
-				p1,
-				p2
-		);
-
+		gui.game = new Game(gui);
+		ArrayList<String> names = gui.getPlayerNames();
+		Player[] players = names.stream().map(name -> new Player(gui.game, name)).toArray(Player[]::new);
+		gui.game.addPlayers(players);
 		gui.start();
 	}
-
-
-
 
 	@Override
 	public void createBoard(Field... fields) {
 		Stream.of(fields).forEach(this::addField);
-
-
 		for (int i = fields.length; i < 40; i++)
 			this.fields.add(new Empty.Builder().build());
-
 		desktop_resources.GUI.create(this.fields.toArray(new desktop_fields.Field[40]));
 	}
 
@@ -90,9 +73,23 @@ public class RonnyGUI implements MonopolyGUI {
 
 	@Override
 	public void addPlayer(Player player){
-		desktop_resources.GUI.addPlayer(player.getName(), player.getAccount().getBalance(), new Car.Builder().primaryColor(this.colors.pop()).typeUfo().build());
+		desktop_resources.GUI.addPlayer(
+			player.getName(),
+			player.getAccount().getBalance(),
+			new Car.Builder().primaryColor(this.colors.pop()).typeUfo().build()
+		);
 	}
 
+	public ArrayList<String> getPlayerNames() {
+		ArrayList<String> names =  new ArrayList<String>();
+		int playerNum = desktop_resources.GUI.getUserInteger(this.language.getString("NUMPLAYER"), 2,6);
+		while (names.size() < playerNum){
+			String name = this.getString("CHOOSEPLAYERNAME");
+			if (!names.contains(name))
+				names.add(name);
+		}
+		return names;
+	}
 
 	private void addField(Field field){
 		//Color c = new Color(255, 0, 0);
@@ -132,6 +129,16 @@ public class RonnyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public String getStringFromPlayer(Player player, String message) {
+		return desktop_resources.GUI.getUserString(player.getName()+": "+this.language.getString(message));
+	}
+
+	@Override
+	public String getString(String message) {
+		return desktop_resources.GUI.getUserString(this.language.getString(message));
+	}
+
+	@Override
 	public int getIntegerFromPlayer(Player player, String message) {
 		return GUI.getUserInteger(player.getName()+": "+message);
 	}
@@ -143,7 +150,7 @@ public class RonnyGUI implements MonopolyGUI {
 
 	@Override
 	public void addMessage(Player player, String message) {
-		GUI.showMessage(message);
+		GUI.showMessage(this.language.getString(message));
 	}
 
 	@Override

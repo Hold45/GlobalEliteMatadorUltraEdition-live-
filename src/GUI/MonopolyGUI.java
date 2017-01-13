@@ -12,6 +12,10 @@ import java.util.Arrays;
 
 public interface MonopolyGUI {
 
+	String getStringFromPlayer(Player player, String message);
+
+	String getString(String mesasge);
+
 	int getIntegerFromPlayer(Player player, String message);
 
 	boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price);
@@ -48,7 +52,6 @@ public interface MonopolyGUI {
 		createPlayers(this.getGame().getPlayers().toArray(new Player[this.getGame().getPlayers().size()]));
 		this.getGame().start();
 	}
-
 
 	default Object chooseOption(Player player, String message, Object[] options) {
 		this.update();
