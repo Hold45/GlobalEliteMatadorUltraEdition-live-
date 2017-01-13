@@ -61,11 +61,12 @@ public class Player extends Accountable{
 	public RegularTurn getTurn() {
 		return this.turn;
 	}
+
 	/**
 	 *This method checks which opportunities the player got on this turn. The player can keep choosing actions until the chosenAction is endActions.
 	 *
-	 *@param actions that the player can take 
-	 *@see Action
+	 * @param actions that the player can take
+	 * @see Action
 	 */
 	public void takeActions(Action... actions){
 		Action chosenAction;
@@ -80,12 +81,12 @@ public class Player extends Accountable{
 	}
 	
 	/**
-	 *This move function makes it so the player can move on the board and checks what field the player will land on. 
-	 *It also uses onMoveOver to check what fields it passes and onLand to check what happens with the field it lands on.
-	 *@param addToPos
-	 *@return the current player
+	 * This move function makes it so the player can move on the board and checks what field the player will land on.
+	 * It also uses onMoveOver to check what fields it passes and onLand to check what happens with the field it lands on.
+	 *
+	 * @param addToPos how many fields to move forward
+	 * @return the current player
 	 */
-	
 	public Player move(int addToPos){
 		for(int i = 0; i < addToPos; i++)
 			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
@@ -93,24 +94,30 @@ public class Player extends Accountable{
 		this.game.getBoard().getFields()[this.position].onLand(this);
 	    return this;
 	}
+
 	/**
 	 * This move is used to move to a specific field
+	 *
 	 * @param field to move to
 	 * @return current player
 	 */
 	public Player move(Field field){
 		return moveTo(this.getGame().getBoard().getIndex(field, this));
 	}
+
 	/**
 	 * This move is used to move to a specific type of fields
+	 *
 	 * @param c which type to move to
 	 * @return current player
 	 */
 	public Player move(Class c){
 		return moveTo(this.getGame().getBoard().getIndex(c, this));
 	}
+
 	/**
 	 * This is used to move the player to a specific position, it also checks whether or not it has to move around the entire board.
+	 *
 	 * @param moveToPos is a position of a field the players has to move to
 	 * @return current player 
 	 */
@@ -119,18 +126,22 @@ public class Player extends Accountable{
 			return move(moveToPos-this.position);
 		return move(this.getGame().getBoard().getFields().length - this.position + moveToPos);
 	}
+
 	/**
 	 * This modulus calculation is used to find out where we have to be on the board exactly 
+	 *
 	 * @param addToPos is the number to ad to the current position.
 	 * @return returns the exact position the player needs to move to. 
 	 */
 	int getOffsetPosition(int addToPos) {
 		return Math.floorMod((this.position+addToPos), this.game.getBoard().getFields().length);
 	}
+
 	/**
 	 * This method is used to play out a turn for the player. It calls the DiceCup and makes a roll. It also checks whether or not the player is in prison
 	 * if the player is in prison it goes through a for loop that checks whether or not the player has had yahtzee for the player to be released.
-	 * @return
+	 *
+	 * @return current player
 	 */
 	public Player rollAndMove(){
 		this.getGame().getCup().roll();

@@ -1,5 +1,6 @@
 package Owners;
 
+import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.OrangePlots.Allegade;
 import Game.SmartTemplateTest;
 import org.junit.Test;
@@ -31,5 +32,17 @@ public class SmartPlayerTest extends SmartTemplateTest {
 		gui.addActions(true);
 		p1.rollAndMove();
 		assertThat(p1.getPosition()).isEqualTo(offset);
+
+		//Roll a yahtzee when in jail.
+		p1.arrest();
+		random.add(2,2,5);
+		p1.rollAndMove();
+		assertThat(p1.isJailed()).isFalse();
+
+		//Take a triple turn
+		random.add(2,2,2);
+		gui.addActions(true, game.getBoard().getField(Hvidovrevej.class));
+		p1.rollAndMove();
+		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 	}
 }

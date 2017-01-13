@@ -4,11 +4,18 @@ import Game.Actions.*;
 import Owners.Player;
 
 public class RegularTurn extends Turn {
-
+	/**
+	 * the person who is doing this turn.
+	 * @param owner that is taking the turn.
+	 */
 	public RegularTurn(Player owner){
 		super(owner);
 	}
-
+	
+	/**
+	 * Gives the player options to do on their turn. It also calls the rollAndMove
+	 * @see rollAndMove
+	 */
 	public void take(){
 		super.take();
 		this.getOwner().takeActions(

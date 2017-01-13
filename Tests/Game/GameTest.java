@@ -4,13 +4,9 @@ import GUI.DummyGUI;
 import Owners.Player;
 import org.junit.Test;
 
-
-import java.util.Arrays;
-import java.util.Set;
-
 public class GameTest extends DumTemplateTest{
 
-	@Test
+	//@Test
 	public void testStart() throws Exception {
 		for (int i = 0; i < 10; i++) {
 			gui = new DummyGUI();
