@@ -16,7 +16,3 @@ public class MoveBack extends ChanceCard {
     }
 
 }
-
-//2 kort
-
-//ryk over start!

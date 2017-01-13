@@ -1,6 +1,7 @@
 package Owners;
 
 import Board.Fields.Field;
+import Board.Fields.Properties.Property;
 import Finance.Account;
 import Finance.PersonalAccount;
 import Game.*;
@@ -10,6 +11,19 @@ import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
 import java.util.Arrays;
 
+/**
+ * Player
+ *
+ * Player is the main account for the accountables that will be controlled by a player
+ * This is used to move around the board, check if the player is in prison, iniziate die throws, and to see where the player is located.
+ * Player is needed to be an Accountable due to it having to store which buildings it owns while still being an account to pa
+ *
+ * @see Game
+ * @see ScheduledTurn
+ * @see RegularTurn
+ * @see Accountable
+ * @see Turn
+ */
 public class Player extends Accountable{
     private Game game;
     private ScheduledTurn turn;
@@ -18,7 +32,10 @@ public class Player extends Accountable{
     private boolean jailed;
     private Turn mrMonopolyTurn;
     private String name;
-
+	/**
+	 * @param game which game is being played
+	 * 
+	 */
     public Player(Game game) {
         super();
         this.position = 0;
@@ -47,7 +64,12 @@ public class Player extends Accountable{
 	public RegularTurn getTurn() {
 		return this.turn;
 	}
-
+	/**
+	 *This method checks which opportunities the player got on this turn. The player can keep choosing actions until the chosenAction is endActions.
+	 *
+	 *@param actions that the player can take 
+	 *@see Action
+	 */
 	public void takeActions(Action... actions){
 		Action chosenAction;
 		do {
@@ -63,41 +85,28 @@ public class Player extends Accountable{
 	public Player move(int addToPos){
 		for(int i = 0; i < addToPos; i++)
 			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
-	    return moveTo(getOffsetPosition(addToPos));
+		this.position = getOffsetPosition(addToPos);
+		this.game.getBoard().getFields()[this.position].onLand(this);
+	    return this;
 	}
 
 	public Player move(Field field){
-		int index = this.getGame().getBoard().getIndex(field);
-		if(this.position < index)
-			return move(index-this.position);
-		return move(this.getGame().getBoard().getFields().length - (this.position - index));
+		return moveTo(this.getGame().getBoard().getIndex(field, this));
 	}
 
-	public Field getNextFieldOfType(Class c) {
-		for(int i = 1; i < this.getGame().getBoard().getFields().length; i++){
-			if(this.getGame().getBoard().getField(this.getOffsetPosition(i)).getClass().isAssignableFrom(c)){
-				return this.getGame().getBoard().getField(this.getOffsetPosition(i));
-			}
-		}
-		return null;
+	public Player move(Class c){
+		return moveTo(this.getGame().getBoard().getIndex(c, this));
+	}
+
+	private Player moveTo(int moveToPos){
+		if(this.position < moveToPos)
+			return move(moveToPos-this.position);
+		return move(this.getGame().getBoard().getFields().length - this.position + moveToPos);
 	}
 
 	int getOffsetPosition(int addToPos) {
-		return (this.position+addToPos)%this.game.getBoard().getFields().length;
+		return Math.floorMod((this.position+addToPos), this.game.getBoard().getFields().length);
 	}
-
-	public Player moveTo(int moveToPos){
-		assert moveToPos <= this.game.getBoard().getFields().length && moveToPos >= 0;
-
-		this.position = moveToPos;
-		this.game.getBoard().getFields()[this.position].onLand(this);
-		return this;
-	}
-
-	public Player moveTo(Field field){
-		return this.moveTo(this.getGame().getBoard().getIndex(field));
-	}
-
 
 	public Player rollAndMove(){
 		this.getGame().getCup().roll();
@@ -147,7 +156,7 @@ public class Player extends Accountable{
 	}
 
 	private void moveWithBus() {
-		this.moveTo(this.getGame().getGUI().chooseField(
+		this.move(this.getGame().getGUI().chooseField(
 				this,
 				"ChooseBusFieldMoveTo",
 				Arrays.stream(this.getGame().getCup().getCombinations())

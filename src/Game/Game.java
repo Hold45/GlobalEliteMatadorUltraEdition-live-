@@ -48,14 +48,14 @@ public class Game {
 		Collections.shuffle(players);
 		this.turns.push(players.get(0).getTurn());
 
-		while (!this.turns.isEmpty()){
+		while (!this.turns.isEmpty() && !this.hasWinner()){
 			this.turns.pop().take();
 		}
 
 	}
 
 	public Player nextPlayer(Player player){
-		return this.players.get((this.players.indexOf(player)+1)%this.players.size());
+		return this.players.get(Math.floorMod(this.players.indexOf(player)+1, this.players.size()));
 	}
 
 	public void addPlayers(Player... players){
