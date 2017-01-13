@@ -61,7 +61,13 @@ public class Player extends Accountable{
 	}
 
 	public Player move(int addToPos){
-		return moveTo(getOffsetPosition(addToPos));
+			
+		for(int i = 0; i < addToPos; i++){
+			int intermediatePos  = this.position + i%this.game.getBoard().getFields().length;
+			this.getGame().getBoard().getField(intermediatePos).onMoveOver(this);
+		}
+	    return moveTo(getOffsetPosition(addToPos));
+	    
 	}
 
 	public Field getNextFieldOfType(Class c) {
@@ -80,7 +86,6 @@ public class Player extends Accountable{
 	public Player moveTo(int moveToPos){
 		assert moveToPos <= this.game.getBoard().getFields().length && moveToPos >= 0;
 
-	   // for (int i = getPosition(); i< getOffsetPosition(); )
 	   //     return
 
 		//this.game.getBoard().getField().onMoveOver(this);
