@@ -18,6 +18,7 @@ public abstract class DumTemplateTest {
 
 	@Before
 	public void baseSetUp() throws Exception{
+		System.setProperty("java.awt.headless", "true");
 		gui = new DummyGUI();
 		game = new Game(gui);
 		gui.game = game;
