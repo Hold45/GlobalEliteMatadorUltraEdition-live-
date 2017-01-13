@@ -81,7 +81,14 @@ public class Player extends Accountable{
 		}
     	while (!(chosenAction instanceof EndActions));
 	}
-
+	
+	/**
+	 *This move function makes it so the player can move on the board and checks what field the player will land on. 
+	 *It also uses onMoveOver to check what fields it passes and onLand to check what happens with the field it lands on.
+	 *@param addToPos
+	 *@return the current player
+	 */
+	
 	public Player move(int addToPos){
 		for(int i = 0; i < addToPos; i++)
 			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
@@ -89,15 +96,27 @@ public class Player extends Accountable{
 		this.game.getBoard().getFields()[this.position].onLand(this);
 	    return this;
 	}
-
+	/**
+	 * This move is used to move to a specific field
+	 * @param field to move to
+	 * @return current player
+	 */
 	public Player move(Field field){
 		return moveTo(this.getGame().getBoard().getIndex(field, this));
 	}
-
+	/**
+	 * This move is used to move to a specific type of fields
+	 * @param c which type to move to
+	 * @return current player
+	 */
 	public Player move(Class c){
 		return moveTo(this.getGame().getBoard().getIndex(c, this));
 	}
-
+	/**
+	 * 
+	 * @param moveToPos
+	 * @return
+	 */
 	private Player moveTo(int moveToPos){
 		if(this.position < moveToPos)
 			return move(moveToPos-this.position);
@@ -107,7 +126,10 @@ public class Player extends Accountable{
 	int getOffsetPosition(int addToPos) {
 		return Math.floorMod((this.position+addToPos), this.game.getBoard().getFields().length);
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public Player rollAndMove(){
 		this.getGame().getCup().roll();
 
