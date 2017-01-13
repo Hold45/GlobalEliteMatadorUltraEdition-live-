@@ -9,10 +9,18 @@ import Finance.Account;
 import Owners.Owner;
 
 import java.util.*;
-
+/**
+ * Bank
+ * 
+ * Bank is the bank of the game and is seperat from player because Bank can not lose.
+ * 
+ */
 public class Bank extends Accountable {
     private ArrayList<Building> buildings;
 
+    /**
+	 * 
+	 */
     public Bank(){
         super();
         this.account = new Account(10000);
@@ -23,11 +31,17 @@ public class Bank extends Accountable {
         }
 
     }
-
+    
+    /**
+	 * @return list of buildings
+	 */
 	public ArrayList<Building> getBuildings() {
 		return this.buildings;
 	}
-
+	
+	/**
+	 * @return price of the deed
+	 */
 	private boolean moveBuilding(ArrayList<Building> from, ArrayList<Building> to, Class c){
 		for (int i = 0; i < from.size(); i++) {
 			if(from.get(i).getClass().isAssignableFrom(c)){
