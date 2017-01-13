@@ -1,6 +1,7 @@
 package Owners;
 
 import Board.Fields.Field;
+import Board.Fields.Properties.Property;
 import Finance.Account;
 import Finance.PersonalAccount;
 import Game.*;
@@ -10,6 +11,19 @@ import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
 import java.util.Arrays;
 
+/**
+ * Player
+ *
+ * Player is the main account for the accountables that will be controlled by a player
+ * This is used to move around the board, check if the player is in prison, iniziate die throws, and to see where the player is located.
+ * Player is needed to be an Accountable due to it having to store which buildings it owns while still being an account to pa
+ *
+ * @see Game
+ * @see ScheduledTurn
+ * @see RegularTurn
+ * @see Accountable
+ * @see Turn
+ */
 public class Player extends Accountable{
     private Game game;
     private ScheduledTurn turn;
@@ -18,7 +32,11 @@ public class Player extends Accountable{
     private boolean jailed;
     private Turn mrMonopolyTurn;
     private String name;
-
+	/**
+	 * 
+	 * @param game which game it is ½
+	 * 
+	 */
     public Player(Game game) {
         super();
         this.position = 0;

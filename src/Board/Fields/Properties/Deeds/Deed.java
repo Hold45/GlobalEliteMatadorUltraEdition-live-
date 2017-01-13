@@ -34,9 +34,7 @@ public class Deed extends Tradable {
 		this.upgradePrice = 1000;
 	}
 
-	/**
-	 * @return price of the deed
-	 */
+
 	public int getPrice() {
 		return this.price;
 	}
@@ -50,9 +48,7 @@ public class Deed extends Tradable {
 		return this.property;
 	}
 
-	/**
-	 * @return cost for upgrading
-	 */
+
 	public int getUpgradePrice() {
 		return this.upgradePrice;
 	}

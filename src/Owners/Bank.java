@@ -19,6 +19,9 @@ public class Bank extends Accountable {
     private ArrayList<Building> buildings;
 
     /**
+	 * Creates a new account with any currency and adds the buildings to the bank
+	 * 
+	 * @see Account
 	 * 
 	 */
     public Bank(){
@@ -40,7 +43,12 @@ public class Bank extends Accountable {
 	}
 	
 	/**
-	 * @return price of the deed
+	 * This can move a building of a type, from one owner to another 
+	 * 
+	 * @param from the owner
+	 * @param to the owner
+	 * @param c type of building to move
+	 * @return true if building gets moved 
 	 */
 	private boolean moveBuilding(ArrayList<Building> from, ArrayList<Building> to, Class c){
 		for (int i = 0; i < from.size(); i++) {
@@ -51,19 +59,32 @@ public class Bank extends Accountable {
 		}
 		return false;
 	}
-
+	/**
+	 * Give buildings matching a collection of types to an property
+	 * 
+	 * @param classes which collection of buildings
+	 * @param property which property to give
+	 * 
+	 */
 	public void giveBuildings(Property property, Collection<Class> classes){
 		for (Class c : classes) {
 			this.moveBuilding(property.getBuildings(), this.buildings, c);
 		}
 	}
-
+	/**
+	 * This can take buildings of a certain type from an owner
+	 * 
+	 * @param property which property to take
+	 * @param classes which class of building
+	 * 
+	 */
 
 	public void takeBuildings(Property property, Collection<Class> classes){
 		for (Class c: classes) {
 			this.moveBuilding(this.buildings, property.getBuildings(), c);
 		}
 	}
+	
 
 	public Account getAccount() {
         return this.account;
