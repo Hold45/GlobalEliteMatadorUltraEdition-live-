@@ -37,7 +37,7 @@ public class Game {
 		this.bank = new Bank(this);
 		this.gui = gui;
 		this.board = new Board(this);
-		this.cardPile = new CardPile();
+		this.cardPile = new CardPile(this);
 		this.random = rng;
 		this.cup = new MonopolyCup(this.random);
 		this.turnLog = new ArrayList<>();

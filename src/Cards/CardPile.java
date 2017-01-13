@@ -2,6 +2,7 @@ package Cards;
 
 import Cards.ChanceCards.ChanceCard;
 import Cards.ChanceCards.TryYourLuck.*;
+import Game.Game;
 import Owners.Owner;
 import Owners.Player;
 
@@ -11,8 +12,8 @@ import java.util.LinkedList;
 public class CardPile extends Owner {
     private LinkedList<ChanceCard> cards;
 
-    public CardPile(){
-        super();
+    public CardPile(Game game){
+        super(game);
         this.cards = new LinkedList<>();
 
 
