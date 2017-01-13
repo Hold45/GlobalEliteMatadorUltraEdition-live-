@@ -5,6 +5,7 @@ import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Buildings.Hotel;
 import Buildings.House;
 import Game.SmartTemplateTest;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,12 @@ public class SmartPropertyTest extends SmartTemplateTest {
 	public void setup(){
 		hvid = (Property) game.getBoard().getField(game.getBoard().getIndex(Hvidovrevej.class));
 		roed = (Property) game.getBoard().getField(game.getBoard().getIndex(Roedovrevej.class));
+	}
+
+	@After
+	public void tearDown(){
+		hvid = null;
+		roed = null;
 	}
 
 	/**
@@ -166,5 +173,4 @@ public class SmartPropertyTest extends SmartTemplateTest {
 		assertThat(roed.tryDowngrade()).isFalse();
 
 	}
-
 }
