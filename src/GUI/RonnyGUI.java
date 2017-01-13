@@ -55,6 +55,7 @@ public class RonnyGUI implements MonopolyGUI {
 		ArrayList<String> names = gui.getPlayerNames();
 		Player[] players = names.stream().map(name -> new Player(gui.game, name)).toArray(Player[]::new);
 		gui.game.addPlayers(players);
+		gui.createPlayers();
 		gui.game.start();
 	}
 

@@ -43,19 +43,18 @@ public interface MonopolyGUI {
 
 	Game getGame();
 
-	default void createPlayers(Player... players){
-		Arrays.stream(players).forEach(this::addPlayer);
+	default void createPlayers(){
+		this.getGame().getPlayers().forEach(this::addPlayer);
 	}
 
 	default void setup(){
 		createBoard(this.getGame().getBoard().getFields());
-		createPlayers(this.getGame().getPlayers().toArray(new Player[this.getGame().getPlayers().size()]));
 	}
 
 	default Object chooseOption(Player player, String message, Object[] options) {
 		this.update();
-		if(options.length == 1)
-			return options[0];
+	//	if(options.length == 1)
+	//		return options[0];
 
 		String[] actionsAsString = Arrays.stream(options).map(Object::toString).toArray(String[]::new);
 		String selected = getSelectionFromPlayer(player, message, actionsAsString);
@@ -78,14 +77,17 @@ public interface MonopolyGUI {
 	}
 
 	default Action chooseAction(Player player, String message, Action... options){
+		this.update();
 		return (Action) chooseOption(player, message, options);
 	}
 
 	default Tradable chooseTradable(Player player, String message, Tradable... tradables){
+		this.update();
 		return (Tradable) chooseOption(player, message, tradables);
 	}
 
 	default Player choosePlayer(Player player, String message, Player... players){
+		this.update();
 		return (Player) chooseOption(player, message, players);
 	}
 
@@ -96,6 +98,7 @@ public interface MonopolyGUI {
 
 
 	default Field chooseField(Player player, String message, Field... fields){
+		this.update();
 		return (Field) chooseOption(player, message, fields);
 	}
 

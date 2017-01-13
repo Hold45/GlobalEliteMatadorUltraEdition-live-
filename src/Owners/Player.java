@@ -78,7 +78,8 @@ public class Player extends Accountable{
 		do {
 		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this) && !this.getGame().hasWinner()).toArray(Action[]::new);
 		    options = Arrays.copyOf(options, options.length+1);
-		    options[options.length-1] = EndActions.self;
+		    options[options.length-1] = options[0];
+		    options[0] = EndActions.self;
 			chosenAction = this.game.getGUI().chooseAction(this, "ChooseAction", options);
 		    chosenAction.run(this);
 		}
