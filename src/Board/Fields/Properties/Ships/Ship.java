@@ -1,6 +1,8 @@
 package Board.Fields.Properties.Ships;
 
 import Board.Fields.Properties.Property;
+import Buildings.Hotel;
+import Buildings.House;
 import Game.Game;
 
 public abstract class Ship extends Property {

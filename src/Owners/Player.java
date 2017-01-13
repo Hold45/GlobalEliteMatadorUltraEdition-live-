@@ -81,41 +81,28 @@ public class Player extends Accountable{
 	public Player move(int addToPos){
 		for(int i = 0; i < addToPos; i++)
 			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
-	    return moveTo(getOffsetPosition(addToPos));
+		this.position = getOffsetPosition(addToPos);
+		this.game.getBoard().getFields()[this.position].onLand(this);
+	    return this;
 	}
 
 	public Player move(Field field){
-		int index = this.getGame().getBoard().getIndex(field);
-		if(this.position < index)
-			return move(index-this.position);
-		return move(this.getGame().getBoard().getFields().length - (this.position - index));
+		return moveTo(this.getGame().getBoard().getIndex(field, this));
 	}
 
-	public Field getNextFieldOfType(Class c) {
-		for(int i = 1; i < this.getGame().getBoard().getFields().length; i++){
-			if(this.getGame().getBoard().getField(this.getOffsetPosition(i)).getClass().isAssignableFrom(c)){
-				return this.getGame().getBoard().getField(this.getOffsetPosition(i));
-			}
-		}
-		return null;
+	public Player move(Class c){
+		return moveTo(this.getGame().getBoard().getIndex(c, this));
+	}
+
+	private Player moveTo(int moveToPos){
+		if(this.position <= moveToPos)
+			return move(moveToPos-this.position);
+		return move(this.getGame().getBoard().getFields().length - (this.position - moveToPos));
 	}
 
 	int getOffsetPosition(int addToPos) {
-		return (this.position+addToPos)%this.game.getBoard().getFields().length;
+		return Math.floorMod((this.position+addToPos), this.game.getBoard().getFields().length);
 	}
-
-	public Player moveTo(int moveToPos){
-		assert moveToPos <= this.game.getBoard().getFields().length && moveToPos >= 0;
-
-		this.position = moveToPos;
-		this.game.getBoard().getFields()[this.position].onLand(this);
-		return this;
-	}
-
-	public Player moveTo(Field field){
-		return this.moveTo(this.getGame().getBoard().getIndex(field));
-	}
-
 
 	public Player rollAndMove(){
 		this.getGame().getCup().roll();
@@ -165,7 +152,7 @@ public class Player extends Accountable{
 	}
 
 	private void moveWithBus() {
-		this.moveTo(this.getGame().getGUI().chooseField(
+		this.move(this.getGame().getGUI().chooseField(
 				this,
 				"ChooseBusFieldMoveTo",
 				Arrays.stream(this.getGame().getCup().getCombinations())
