@@ -36,6 +36,7 @@ public class SmartPlayerTest extends SmartTemplateTest {
 		//Roll a yahtzee when in jail.
 		p1.arrest();
 		random.add(2,2,5);
+		gui.addActions(true);
 		p1.rollAndMove();
 		assertThat(p1.isJailed()).isFalse();
 

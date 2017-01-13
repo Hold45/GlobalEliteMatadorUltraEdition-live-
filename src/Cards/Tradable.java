@@ -125,7 +125,7 @@ public abstract class Tradable {
 			for (int i = 0; i < participants.size(); i++) {
 				if (
 					participants.get(i).getAccount().getBalance() >= price+minimumBidIncrease
-					&& this.owner.getGame().getGUI().getBooleanFromPlayer((Player) this.owner, "ChooseOverbid")){
+					&& this.owner.getGame().getGUI().getBooleanFromPlayer(participants.get(i), "ChooseOverbid")){
 					price += this.owner.getGame().getGUI().getIntegerFromPlayer((Player) this.owner, "ChooseOverbidValue");
 				}else{
 					participants.remove(i);
@@ -133,6 +133,7 @@ public abstract class Tradable {
 				}	
 			}
 		}
-		this.purchase(participants.get(0), price);
+		if(participants.size() == 1)
+			this.purchase(participants.get(0), price);
 	}
 }

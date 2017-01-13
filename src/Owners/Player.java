@@ -169,7 +169,7 @@ public class Player extends Accountable{
 				this.getGame().getTurns().push(this.additionalTurn);
 			}
 		}
-		if (!this.isJailed()) {
+		if (!this.isJailed() && !this.getGame().getCup().triple()) {
 			switch (this.getGame().getCup().getSpeedDie().getValue()) {
 				case 1:
 				case 2:
