@@ -1,12 +1,10 @@
 package Owners;
 
 import Board.Fields.Properties.Plots.OrangePlots.Allegade;
-import GUI.SmartGUI;
 import Game.SmartTemplateTest;
 import org.junit.Test;
 
-import java.util.Arrays;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *

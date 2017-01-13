@@ -4,10 +4,10 @@ import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Board.Fields.Properties.Property;
-import Game.*;
+import Game.SmartTemplateTest;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DowngradePropertyTest extends SmartTemplateTest {
 

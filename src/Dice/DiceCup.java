@@ -1,8 +1,6 @@
 package Dice;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public abstract class DiceCup {

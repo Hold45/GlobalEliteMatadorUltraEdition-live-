@@ -1,6 +1,5 @@
 package Cards.ChanceCards.TryYourLuck;
 
-import Board.Fields.Properties.Plots.PurplePlot.Raadhuspladsen;
 import Board.Fields.Start;
 import Cards.ChanceCards.ChanceCard;
 import Owners.Owner;

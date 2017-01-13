@@ -1,8 +1,7 @@
 package Finance;
 
-import Board.Fields.Properties.Deeds.Deed;
-import Game.Actions.PawnDeed;
 import Game.Actions.DowngradeProperty;
+import Game.Actions.PawnDeed;
 import Game.Actions.SellDeedToBank;
 import Owners.Player;
 

@@ -5,14 +5,16 @@ import Buildings.Hotel;
 import Buildings.House;
 import Game.Game;
 
+import java.awt.*;
+
 /**
  *
  */
 public abstract class Plot extends Property {
 	private int[] rentScheme;
 
-	public Plot(Game game, String name, int price, int[] rentScheme) {
-		super(game, name, "", price);
+	public Plot(Game game, String name, Color color, int price, int[] rentScheme) {
+		super(game, name, "SickDescription", color, price);
 		this.rentScheme = rentScheme;
 
 		this.upgradeSignature = new Class[][]{

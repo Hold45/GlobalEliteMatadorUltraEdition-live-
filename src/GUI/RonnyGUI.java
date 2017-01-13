@@ -10,7 +10,7 @@ import Owners.Player;
 import desktop_codebehind.Car;
 import desktop_fields.Empty;
 import desktop_fields.Street;
-import desktop_resources.*;
+import desktop_resources.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -90,10 +90,11 @@ public class RonnyGUI implements MonopolyGUI {
 
 
 	private void addField(Field field){
-		desktop_fields.Field guiField = new Street.Builder().build();
+		//Color c = new Color(255, 0, 0);
+		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).build();
 		guiField.setTitle(field.getName());
 		guiField.setDescription(field.getDescription());
-		this.fields.add(guiField);
+		this.fields.add(guiField);		
 	}
 
 	@Override

@@ -3,10 +3,10 @@ package Board.Fields.Properties;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Buildings.Hotel;
 import Buildings.House;
-import Game.*;
+import Game.SmartTemplateTest;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SmartPropertyTest extends SmartTemplateTest {
 
