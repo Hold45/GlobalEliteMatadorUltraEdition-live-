@@ -71,17 +71,24 @@ public abstract class Property extends Field {
 				return i;
 			}
 		}
-		return 0;
+		throw new AssertionError();
 	}
 
 	public boolean canBeUpgraded(){
 		return
-				this.getUpgradeValue() < this.upgradeSignature.length
-				&& !this.getDeed().isPawned()
-				&& this.getSameColorProperties()
-						.noneMatch(property -> property.getUpgradeValue() < this.getUpgradeValue())
-				&& this.getSameColorProperties()
-						.allMatch(property -> property.getDeed().getOwner().equals(this.getDeed().getOwner()));
+			this.getUpgradeValue() < this.upgradeSignature.length-1
+			&& !this.getDeed().isPawned()
+			&& this.getDeed().isPlayerOwned()
+			&& this.getSameColorProperties()
+					.noneMatch(property -> property.getUpgradeValue() < this.getUpgradeValue())
+			&& this.getSameColorProperties()
+					.allMatch(property -> property.getDeed().getOwner().equals(this.getDeed().getOwner()))
+			&& CollectionUtils.isSubCollection(
+					this.requiredBuildingsForUpgrade(),
+					this.getGame().getBank().getBuildings().stream()
+							.map(Building::getClass)
+							.collect(Collectors.toList())
+			);
 	}
 
 	public boolean canBeDowngraded(){
@@ -94,12 +101,6 @@ public abstract class Property extends Field {
 	public boolean tryUpgrade(){
 		if(
 			canBeUpgraded()
-			&& CollectionUtils.isSubCollection(
-				this.requiredBuildingsForUpgrade(),
-				this.getGame().getBank().getBuildings().stream()
-						.map(Building::getClass)
-							.collect(Collectors.toList())
-			)
 			&& ((Accountable)this.getDeed().getOwner()).getAccount().payTo(
 				this.getGame().getBank().getAccount(),
 				this.getDeed().getUpgradePrice()
@@ -169,7 +170,7 @@ public abstract class Property extends Field {
 	private Collection<Class> obsoleteBuildingsForDowngrade(){
 		if(this.getUpgradeValue() > 0)
 			return buildingsSignatureChange(0,-1);
-		return new ArrayList<>();
+		throw new AssertionError();
 	}
 
 	public Stream<Field> getFriends(){
