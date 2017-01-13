@@ -2,7 +2,6 @@ package Board.Fields;
 
 import Game.Game;
 import Owners.Player;
-
 import java.awt.*;
 import java.util.ArrayList;
 
