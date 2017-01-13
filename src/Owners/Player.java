@@ -33,8 +33,7 @@ public class Player extends Accountable{
     private Turn mrMonopolyTurn;
     private String name;
 	/**
-	 * 
-	 * @param game which game it is ½
+	 * @param game which game is being played
 	 * 
 	 */
     public Player(Game game) {
@@ -65,7 +64,12 @@ public class Player extends Accountable{
 	public RegularTurn getTurn() {
 		return this.turn;
 	}
-
+	/**
+	 *This method checks which opportunities the player got on this turn. The player can keep choosing actions until the chosenAction is endActions.
+	 *
+	 *@param actions that the player can take 
+	 *@see Action
+	 */
 	public void takeActions(Action... actions){
 		Action chosenAction;
 		do {
