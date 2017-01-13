@@ -10,7 +10,7 @@ import Game.Game;
 public abstract class Ship extends Property {
 
     public Ship(Game game, String name, Color color) {
-        super(game, name, "", color, 4000);
+        super(game, name, "ShipDesc", color, 4000);
     }
 
     @Override
