@@ -12,7 +12,7 @@ public class MoveBack extends ChanceCard {
 
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getOffsetPosition(-3));
+        player.move(-3);
     }
 
 }

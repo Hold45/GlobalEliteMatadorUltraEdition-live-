@@ -14,7 +14,7 @@ public class MoveToStart extends ChanceCard {
 
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getNextFieldOfType(Start.class));
+        player.move(player.getNextFieldOfType(Start.class));
     }
 
 }

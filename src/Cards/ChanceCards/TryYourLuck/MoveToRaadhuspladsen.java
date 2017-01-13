@@ -10,12 +10,13 @@ public class MoveToRaadhuspladsen extends ChanceCard {
     public MoveToRaadhuspladsen(Owner owner) {
         super(owner, "MoveToRådhuspladsenDescription");
     }
+
     /**
-     * Moves the player to R�dhuspladsen
+     * Moves the player to Rådhuspladsen
      */
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getNextFieldOfType(Raadhuspladsen.class));
+        player.move(player.getNextFieldOfType(Raadhuspladsen.class));
     }
 
 }

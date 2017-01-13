@@ -10,12 +10,13 @@ public class MoveToShip extends ChanceCard {
     public MoveToShip(Owner owner) {
         super(owner, "MoveToShipDescription");
     }
+
     /**
      * Moves the player to the nearest ship
      */
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getNextFieldOfType(Ship.class));
+        player.move(player.getNextFieldOfType(Ship.class));
     }
 
 }

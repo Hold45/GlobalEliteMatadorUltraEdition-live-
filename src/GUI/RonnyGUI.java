@@ -139,10 +139,4 @@ public class RonnyGUI implements MonopolyGUI {
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
 		return getBooleanFromPlayer(player, message);
 	}
-
-	@Override
-	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
-		this.update();
-		return GUI.getUserLeftButtonPressed(player.getName()+": "+message, "Accept", "Decline");
-	}
 }

@@ -23,7 +23,7 @@ public class Player extends Accountable{
         super();
         this.position = 0;
         this.game = game;
-        this.account = new PersonalAccount(this,1000);
+        this.account = new PersonalAccount(this,30000);
         this.turn = new ScheduledTurn(this);
         this.additionalTurn = new RegularTurn(this);
         this.jailed = false;
@@ -61,13 +61,16 @@ public class Player extends Accountable{
 	}
 
 	public Player move(int addToPos){
-			
-		for(int i = 0; i < addToPos; i++){
-			int intermediatePos  = this.position + i%this.game.getBoard().getFields().length;
-			this.getGame().getBoard().getField(intermediatePos).onMoveOver(this);
-		}
+		for(int i = 0; i < addToPos; i++)
+			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
 	    return moveTo(getOffsetPosition(addToPos));
-	    
+	}
+
+	public Player move(Field field){
+		int index = this.getGame().getBoard().getIndex(field);
+		if(this.position < index)
+			return move(index-this.position);
+		return move(this.getGame().getBoard().getFields().length - (this.position - index));
 	}
 
 	public Field getNextFieldOfType(Class c) {
@@ -79,26 +82,19 @@ public class Player extends Accountable{
 		return null;
 	}
 
-	public int getOffsetPosition(int addToPos) {
+	int getOffsetPosition(int addToPos) {
 		return (this.position+addToPos)%this.game.getBoard().getFields().length;
 	}
 
-	public Player moveTo(int moveToPos){
+	Player moveTo(int moveToPos){
 		assert moveToPos <= this.game.getBoard().getFields().length && moveToPos >= 0;
 
-	   //     return
-
-		//this.game.getBoard().getField().onMoveOver(this);
 		this.position = moveToPos;
 		this.game.getBoard().getFields()[this.position].onLand(this);
 		return this;
 	}
 
-	public Player moveTo(Class field){
-		return this.moveTo(this.game.getBoard().getIndex(field));
-	}
-
-	public Player moveTo(Field field){
+	Player moveTo(Field field){
 		return this.moveTo(this.getGame().getBoard().getIndex(field));
 	}
 
@@ -107,7 +103,7 @@ public class Player extends Accountable{
 		this.getGame().getCup().roll();
 
 		if (this.getGame().getCup().triple() && !this.isJailed()){
-			this.moveTo(this.getGame().getGUI().chooseField(this, "ChooseFieldMoveTo", this.getGame().getBoard().getFields()));
+			this.move(this.getGame().getGUI().chooseField(this, "ChooseFieldMoveTo", this.getGame().getBoard().getFields()));
 		}else {
 			if (this.getGame().getCup().yahtzee()) {
 				if (this.isJailed()) {

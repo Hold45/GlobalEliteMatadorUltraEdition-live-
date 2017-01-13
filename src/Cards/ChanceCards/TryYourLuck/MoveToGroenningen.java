@@ -11,12 +11,13 @@ public class MoveToGroenningen extends ChanceCard {
     public MoveToGroenningen(Owner owner) {
         super(owner, "Card37Desc");
     }
+
     /**
-     * Moves the player to Grønningen
+     * Moves the player to Groenningen.
      */
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getNextFieldOfType(Groenningen.class));
+        player.move(player.getNextFieldOfType(Groenningen.class));
     }
 
 }

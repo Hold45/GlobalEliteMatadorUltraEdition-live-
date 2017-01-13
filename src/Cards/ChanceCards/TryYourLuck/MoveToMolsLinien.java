@@ -11,12 +11,13 @@ public class MoveToMolsLinien extends ChanceCard {
     public MoveToMolsLinien(Owner owner) {
         super(owner, "MoveToMolsLinienDescription");
     }
+
     /**
      * Moves the player to Molslinien
      */
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getNextFieldOfType(MolsLinien.class));
+        player.move(player.getNextFieldOfType(MolsLinien.class));
     }
 
 }

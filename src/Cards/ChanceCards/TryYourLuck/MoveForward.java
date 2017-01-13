@@ -11,12 +11,12 @@ public class MoveForward extends ChanceCard {
     }
     /**
      * This method moves the player forward, using the getOffsetPosition method from player
-     * @see Player#getOffsetPosition()
+     * @see Player#move(int)
      */
 
     @Override
     public void draw(Player player) {
-        player.moveTo(player.getOffsetPosition(3));
+        player.move(3);
     }
 
 }

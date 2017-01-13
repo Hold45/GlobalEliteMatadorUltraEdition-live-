@@ -17,7 +17,7 @@ public class MoveToShipX2 extends ChanceCard {
     @Override
     public void draw(Player player) {
         // find om felt er eget: player.getNextFieldOfType()
-        player.moveTo(player.getNextFieldOfType(Ship.class));
+        player.move(player.getNextFieldOfType(Ship.class));
     }
 
 }

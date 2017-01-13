@@ -7,7 +7,6 @@ import Dice.MonopolyCup;
 import Game.Actions.Action;
 import Game.Game;
 import Owners.Player;
-import desktop_resources.GUI;
 
 import java.util.Arrays;
 
