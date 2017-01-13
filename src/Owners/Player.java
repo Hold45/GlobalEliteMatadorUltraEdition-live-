@@ -60,7 +60,6 @@ public class Player extends Accountable{
 	}
 
     public Account getAccount() {
-		System.out.println("wauw");
 		return this.account;
     }
 
