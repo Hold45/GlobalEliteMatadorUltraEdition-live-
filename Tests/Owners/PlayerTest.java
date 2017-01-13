@@ -32,7 +32,7 @@ public class PlayerTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testMoveToField() {
-		//Moving to field, passing start.
+		//Moving to field, passing start first time.
 		gui.addActions(true);
 		p1.move(game.getBoard().getField(Hvidovrevej.class));
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
@@ -42,104 +42,53 @@ public class PlayerTest extends SmartTemplateTest{
 		p1.move(game.getBoard().getField(Hvidovrevej.class));
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200+4000);
-
-		//Moving all the way around.
 	}
 
 	/**
-	 * @see Player#Move2()
+	 * Moving forward to a specified class
+	 *
+	 * @see Player#move(Class)
 	 */
 	@Test
-	public void testMove2() {
+	public void testMoveToClass() {
+		//Moving to field, passing start first time.
+		gui.addActions(true);
+		p1.move(Hvidovrevej.class);
+		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
+		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200); //pay for purchasing Hvidovrevej.
 
+		//Moving to same field as standing on. Means moving all the way around
+		p1.move(Hvidovrevej.class);
+		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
+		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200+4000);
 	}
 
 	/**
-	 * @see Player#GetOffsetPosition()
+	 * @see Player#getOffsetPosition(int)
 	 */
 	@Test
 	public void testGetOffsetPosition() {
+		//Move forwards
+		assertThat(p1.getOffsetPosition(10)).isEqualTo(10);
 
+		//Move more than a board forward.
+		assertThat(p1.getOffsetPosition(game.getBoard().getFields().length*2)).isEqualTo(0);
+
+		//Move backwards
+		assertThat(p1.getOffsetPosition(-1)).isEqualTo(game.getBoard().getFields().length-1);
+
+		//Move backwards more than a board length.
+		assertThat(p1.getOffsetPosition(-(game.getBoard().getFields().length*2))).isEqualTo(0);
 	}
 
-	/**
-	 * @see Player#MoveTo()
-	 */
-	@Test
-	public void testMoveTo() {
 
-	}
 
 	/**
-	 * @see Player#GetNextFieldOfType()
-	 */
-	@Test
-	public void testGetNextFieldOfType() {
-
-	}
-
-	/**
-	 * @see Player#RollAndMove()
-	 */
-	@Test
-	public void testRollAndMove() {
-
-	}
-
-	/**
-	 * @see Player#GetPosition()
-	 */
-	@Test
-	public void testGetPosition() {
-
-	}
-
-	/**
-	 * @see Player#IsJailed()
-	 */
-	@Test
-	public void testIsJailed() {
-
-	}
-
-	/**
-	 * @see Player#Arrest()
-	 */
-	@Test
-	public void testArrest() {
-
-	}
-
-	/**
-	 * @see Player#Release()
-	 */
-	@Test
-	public void testRelease() {
-
-	}
-
-	/**
-	 * @see Player#GetName()
-	 */
-	@Test
-	public void testGetName() {
-
-	}
-
-	/**
-	 * @see Player#SetName()
-	 */
-	@Test
-	public void testSetName() {
-
-	}
-
-	/**
-	 * @see Player#ToString()
+	 * @see Player#toString()
 	 */
 	@Test
 	public void testToString() {
-
+		assertThat(p1.toString()).isEqualTo(p1.getName());
 	}
 
 	@Test

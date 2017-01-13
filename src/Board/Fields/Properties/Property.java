@@ -154,7 +154,7 @@ public abstract class Property extends Field {
 	}
 
 	private Collection<Class> obsoleteBuildingsForDowngrade(){
-		if(this.getUpgradeValue() < 0)
+		if(this.getUpgradeValue() > 0)
 			return buildingsSignatureChange(0,-1);
 		return new ArrayList<>();
 	}
