@@ -29,6 +29,7 @@ import Board.Fields.Properties.Plots.YellowPlots.Nygade;
 import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaftet;
 import Board.Fields.Properties.Ships.HelsingoerHelsingborg;
 import Game.Game;
+import Owners.Player;
 
 import java.util.Arrays;
 
@@ -73,14 +74,39 @@ public class Board {
 		return this.fields;
 	}
 
-	public int getIndex(Class field){
-		for (int i = 0; i < this.fields.length; i++) {
-			if(this.fields[i].getClass().isAssignableFrom(field)){
+	private int getIndex(Class field, int startFrom){
+		for (int i = startFrom; i < this.fields.length; i++)
+			if(this.fields[i].getClass().isAssignableFrom(field))
 				return i;
-			}
-		}
 		throw new ArrayIndexOutOfBoundsException();
 	}
+
+	private int getIndex(Field field, int startFrom){
+		for (int i = 0; i < this.fields.length; i++){
+			int x = (i + startFrom)%this.fields.length;
+			if(this.fields[x].equals(field))
+				return x;
+		}
+
+		throw new ArrayIndexOutOfBoundsException();
+	}
+
+	public int getIndex(Class field, Player player){
+		return getIndex(field, player.getPosition());
+	}
+
+	public int getIndex(Class field){
+		return getIndex(field, 0);
+	}
+
+	public int getIndex(Field field){
+		return getIndex(field, 0);
+	}
+
+	public int getIndex(Field field, Player player){
+		return getIndex(field, player.getPosition());
+	}
+
 
 	public Field getField(Class c){
 		return Arrays.stream(this.fields).filter(field -> field.getClass().isAssignableFrom(c)).findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new);
@@ -88,9 +114,5 @@ public class Board {
 
 	public Field getField(int index){
 		return this.fields[index];
-	}
-
-	public int getIndex(Field field){
-		return Arrays.asList(this.fields).indexOf(field);
 	}
 }

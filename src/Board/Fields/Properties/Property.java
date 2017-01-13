@@ -159,7 +159,7 @@ public abstract class Property extends Field {
 
 	public Stream<Field> getFriends(){
 		return Arrays.stream(this.getGame().getBoard().getFields())
-				.filter(field -> field.getClass().getSuperclass().isAssignableFrom(this.getClass().getSuperclass()));
+				.filter(field -> this.getClass().getSuperclass().isAssignableFrom(field.getClass()));
 	}
 
 	public Stream<Field> getOwnedFriends(){
