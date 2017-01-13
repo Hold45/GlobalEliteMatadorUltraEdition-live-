@@ -22,8 +22,8 @@ public class PlotTest extends SmartTemplateTest {
 
 		plots[1].getDeed().setOwner(p1);
 		assertThat(plots[1].getRent()).isEqualTo(plots[1].getRentScheme()[0]*2);
-
-
 	}
+
+
 
 }

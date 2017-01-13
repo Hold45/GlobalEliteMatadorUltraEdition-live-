@@ -111,9 +111,15 @@ public abstract class Property extends Field {
 		return false;
 	}
 
+	/**
+	 * Upgrades an property
+	 *
+	 * Returns the buildings to the bank which are obsolete and gets the buildings which are required.
+	 */
 	public void upgrade() {
+		Collection<Class> requiredBuildings = this.requiredBuildingsForUpgrade();
 		this.getGame().getBank().giveBuildings(this, this.obsoleteBuildingsForUpgrade());
-		this.getGame().getBank().takeBuildings(this, this.requiredBuildingsForUpgrade());
+		this.getGame().getBank().takeBuildings(this, requiredBuildings);
 	}
 
 	public boolean tryDowngrade(){
@@ -125,8 +131,10 @@ public abstract class Property extends Field {
 	}
 
 	public void downgrade() {
+		Collection<Class> requiredBuildingsForDowngrade = this.requiredBuildingsForDowngrade();
 		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
 		this.getGame().getBank().giveBuildings(this, this.obsoleteBuildingsForDowngrade());
+		this.getGame().getBank().takeBuildings(this, requiredBuildingsForDowngrade);
 	}
 
 	/**
@@ -152,6 +160,10 @@ public abstract class Property extends Field {
 	 */
 	private Collection<Class> requiredBuildingsForUpgrade() {
 		return buildingsSignatureChange(1,0);
+	}
+
+	private Collection<Class> requiredBuildingsForDowngrade(){
+		return buildingsSignatureChange(-1,0);
 	}
 
 	private Collection<Class> obsoleteBuildingsForDowngrade(){
