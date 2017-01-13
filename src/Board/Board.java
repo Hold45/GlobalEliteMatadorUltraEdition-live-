@@ -1,7 +1,7 @@
 package Board;
 
 import Board.Fields.*;
-import Board.Fields.Properties.Company.*;
+import Board.Fields.Properties.Brewery.*;
 import Board.Fields.Properties.Plots.BluePlots.*;
 import Board.Fields.Properties.Plots.GreenPlots.*;
 import Board.Fields.Properties.Plots.GreyPlots.*;
@@ -78,19 +78,20 @@ public class Board {
 	}
 
 	private int getIndex(Class field, int startFrom){
-		for (int i = startFrom; i < this.fields.length; i++)
-			if(this.fields[i].getClass().isAssignableFrom(field))
-				return i;
+		for (int i = 0; i < this.fields.length; i++){
+			int x = Math.floorMod(i + startFrom,this.fields.length);
+			if(field.isAssignableFrom(this.fields[x].getClass()))
+				return x;
+		}
 		throw new ArrayIndexOutOfBoundsException();
 	}
 
 	private int getIndex(Field field, int startFrom){
 		for (int i = 0; i < this.fields.length; i++){
-			int x = (i + startFrom)%this.fields.length;
+			int x = Math.floorMod(i + startFrom,this.fields.length);
 			if(this.fields[x].equals(field))
 				return x;
 		}
-
 		throw new ArrayIndexOutOfBoundsException();
 	}
 

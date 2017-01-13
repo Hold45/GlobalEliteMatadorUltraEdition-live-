@@ -24,6 +24,7 @@ public abstract class Property extends Field {
 		super(game, name, description);
 		this.deed = new Deed(this, price, game.getBank());
 		this.buildings = new ArrayList<>();
+		this.upgradeSignature = new Class[][]{};
 	}
 
 	@Override
