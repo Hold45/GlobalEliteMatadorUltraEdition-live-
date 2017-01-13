@@ -45,27 +45,126 @@ public class SmartPropertyTest extends SmartTemplateTest {
 		 }
 	 }
 
+	/**
+	 * @see Property#getUpgradeValue()
+	 */
 	@Test
-	public void testGetUpgradeValue() throws Exception {
+	public void testGetUpgradeValue(){
 		assertThat(hvid.getUpgradeValue()).isEqualTo(0);
-
-		hvid.getBuildings().add(new House());
-		assertThat(hvid.getUpgradeValue()).isEqualTo(1);
-
-		hvid.getBuildings().add(new House());
-		assertThat(hvid.getUpgradeValue()).isEqualTo(2);
-
-		hvid.getBuildings().add(new House());
-		assertThat(hvid.getUpgradeValue()).isEqualTo(3);
-
-		hvid.getBuildings().add(new House());
-		assertThat(hvid.getUpgradeValue()).isEqualTo(4);
-
-		hvid.getBuildings().add(new Hotel());
-		assertThat(hvid.getUpgradeValue()).isEqualTo(5);
+		for (int i = 1; i < 5; i++) {
+			hvid.getBuildings().add(new House());
+			assertThat(hvid.getUpgradeValue()).isEqualTo(i);
+		}
 	}
 
+	/**
+	 * @see Property#canBeUpgraded()
+	 */
+	@Test
+	public void testCanBeUpgraded(){
+		//Player owns no blue fields
+		assertThat(hvid.canBeUpgraded()).isFalse();
 
+		//Player owns 1 blue field
+		hvid.getDeed().setOwner(p1);
+		assertThat(hvid.canBeUpgraded()).isFalse();
 
+		//Player owns all blue fields
+		roed.getDeed().setOwner(p1);
+		assertThat(hvid.canBeUpgraded()).isTrue();
+		assertThat(roed.canBeUpgraded()).isTrue();
+
+		//Upgrade to max and check if still upgradable
+		for (int i = 0; i < roed.upgradeSignature.length-2; i++) {
+			roed.upgrade();
+			assertThat(roed.canBeUpgraded()).isFalse();
+			hvid.upgrade();
+			assertThat(hvid.canBeUpgraded()).isTrue();
+			assertThat(roed.canBeUpgraded()).isTrue();
+		}
+		roed.upgrade();
+		hvid.upgrade();
+		assertThat(hvid.canBeUpgraded()).isFalse();
+		assertThat(roed.canBeUpgraded()).isFalse();
+	}
+
+	/**
+	 * @see Property#canBeDowngraded()
+	 */
+	@Test
+	public void testCanBeDowngraded(){
+		//Player owns no blue fields
+		assertThat(hvid.canBeDowngraded()).isFalse();
+
+		//Player owns 1 blue field
+		hvid.getDeed().setOwner(p1);
+		assertThat(hvid.canBeDowngraded()).isFalse();
+
+		//Player owns all blue fields, but none upgraded
+		roed.getDeed().setOwner(p1);
+		assertThat(hvid.canBeDowngraded()).isFalse();
+		assertThat(roed.canBeDowngraded()).isFalse();
+
+		//Upgrade to max and downgrade all the the way down
+		for (int i = 0; i < roed.upgradeSignature.length-1; i++) {
+			roed.upgrade();
+			hvid.upgrade();
+		}
+		for (int i = 0; i < roed.upgradeSignature.length-2; i++) {
+			roed.downgrade();
+			hvid.downgrade();
+			assertThat(hvid.canBeDowngraded()).isTrue();
+			assertThat(roed.canBeDowngraded()).isTrue();
+		}
+		roed.downgrade();
+		hvid.downgrade();
+		assertThat(hvid.canBeDowngraded()).isFalse();
+		assertThat(roed.canBeDowngraded()).isFalse();
+	}
+
+	/**
+	 * @see Property#tryUpgrade()
+	 */
+	@Test
+	public void testTryUpgrade(){
+		//Where not possible
+		assertThat(hvid.tryUpgrade()).isFalse();
+
+		//Possible to upgrade
+		hvid.getDeed().setOwner(p1);
+		roed.getDeed().setOwner(p1);
+		for (int i = 1; i < hvid.upgradeSignature.length; i++) {
+			assertThat(hvid.tryUpgrade()).isTrue();
+			assertThat(roed.tryUpgrade()).isTrue();
+		}
+		assertThat(hvid.tryUpgrade()).isFalse();
+		assertThat(roed.tryUpgrade()).isFalse();
+	}
+
+	/**
+	 * @see Property#tryDowngrade()
+	 */
+	@Test
+	public void testTryDowngrade(){
+		//Where not possible
+		assertThat(hvid.tryUpgrade()).isFalse();
+
+		//Possible to downgrade
+		hvid.getDeed().setOwner(p1);
+		roed.getDeed().setOwner(p1);
+		for (int i = 1; i < hvid.upgradeSignature.length; i++) {
+			hvid.upgrade();
+			roed.upgrade();
+		}
+		for (int i = 0; i < hvid.upgradeSignature.length-1; i++) {
+			assertThat(hvid.tryDowngrade()).isTrue();
+			assertThat(roed.tryDowngrade()).isTrue();
+		}
+
+		//Cannot downgrade, but owns
+		assertThat(hvid.tryDowngrade()).isFalse();
+		assertThat(roed.tryDowngrade()).isFalse();
+
+	}
 
 }
