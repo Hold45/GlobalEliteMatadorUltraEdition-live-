@@ -97,7 +97,6 @@ public class RonnyGUI implements MonopolyGUI {
 	private void addField(Field field){
 		//Color c = new Color(255, 0, 0);
 		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).build();
-		System.out.println(field.getName() +  " " + field.getDescription());
 		guiField.setTitle(this.language.getString(field.getName()));
 		guiField.setDescription(this.language.getString(field.getDescription()));
 		this.fields.add(guiField);		
