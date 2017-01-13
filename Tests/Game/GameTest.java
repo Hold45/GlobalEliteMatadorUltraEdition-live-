@@ -2,12 +2,11 @@ package Game;
 
 import GUI.DummyGUI;
 import Owners.Player;
-import org.junit.Test;
 
 public class GameTest extends DumTemplateTest{
 
 	//@Test
-	public void testStart() throws Exception {
+	public void bruteForceTest() {
 		for (int i = 0; i < 10; i++) {
 			gui = new DummyGUI();
 			game = new Game(gui);

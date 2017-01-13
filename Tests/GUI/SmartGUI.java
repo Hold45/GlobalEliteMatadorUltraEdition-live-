@@ -8,80 +8,82 @@ import Game.Actions.Action;
 import Game.Game;
 import Owners.Player;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class SmartGUI implements MonopolyGUI {
 	public Game game;
-	private Stack<Object> actionsStack;
+	private Queue<Object> actionsStack;
 
 	public SmartGUI() {
-		actionsStack = new Stack<>();
+		actionsStack = new LinkedList<>();
 	}
 
 	public void addActions(Object... actions){
 		for (Object action : actions) {
-			actionsStack.push(action);
+			actionsStack.add(action);
 		}
 	}
 
 	@Override
 	public Action chooseAction(Player player, String message, Action... options) {
-		return (Action) actionsStack.pop();
+		return (Action) actionsStack.poll();
 	}
 
 	@Override
 	public Tradable chooseTradable(Player player, String message, Tradable... tradables) {
-		return (Tradable) actionsStack.pop();
+		return (Tradable) actionsStack.poll();
 	}
 
 	@Override
 	public Player choosePlayer(Player player, String message, Player... players) {
-		return (Player) actionsStack.pop();
+		return (Player) actionsStack.poll();
 	}
 
 	@Override
 	public int selectInteger(Player player, String message) {
-		return (int) actionsStack.pop();
+		return (int) actionsStack.poll();
 	}
 
 	@Override
 	public Field chooseField(Player player, String message, Field... fields) {
-		return (Field) actionsStack.pop();
+		return (Field) actionsStack.poll();
 	}
 
 	@Override
 	public boolean acceptAction(Player player, String message) {
-		return (boolean) actionsStack.pop();
+		return (boolean) actionsStack.poll();
 	}
 
 	@Override
 	public boolean acceptBuyProperty(Player player, String message, Tradable tradable, int price) {
-		return (boolean) actionsStack.pop();
+		return (boolean) actionsStack.poll();
 	}
 
 	@Override
 	public String getStringFromPlayer(Player player, String message) {
-		return (String) actionsStack.pop();
+		return (String) actionsStack.poll();
 	}
 
 	@Override
 	public String getString(String mesasge) {
-		return (String) actionsStack.pop();
+		return (String) actionsStack.poll();
 	}
 
 	@Override
 	public int getIntegerFromPlayer(Player player, String message) {
-		return (int) actionsStack.pop();
+		return (int) actionsStack.poll();
 	}
 
 	@Override
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
-		return (boolean) actionsStack.pop();
+		return (boolean) actionsStack.poll();
 	}
 
 	@Override
 	public boolean getBooleanFromPlayer(Player player, String message) {
-		return (boolean) actionsStack.pop();
+		return (boolean) actionsStack.poll();
 	}
 
 	@Override
@@ -126,7 +128,7 @@ public class SmartGUI implements MonopolyGUI {
 
 	@Override
 	public String getSelectionFromPlayer(Player player, String message, String... actions) {
-		return (String) actionsStack.pop();
+		return (String) actionsStack.poll();
 	}
 
 	@Override

@@ -15,7 +15,6 @@ public class DeedTest extends SmartTemplateTest{
 	private Deed hvidovrevej;
 	private Deed roedovrevej;
 
-
 	@Before
 	public void setup(){
 		hvidovrevej = ((Plot) game.getBoard().getField(Hvidovrevej.class)).getDeed();
@@ -27,7 +26,6 @@ public class DeedTest extends SmartTemplateTest{
 		hvidovrevej = null;
 		roedovrevej = null;
 	}
-
 
 	/**
 	 * Test whether can be traded works as intended.

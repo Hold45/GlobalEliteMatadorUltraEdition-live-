@@ -1,7 +1,7 @@
 package Owners;
 
 import Board.Fields.Field;
-import Board.Fields.Jail;
+import Board.Fields.LawInforcment.Jail;
 import Finance.Account;
 import Finance.PersonalAccount;
 import Game.Actions.Action;

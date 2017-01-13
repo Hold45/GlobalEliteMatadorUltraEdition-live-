@@ -26,9 +26,9 @@ public abstract class SmartTemplateTest {
 		random = new SmartRandom();
 		game = new Game(gui, random);
 		gui.game = game;
-		p1 = new Player(game);
+		p1 = new Player(game, "Player 1");
 		p1.getAccount().setBalance(10000);
-		p2 = new Player(game);
+		p2 = new Player(game, "Player 2");
 		p2.getAccount().setBalance(10000);
 		game.addPlayers(p1, p2);
 		cup = game.getCup();

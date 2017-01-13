@@ -15,8 +15,7 @@ public class ProposeTradeTest extends SmartTemplateTest {
 		Deed deed = ((Property)game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		game.getBank().transferTradableTo(p1, deed);
 
-		gui.addActions(EndActions.self, EndActions.self, true, 1000, p2, deed, ProposeTrade.self);
-
+		gui.addActions(ProposeTrade.self, deed, p2, 1000, true, EndActions.self, EndActions.self);
 		p1.takeActions(ProposeTrade.self);
 
 		assertThat(p1.getAccount().getBalance()).isEqualTo(11000);

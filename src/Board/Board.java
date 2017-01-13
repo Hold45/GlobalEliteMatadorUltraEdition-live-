@@ -1,6 +1,8 @@
 package Board;
 
 import Board.Fields.*;
+import Board.Fields.LawInforcment.GoToJail;
+import Board.Fields.LawInforcment.Jail;
 import Board.Fields.Properties.Brewery.CocaCola;
 import Board.Fields.Properties.Brewery.Squash;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
@@ -29,6 +31,8 @@ import Board.Fields.Properties.Ships.GedserRostock;
 import Board.Fields.Properties.Ships.HelsingoerHelsingborg;
 import Board.Fields.Properties.Ships.Molslinien;
 import Board.Fields.Properties.Ships.RoedbyPuttgarden;
+import Board.Fields.Taxes.Tax2000;
+import Board.Fields.Taxes.Tax4000;
 import Game.Game;
 import Owners.Player;
 

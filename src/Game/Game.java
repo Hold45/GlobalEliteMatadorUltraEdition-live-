@@ -50,7 +50,7 @@ public class Game {
 	public void start(){
 		assert !players.isEmpty();
 
-		Collections.shuffle(players);
+		Collections.shuffle(players, this.random);
 		this.turns.push(players.get(0).getTurn());
 
 		while (!this.turns.isEmpty() && !this.hasWinner()){
