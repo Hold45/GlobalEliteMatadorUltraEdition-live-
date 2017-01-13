@@ -4,6 +4,10 @@ import GUI.DummyGUI;
 import Owners.Player;
 import org.junit.Test;
 
+
+import java.util.Arrays;
+import java.util.Set;
+
 public class GameTest extends DumTemplateTest{
 
 	@Test

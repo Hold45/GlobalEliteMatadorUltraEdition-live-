@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class CocaCola extends Brewery {
 	public CocaCola(Game game) {
-        super(game, "CocaCola", Color.red);
+        super(game, "ColaName", Color.red);
     }
 
 }

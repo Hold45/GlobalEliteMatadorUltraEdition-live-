@@ -6,6 +6,6 @@ import java.awt.*;
 
 public class Squash extends Brewery {
 	public Squash(Game game) {
-        super(game, "Squash", Color.orange);
+        super(game, "SquashName", Color.orange);
     }
 }

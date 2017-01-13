@@ -9,7 +9,7 @@ public class Jail extends Field {
 	
    
 	public Jail (Game game) {
-        super(game, "Jail", "Jaildescription", Color.black, Color.white);
+        super(game, "JailName", "JailDesc", Color.black, Color.white);
     }
 	
 

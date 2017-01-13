@@ -11,7 +11,7 @@ public class Start extends Field {
 	private ArrayList<Player> hasPassed;
 
 	public Start(Game game) {
-		super(game, "FieldStart", "description", Color.red, Color.black);
+		super(game, "FieldStart", "StartDescription", Color.red, Color.black);
 		hasPassed = new ArrayList<>();
 
 	}

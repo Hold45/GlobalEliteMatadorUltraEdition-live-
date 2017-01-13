@@ -21,6 +21,7 @@ public abstract class SmartTemplateTest {
 
 	@Before
 	public void baseSetUp() throws Exception {
+		System.setProperty("java.awt.headless", "true");
 		gui = new SmartGUI();
 		random = new SmartRandom();
 		game = new Game(gui, random);

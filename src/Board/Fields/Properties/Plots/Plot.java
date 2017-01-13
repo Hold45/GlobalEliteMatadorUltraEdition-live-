@@ -14,7 +14,7 @@ public abstract class Plot extends Property {
 	private int[] rentScheme;
 
 	public Plot(Game game, String name, Color color, int price, int[] rentScheme) {
-		super(game, name, "SickDescription", color, price);
+		super(game, name, "PlotDescription", color, price);
 		this.rentScheme = rentScheme;
 
 		this.upgradeSignature = new Class[][]{
