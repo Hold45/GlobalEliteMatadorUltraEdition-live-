@@ -114,21 +114,26 @@ public class Player extends Accountable{
 		return moveTo(this.getGame().getBoard().getIndex(c, this));
 	}
 	/**
-	 * 
-	 * @param moveToPos
-	 * @return
+	 * This is used to move the player to a specific position, it also checks whether or not it has to move around the entire board.
+	 * @param moveToPos is a position of a field the players has to move to
+	 * @return current player 
 	 */
 	private Player moveTo(int moveToPos){
 		if(this.position < moveToPos)
 			return move(moveToPos-this.position);
 		return move(this.getGame().getBoard().getFields().length - this.position + moveToPos);
 	}
-
+	/**
+	 * This modulus calculation is used to find out where we have to be on the board exactly 
+	 * @param addToPos is the number to ad to the current position.
+	 * @return returns the exact position the player needs to move to. 
+	 */
 	int getOffsetPosition(int addToPos) {
 		return Math.floorMod((this.position+addToPos), this.game.getBoard().getFields().length);
 	}
 	/**
-	 * 
+	 * This method is used to play out a turn for the player. It calls the DiceCup and makes a roll. It also checks whether or not the player is in prison
+	 * if the player is in prison it goes through a for loop that checks whether or not the player has had yahtzee for the player to be released.
 	 * @return
 	 */
 	public Player rollAndMove(){
@@ -177,7 +182,9 @@ public class Player extends Accountable{
 
 		return this;
 	}
-
+	/**
+	 * This gives the player the option of choosing a field to move to when the player can move with the bus. 
+	 */
 	private void moveWithBus() {
 		this.move(this.getGame().getGUI().chooseField(
 				this,
@@ -191,7 +198,7 @@ public class Player extends Accountable{
 	public int getPosition() {
 		return this.position;
 	}
-
+	
 	public boolean isJailed() {
 		return this.jailed;
 	}
