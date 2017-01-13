@@ -62,3 +62,4 @@ _mac/
 /gradle.run.settings.xml
 find.xml
 ide.general.xml
+/target/

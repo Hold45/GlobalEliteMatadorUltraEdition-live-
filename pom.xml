@@ -35,6 +35,12 @@
             <artifactId>commons-collections</artifactId>
             <version>3.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>GUI</groupId>
+            <artifactId>GUI</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/Library/GUI.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
