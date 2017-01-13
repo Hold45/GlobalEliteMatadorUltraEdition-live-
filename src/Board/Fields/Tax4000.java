@@ -5,12 +5,14 @@ import Game.Game;
 import java.awt.*;
 
 
-public class Tax extends Field {
+public class Tax4000 extends Field {
 	
    
-	public Tax(Game game) {
-        super(game, "TaxName", "TaxDesc", Color.darkGray, Color.black);
+	public Tax4000(Game game) {
+        super(game, "TaxName", "TaxDesc1", Color.darkGray, Color.black);
     }
+	
+	
 	
 //	@Override
 //	public void onLand(Player player){
