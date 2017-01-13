@@ -1,5 +1,7 @@
 package Board.Fields;
 
+import java.awt.Color;
+
 import Game.Game;
 import Owners.Player;
 
@@ -8,7 +10,7 @@ import Owners.Player;
  */
 public class Start extends Field {
     public Start(Game game) {
-        super(game, "FieldStart", "description");
+        super(game, "FieldStart", "description", Color.red, Color.black);
     }
 
     @Override

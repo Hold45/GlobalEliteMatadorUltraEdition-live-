@@ -11,6 +11,7 @@ import org.apache.commons.collections.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import java.awt.Color;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,8 +21,8 @@ public abstract class Property extends Field {
 	protected ArrayList<Building> buildings;
 	protected Class[][] upgradeSignature;
 
-	public Property(Game game, String name, String description, int price) {
-		super(game, name, description);
+	public Property(Game game, String name, String description, Color color, int price) {
+		super(game, name, description, color, Color.black);
 		this.deed = new Deed(this, price, game.getBank());
 		this.buildings = new ArrayList<>();
 	}

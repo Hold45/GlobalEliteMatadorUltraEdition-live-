@@ -13,6 +13,7 @@ import Board.Fields.Properties.Plots.YellowPlots.*;
 import Board.Fields.Properties.Ships.*;
 import Game.Game;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 public class Board {

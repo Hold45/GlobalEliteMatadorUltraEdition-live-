@@ -1,12 +1,14 @@
 package Board.Fields.Properties.Ships;
 
+import java.awt.Color;
+
 import Board.Fields.Properties.Property;
 import Game.Game;
 
 public abstract class Ship extends Property {
 
-    public Ship(Game game, String name) {
-        super(game, name, "", 4000);
+    public Ship(Game game, String name, Color color) {
+        super(game, name, "", color, 4000);
     }
 
     @Override
