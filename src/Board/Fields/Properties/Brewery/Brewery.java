@@ -1,13 +1,15 @@
 package Board.Fields.Properties.Brewery;
 
+import java.awt.Color;
+
 import Board.Fields.Properties.Property;
 import Game.Game;
 
 
-public abstract class Company extends Property {
+public abstract class Brewery extends Property {
 
-    public Company(Game game, String name) {
-        super(game, name, "", 3000);
+    public Brewery(Game game, String name, Color color) {
+        super(game, name, "", color, 3000);
     }
 
     @Override
