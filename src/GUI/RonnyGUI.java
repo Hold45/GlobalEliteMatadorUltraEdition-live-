@@ -14,7 +14,6 @@ import desktop_resources.GUI;
 
 import java.awt.*;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -52,10 +51,11 @@ public class RonnyGUI implements MonopolyGUI {
 	public static void main(String... args){
 		RonnyGUI gui = new RonnyGUI();
 		gui.game = new Game(gui);
+		gui.setup();
 		ArrayList<String> names = gui.getPlayerNames();
 		Player[] players = names.stream().map(name -> new Player(gui.game, name)).toArray(Player[]::new);
 		gui.game.addPlayers(players);
-		gui.start();
+		gui.game.start();
 	}
 
 	@Override

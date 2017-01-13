@@ -47,10 +47,9 @@ public interface MonopolyGUI {
 		Arrays.stream(players).forEach(this::addPlayer);
 	}
 
-	default void start(){
+	default void setup(){
 		createBoard(this.getGame().getBoard().getFields());
 		createPlayers(this.getGame().getPlayers().toArray(new Player[this.getGame().getPlayers().size()]));
-		this.getGame().start();
 	}
 
 	default Object chooseOption(Player player, String message, Object[] options) {

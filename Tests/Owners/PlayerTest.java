@@ -18,7 +18,7 @@ public class PlayerTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testMoveToInt() {
-		//Test if getting the 4000 for passing start.
+		//Test if getting the 4000 for passing setup.
 		assertThat(p1.getPosition()).isEqualTo(0);
 		p1.move(Start.class);
 		p1.move(Start.class);
@@ -32,7 +32,7 @@ public class PlayerTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testMoveToField() {
-		//Moving to field, passing start first time.
+		//Moving to field, passing setup first time.
 		gui.addActions(true);
 		p1.move(game.getBoard().getField(Hvidovrevej.class));
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
@@ -51,7 +51,7 @@ public class PlayerTest extends SmartTemplateTest{
 	 */
 	@Test
 	public void testMoveToClass() {
-		//Moving to field, passing start first time.
+		//Moving to field, passing setup first time.
 		gui.addActions(true);
 		p1.move(Hvidovrevej.class);
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
