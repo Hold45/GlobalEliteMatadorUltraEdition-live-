@@ -7,7 +7,7 @@ import Game.Game;
  */
 public class GedserRostock extends Ship {
 	
-    public GedserRostock(Game game, String name) {
+    public GedserRostock(Game game) {
         super(game, "PropertyShipsGedserRostock");
     }
 }
