@@ -1,8 +1,9 @@
 package Board.Fields.Properties.Company;
 
-import java.awt.Color;
 import Board.Fields.Properties.Property;
 import Game.Game;
+
+import java.awt.*;
 
 
 public abstract class Company extends Property {

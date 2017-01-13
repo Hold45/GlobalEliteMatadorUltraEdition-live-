@@ -3,7 +3,7 @@ package Game;
 import Board.Board;
 import Cards.CardPile;
 import Dice.MonopolyCup;
-import GUI.*;
+import GUI.MonopolyGUI;
 import Game.Turns.Turn;
 import Owners.Bank;
 import Owners.Player;

@@ -1,12 +1,12 @@
 package Board.Fields.Properties.Plots;
 
-import Game.*;
+import Board.Fields.Properties.Plots.BluePlots.BluePlot;
+import Game.SmartTemplateTest;
 import org.junit.Test;
-import Board.Fields.Properties.Plots.BluePlots.*;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlotTest extends SmartTemplateTest {
 

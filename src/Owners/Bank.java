@@ -1,14 +1,13 @@
 package Owners;
 
-import Board.Fields.Field;
 import Board.Fields.Properties.Property;
 import Buildings.Building;
 import Buildings.Hotel;
 import Buildings.House;
 import Finance.Account;
-import Owners.Owner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 /**
  * Bank
  * 

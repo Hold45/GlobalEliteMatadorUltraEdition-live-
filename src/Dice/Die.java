@@ -1,6 +1,6 @@
 package Dice;
 
-import Game.*;
+import Game.Game;
 
 public abstract class Die{
     private int value;

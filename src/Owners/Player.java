@@ -1,14 +1,15 @@
 package Owners;
 
 import Board.Fields.Field;
-import Board.Fields.Properties.Property;
 import Finance.Account;
 import Finance.PersonalAccount;
-import Game.*;
-import Game.Actions.*;
+import Game.Actions.Action;
+import Game.Actions.EndActions;
+import Game.Game;
 import Game.Turns.RegularTurn;
 import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
+
 import java.util.Arrays;
 
 /**

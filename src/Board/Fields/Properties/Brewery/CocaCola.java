@@ -1,7 +1,8 @@
 package Board.Fields.Properties.Brewery;
-import java.awt.Color;
 
 import Game.Game;
+
+import java.awt.*;
 
 public class CocaCola extends Brewery {
 	public CocaCola(Game game) {

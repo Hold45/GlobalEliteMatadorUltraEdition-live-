@@ -1,7 +1,6 @@
 package Game.Actions;
 
 import Board.Fields.Properties.Deeds.Deed;
-import Cards.Tradable;
 import Owners.Player;
 
 /**

@@ -1,9 +1,8 @@
 package Board.Fields;
 
-import java.awt.Color;
-
 import Game.Game;
-import Owners.Player;
+
+import java.awt.*;
 
 
 public class Jail extends Field {

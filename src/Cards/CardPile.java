@@ -1,6 +1,5 @@
 package Cards;
 
-import Board.Fields.Chance;
 import Cards.ChanceCards.ChanceCard;
 import Cards.ChanceCards.TryYourLuck.*;
 import Owners.Owner;

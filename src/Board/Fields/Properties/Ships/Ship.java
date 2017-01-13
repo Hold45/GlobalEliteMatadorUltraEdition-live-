@@ -1,11 +1,9 @@
 package Board.Fields.Properties.Ships;
 
-import java.awt.Color;
-
 import Board.Fields.Properties.Property;
-import Buildings.Hotel;
-import Buildings.House;
 import Game.Game;
+
+import java.awt.*;
 
 public abstract class Ship extends Property {
 

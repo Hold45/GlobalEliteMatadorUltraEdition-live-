@@ -1,7 +1,8 @@
 package Board.Fields.Properties.Company;
-import java.awt.Color;
 
 import Game.Game;
+
+import java.awt.*;
 
 public class Squash extends Company {
 	public Squash(Game game) {

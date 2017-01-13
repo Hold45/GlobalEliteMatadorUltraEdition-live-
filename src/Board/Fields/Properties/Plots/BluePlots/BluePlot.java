@@ -1,10 +1,10 @@
 package Board.Fields.Properties.Plots.BluePlots;
 
 
-import java.awt.Color;
-
 import Board.Fields.Properties.Plots.Plot;
 import Game.Game;
+
+import java.awt.*;
 
 public abstract class
 BluePlot extends Plot {
