@@ -4,11 +4,11 @@ import Game.Game;
 import Owners.Player;
 
 
-public class ChanceField extends Field {
+public class Chance extends Field {
 	
    
-	public ChanceField(Game game, String name, String description) {
-        super(game, "ChanceField", "description)");
+	public Chance(Game game) {
+        super(game, "Chance", "description)");
         
     }
 	public void onLand(Player player){

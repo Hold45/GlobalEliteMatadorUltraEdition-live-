@@ -7,7 +7,7 @@ import Owners.Player;
 public class Parkering extends Field {
 	
    
-	public Parkering(Game game, String name, String description) {
+	public Parkering(Game game) {
         super(game, "Parkering", "description)");
     }
 }

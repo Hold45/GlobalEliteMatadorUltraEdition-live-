@@ -1,6 +1,10 @@
 package Board;
 
+import Board.Fields.Chance;
 import Board.Fields.Field;
+import Board.Fields.Jail;
+import Board.Fields.Start;
+import Board.Fields.Tax;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Board.Fields.Properties.Plots.GreenPlots.Bulowsvej;
@@ -23,6 +27,7 @@ import Board.Fields.Properties.Plots.WhitePlots.Oestergade;
 import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
 import Board.Fields.Properties.Plots.YellowPlots.Nygade;
 import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaftet;
+import Board.Fields.Properties.Ships.HelsingoerHelsingborg;
 import Game.Game;
 
 import java.util.Arrays;
@@ -32,11 +37,17 @@ public class Board {
 
 	public Board(Game game) {
 		fields = new Field[]{
+				new Start(game),
 				new Roedovrevej(game),
+				new Chance(game),
 				new Hvidovrevej(game),
+				new Tax(game),
+				//new HelsingoerHelsingborg(game),
 				new Roskildevej(game),
+				new Chance(game),
 				new ValbyLanggade(game),
 				new Allegade(game),
+				new Jail(game),
 				new FrederiksbergAlle(game),
 				new Bulowsvej(game),
 				new GammelKongevej(game),
