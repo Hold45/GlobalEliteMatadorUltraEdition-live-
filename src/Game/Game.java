@@ -34,7 +34,7 @@ public class Game {
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
 		this.turns = new Stack<>();
-		this.bank = new Bank();
+		this.bank = new Bank(this);
 		this.gui = gui;
 		this.board = new Board(this);
 		this.cardPile = new CardPile();

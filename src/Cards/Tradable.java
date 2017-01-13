@@ -2,6 +2,9 @@ package Cards;
 
 import Owners.Accountable;
 import Owners.Owner;
+import Owners.Player;
+
+import java.util.ArrayList;
 
 /**
  * Tradable
@@ -111,9 +114,25 @@ public abstract class Tradable {
 		purchase(buyer, this.price);
 	}
 
-
-
-
-
-
+	public void auctionOff(int startPrice, int minimumBidIncrease){
+		int price = startPrice;
+		ArrayList<Player> participants;
+		if (this.owner instanceof Player)
+			participants = this.owner.getGame().getOtherPlayers((Player) this.owner);
+		else
+			participants = new ArrayList<>(this.owner.getGame().getPlayers());
+		while (participants.size()>1){
+			for (int i = 0; i < participants.size(); i++) {
+				if (
+					participants.get(i).getAccount().getBalance() >= price+minimumBidIncrease
+					&& this.owner.getGame().getGUI().getBooleanFromPlayer((Player) this.owner, "ChooseOverbid")){
+					price += this.owner.getGame().getGUI().getIntegerFromPlayer((Player) this.owner, "ChooseOverbidValue");
+				}else{
+					participants.remove(i);
+					i--;
+				}
+			}
+		}
+		this.purchase(participants.get(0), price);
+	}
 }

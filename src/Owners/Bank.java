@@ -5,6 +5,7 @@ import Buildings.Building;
 import Buildings.Hotel;
 import Buildings.House;
 import Finance.Account;
+import Game.Game;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,8 +24,8 @@ public class Bank extends Accountable {
 	 * @see Account
 	 * 
 	 */
-    public Bank(){
-        super();
+    public Bank(Game game){
+        super(game);
         this.account = new Account(10000);
         this.buildings = new ArrayList<>();
         for (int i=0; i<22; i++){
