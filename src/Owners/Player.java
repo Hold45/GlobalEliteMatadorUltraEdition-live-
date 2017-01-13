@@ -54,8 +54,14 @@ public class Player extends Accountable{
         };
     }
 
+    public Player(Game game, String name){
+    	this(game);
+    	this.name = name;
+	}
+
     public Account getAccount() {
-        return this.account;
+		System.out.println("wauw");
+		return this.account;
     }
 
 	public RegularTurn getTurn() {

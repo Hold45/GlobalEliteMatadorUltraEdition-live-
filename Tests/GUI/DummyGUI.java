@@ -21,6 +21,16 @@ public class DummyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public String getStringFromPlayer(Player player, String message) {
+		return "";
+	}
+
+	@Override
+	public String getString(String mesasge) {
+		return "";
+	}
+
+	@Override
 	public int getIntegerFromPlayer(Player player, String message) {
 		return 0;
 	}
