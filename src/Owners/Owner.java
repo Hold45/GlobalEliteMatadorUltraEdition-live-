@@ -25,6 +25,7 @@ public abstract class Owner {
 	}
 	/**
 	 * Adds a tradable to the ArrayList and sets owner to this owner.
+	 * @param tradeable to add
 	 */
 	public void addTradable(Tradable tradable){
 		tradable.setOwner(this);
@@ -33,22 +34,24 @@ public abstract class Owner {
 	
 	/**
 	 * remove tradable from the arrayList
-	 * @param tradable
+	 * @param tradable to remove 
 	 */
 	public boolean removeTradable(Tradable tradable){
 		return this.owns.remove(tradable);
 	}
 
 	/**
-	 * Transfers tradable from one player to another
-	 * @param tradable
+	 * Transfers a tradable from this player to another
+	 * 
+	 * @param tradable to trade
+	 * @param to which player you wish to trade
 	 */ 
 	public void transferTradableTo(Owner to, Tradable tradable){
 		if(this.removeTradable(tradable))
 			to.addTradable(tradable);
 	}
 	/**
-	 * @return
+	 * @return which tradable this owner owns
 	 */
 	public ArrayList<Tradable> getOwns() {
 		return this.owns;
