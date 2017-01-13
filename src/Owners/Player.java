@@ -77,9 +77,9 @@ public class Player extends Accountable{
 	}
 
 	private Player moveTo(int moveToPos){
-		if(this.position <= moveToPos)
+		if(this.position < moveToPos)
 			return move(moveToPos-this.position);
-		return move(this.getGame().getBoard().getFields().length - (this.position - moveToPos));
+		return move(this.getGame().getBoard().getFields().length - this.position + moveToPos);
 	}
 
 	int getOffsetPosition(int addToPos) {
