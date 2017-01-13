@@ -3,6 +3,7 @@ package Owners;
 import Cards.Tradable;
 
 import java.util.ArrayList;
+import Game.Game;
 
 /**
  *Owners has an ArrayList that include which tradables is owned by a given player.
@@ -10,9 +11,11 @@ import java.util.ArrayList;
  */
 public abstract class Owner {
 	protected ArrayList<Tradable> owns;
+	protected Game game;
 
-	public Owner(){
+	public Owner(Game game){
 		this.owns = new ArrayList<>();
+		this.game = game;
 	}
 	/**
 	 * @return true if owner of 
@@ -53,6 +56,10 @@ public abstract class Owner {
 	 */
 	public ArrayList<Tradable> getOwns() {
 		return this.owns;
+	}
+
+	public Game getGame() {
+		return game;
 	}
 }
 

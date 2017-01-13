@@ -1,6 +1,7 @@
 package Owners;
 
 import Board.Fields.Field;
+import Board.Fields.Jail;
 import Finance.Account;
 import Finance.PersonalAccount;
 import Game.Actions.Action;
@@ -26,7 +27,6 @@ import java.util.Arrays;
  * @see Turn
  */
 public class Player extends Accountable{
-    private Game game;
     private ScheduledTurn turn;
     private RegularTurn additionalTurn;
     private int position;
@@ -38,7 +38,7 @@ public class Player extends Accountable{
 	 * 
 	 */
     public Player(Game game) {
-        super();
+        super(game);
         this.position = 0;
         this.game = game;
         this.account = new PersonalAccount(this,30000);
@@ -52,10 +52,6 @@ public class Player extends Accountable{
 		        super.take();
 	        }
         };
-    }
-
-    public Game getGame() {
-        return this.game;
     }
 
     public Account getAccount() {
@@ -175,6 +171,7 @@ public class Player extends Accountable{
 	}
 
 	public void arrest(){
+		this.move(Jail.class);
 		this.jailed = true;
 	}
 
