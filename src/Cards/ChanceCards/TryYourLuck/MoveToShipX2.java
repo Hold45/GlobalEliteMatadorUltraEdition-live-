@@ -1,6 +1,5 @@
 package Cards.ChanceCards.TryYourLuck;
-import Owners.*;
-import Board.Fields.Properties.Property;
+
 import Board.Fields.Properties.Ships.Ship;
 import Cards.ChanceCards.ChanceCard;
 import Owners.Owner;

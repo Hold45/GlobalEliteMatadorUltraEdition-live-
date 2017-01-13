@@ -2,11 +2,11 @@ package Game;
 
 import GUI.DummyGUI;
 import Owners.Player;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Random;
+
+import java.util.Arrays;
+import java.util.Set;
 
 public class GameTest extends DumTemplateTest{
 

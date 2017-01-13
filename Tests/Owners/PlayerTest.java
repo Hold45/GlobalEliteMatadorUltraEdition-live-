@@ -3,12 +3,10 @@ package Owners;
 import Board.Fields.Field;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Start;
-import Game.Actions.Action;
-import Game.DumTemplateTest;
 import Game.SmartTemplateTest;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest extends SmartTemplateTest{
 

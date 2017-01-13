@@ -3,7 +3,7 @@ package Game;
 import Board.Board;
 import Cards.CardPile;
 import Dice.MonopolyCup;
-import GUI.*;
+import GUI.MonopolyGUI;
 import Game.Turns.Turn;
 import Owners.Bank;
 import Owners.Player;
@@ -28,9 +28,9 @@ public class Game {
 	private CardPile cardPile;
 	private MonopolyCup cup;
 	private ArrayList<Turn> turnLog;
-	public static Random random = new Random();
+	private Random random;
 
-	public Game(MonopolyGUI gui) {
+	public Game(MonopolyGUI gui, Random rng){
 		this.players = new ArrayList<>();
 		this.losers = new ArrayList<>();
 		this.turns = new Stack<>();
@@ -38,8 +38,13 @@ public class Game {
 		this.gui = gui;
 		this.board = new Board(this);
 		this.cardPile = new CardPile();
-		this.cup = new MonopolyCup();
+		this.random = rng;
+		this.cup = new MonopolyCup(this.random);
 		this.turnLog = new ArrayList<>();
+	}
+
+	public Game(MonopolyGUI gui) {
+		this(gui, new Random());
 	}
 
 	public void start(){
@@ -111,11 +116,4 @@ public class Game {
 		return this.getPlayers().size() == 1;
 	}
 
-	public static Random getRandom() {
-		return random;
-	}
-
-	public static void setRandom(Random random) {
-		Game.random = random;
-	}
 }

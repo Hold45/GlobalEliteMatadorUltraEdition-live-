@@ -3,10 +3,10 @@ package Game.Actions;
 import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Property;
-import Game.*;
+import Game.SmartTemplateTest;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProposeTradeTest extends SmartTemplateTest {
 

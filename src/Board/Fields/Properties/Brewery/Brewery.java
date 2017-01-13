@@ -1,9 +1,9 @@
 package Board.Fields.Properties.Brewery;
 
-import java.awt.Color;
-
 import Board.Fields.Properties.Property;
 import Game.Game;
+
+import java.awt.*;
 
 
 public abstract class Brewery extends Property {

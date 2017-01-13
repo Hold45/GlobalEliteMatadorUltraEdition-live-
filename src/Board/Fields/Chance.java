@@ -1,8 +1,9 @@
 package Board.Fields;
 
-import java.awt.Color;
 import Game.Game;
 import Owners.Player;
+
+import java.awt.*;
 
 
 public class Chance extends Field {

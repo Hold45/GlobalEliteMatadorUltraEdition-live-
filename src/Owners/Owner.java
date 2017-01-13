@@ -1,8 +1,6 @@
 package Owners;
 
-import Board.Fields.Properties.Deeds.Deed;
 import Cards.Tradable;
-import Finance.Account;
 
 import java.util.ArrayList;
 

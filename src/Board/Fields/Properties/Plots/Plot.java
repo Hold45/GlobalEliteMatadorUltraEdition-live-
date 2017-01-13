@@ -1,11 +1,11 @@
 package Board.Fields.Properties.Plots;
 
-import java.awt.Color;
-
 import Board.Fields.Properties.Property;
 import Buildings.Hotel;
 import Buildings.House;
 import Game.Game;
+
+import java.awt.*;
 
 /**
  *

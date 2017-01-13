@@ -1,13 +1,14 @@
 package Dice;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class MonopolyCup extends DiceCup {
     private SpeedDie speedDie;
 
-    public MonopolyCup() {
-        super(new D6(), new D6());
-        this.speedDie = new SpeedDie();
+    public MonopolyCup(Random rng) {
+        super(new D6(rng), new D6(rng));
+        this.speedDie = new SpeedDie(rng);
     }
 
     @Override

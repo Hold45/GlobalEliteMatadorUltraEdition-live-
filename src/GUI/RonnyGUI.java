@@ -10,7 +10,7 @@ import Owners.Player;
 import desktop_codebehind.Car;
 import desktop_fields.Empty;
 import desktop_fields.Street;
-import desktop_resources.*;
+import desktop_resources.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;

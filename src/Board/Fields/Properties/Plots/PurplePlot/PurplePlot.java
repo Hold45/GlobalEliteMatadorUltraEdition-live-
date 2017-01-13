@@ -1,9 +1,9 @@
 package Board.Fields.Properties.Plots.PurplePlot;
 
-import java.awt.Color;
-
 import Board.Fields.Properties.Plots.Plot;
 import Game.Game;
+
+import java.awt.*;
 
 abstract class PurplePlot extends Plot {
 	

@@ -1,8 +1,8 @@
 package Board.Fields.Properties.Ships;
 
-import java.awt.Color;
-
 import Game.Game;
+
+import java.awt.*;
 
 public class HelsingoerHelsingborg extends Ship {
 	
