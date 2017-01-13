@@ -59,7 +59,7 @@ public class Board {
 				new Chance(game),
 				new Hellerupvej(game),
 				new Strandvejen(game),
-				new Parkering(game),
+				new Parking(game),
 				new Trianglen(game),
 				new Chance(game),
 				new Oesterbrogade(game),

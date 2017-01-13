@@ -9,7 +9,7 @@ import java.awt.*;
 public class Chance extends Field {
 	 
 	public Chance(Game game) {
-        super(game, "Chance", "description", Color.black, Color.white);
+        super(game, "ChanceName", "ChanceDesc", Color.black, Color.white);
         
     }
 	public void onLand(Player player){

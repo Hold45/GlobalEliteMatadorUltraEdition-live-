@@ -1,7 +1,9 @@
 package Dice;
 
+import java.util.Random;
+
 public class SpeedDie extends Die{
-    SpeedDie() {
-        super(6);
+    SpeedDie(Random rng) {
+        super(6, rng);
     }
 }

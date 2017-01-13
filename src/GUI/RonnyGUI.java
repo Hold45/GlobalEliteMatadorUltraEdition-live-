@@ -14,6 +14,8 @@ import desktop_resources.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Stack;
 import java.util.stream.Stream;
 
@@ -24,6 +26,7 @@ public class RonnyGUI implements MonopolyGUI {
 	private Game game;
 	private ArrayList<desktop_fields.Field> fields;
 	private Stack<Color> colors = new Stack<>();
+	private ResourceBundle language;
 
 	public RonnyGUI() {
 		this.fields = new ArrayList<>();
@@ -35,6 +38,8 @@ public class RonnyGUI implements MonopolyGUI {
 		colors.push(Color.CYAN);
 		colors.push(Color.MAGENTA);
 		colors.push(Color.LIGHT_GRAY);
+		
+		this.language = ResourceBundle.getBundle("LabelsBundle", Locale.getDefault());
 	}
 
 	@Override
@@ -92,8 +97,9 @@ public class RonnyGUI implements MonopolyGUI {
 	private void addField(Field field){
 		//Color c = new Color(255, 0, 0);
 		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).build();
-		guiField.setTitle(field.getName());
-		guiField.setDescription(field.getDescription());
+		System.out.println(field.getName() +  " " + field.getDescription());
+		guiField.setTitle(this.language.getString(field.getName()));
+		guiField.setDescription(this.language.getString(field.getDescription()));
 		this.fields.add(guiField);		
 	}
 

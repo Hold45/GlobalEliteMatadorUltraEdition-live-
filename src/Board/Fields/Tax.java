@@ -9,7 +9,7 @@ public class Tax extends Field {
 	
    
 	public Tax(Game game) {
-        super(game, "Tax", "payTax", Color.darkGray, Color.black);
+        super(game, "TaxName", "TaxDesc", Color.darkGray, Color.black);
     }
 	
 //	@Override

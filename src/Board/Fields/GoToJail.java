@@ -10,7 +10,7 @@ public class GoToJail extends Field {
 	
    
 	public GoToJail(Game game) {
-        super(game, "GoToJail", "GoToJailDescription",Color.black, Color.white);
+        super(game, "GoToJail", "GoToJailDesc",Color.black, Color.white);
     }
 	
 	public void onLand(Player player){
