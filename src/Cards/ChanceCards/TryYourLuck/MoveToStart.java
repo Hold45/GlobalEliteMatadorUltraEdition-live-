@@ -9,7 +9,7 @@ import Owners.Player;
 public class MoveToStart extends ChanceCard {
 
     public MoveToStart(Owner owner) {
-        super(owner, "MoveToStartDescription");
+        super(owner, "Card43Desc");
     }
 
     @Override

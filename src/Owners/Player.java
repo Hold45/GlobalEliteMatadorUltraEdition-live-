@@ -86,7 +86,7 @@ public class Player extends Accountable{
 		return (this.position+addToPos)%this.game.getBoard().getFields().length;
 	}
 
-	Player moveTo(int moveToPos){
+	public Player moveTo(int moveToPos){
 		assert moveToPos <= this.game.getBoard().getFields().length && moveToPos >= 0;
 
 		this.position = moveToPos;
@@ -94,7 +94,7 @@ public class Player extends Accountable{
 		return this;
 	}
 
-	Player moveTo(Field field){
+	public Player moveTo(Field field){
 		return this.moveTo(this.getGame().getBoard().getIndex(field));
 	}
 

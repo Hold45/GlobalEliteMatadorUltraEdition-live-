@@ -8,7 +8,7 @@ import Owners.Player;
 public class MoveToShip extends ChanceCard {
 
     public MoveToShip(Owner owner) {
-        super(owner, "MoveToShipDescription");
+        super(owner, "Card38Desc");
     }
 
     /**
