@@ -1,7 +1,7 @@
 package Cards.ChanceCards.TryYourLuck;
 
 
-import Board.Fields.Properties.Ships.MolsLinien;
+import Board.Fields.Properties.Ships.Molslinien;
 import Cards.ChanceCards.ChanceCard;
 import Owners.Owner;
 import Owners.Player;
@@ -9,7 +9,7 @@ import Owners.Player;
 public class MoveToMolsLinien extends ChanceCard {
 
     public MoveToMolsLinien(Owner owner) {
-        super(owner, "MoveToMolsLinienDescription");
+        super(owner, "Card40Desc");
     }
 
     /**

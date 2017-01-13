@@ -1,33 +1,16 @@
 package Board;
 
-import Board.Fields.Chance;
-import Board.Fields.Field;
-import Board.Fields.Jail;
-import Board.Fields.Start;
-import Board.Fields.Tax;
-import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
-import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
-import Board.Fields.Properties.Plots.GreenPlots.Bulowsvej;
-import Board.Fields.Properties.Plots.GreenPlots.FrederiksbergAlle;
-import Board.Fields.Properties.Plots.GreenPlots.GammelKongevej;
-import Board.Fields.Properties.Plots.GreyPlots.Bernstorffsvej;
-import Board.Fields.Properties.Plots.GreyPlots.Hellerupvej;
-import Board.Fields.Properties.Plots.GreyPlots.Strandvejen;
-import Board.Fields.Properties.Plots.OrangePlots.Allegade;
-import Board.Fields.Properties.Plots.OrangePlots.Roskildevej;
-import Board.Fields.Properties.Plots.OrangePlots.ValbyLanggade;
-import Board.Fields.Properties.Plots.PurplePlot.Frederiksberggade;
-import Board.Fields.Properties.Plots.PurplePlot.Raadhuspladsen;
-import Board.Fields.Properties.Plots.RedPlots.Groenningen;
-import Board.Fields.Properties.Plots.RedPlots.Oesterbrogade;
-import Board.Fields.Properties.Plots.RedPlots.Trianglen;
-import Board.Fields.Properties.Plots.WhitePlots.Bredgade;
-import Board.Fields.Properties.Plots.WhitePlots.KongensNytorv;
-import Board.Fields.Properties.Plots.WhitePlots.Oestergade;
-import Board.Fields.Properties.Plots.YellowPlots.Amagertorv;
-import Board.Fields.Properties.Plots.YellowPlots.Nygade;
-import Board.Fields.Properties.Plots.YellowPlots.Vimmelskaftet;
-import Board.Fields.Properties.Ships.HelsingoerHelsingborg;
+import Board.Fields.*;
+import Board.Fields.Properties.Company.*;
+import Board.Fields.Properties.Plots.BluePlots.*;
+import Board.Fields.Properties.Plots.GreenPlots.*;
+import Board.Fields.Properties.Plots.GreyPlots.*;
+import Board.Fields.Properties.Plots.OrangePlots.*;
+import Board.Fields.Properties.Plots.PurplePlot.*;
+import Board.Fields.Properties.Plots.RedPlots.*;
+import Board.Fields.Properties.Plots.WhitePlots.*;
+import Board.Fields.Properties.Plots.YellowPlots.*;
+import Board.Fields.Properties.Ships.*;
 import Game.Game;
 import Owners.Player;
 
@@ -43,21 +26,41 @@ public class Board {
 				new Chance(game),
 				new Hvidovrevej(game),
 				new Tax(game),
-				//new HelsingoerHelsingborg(game),
+				new HelsingoerHelsingborg(game),
 				new Roskildevej(game),
 				new Chance(game),
 				new ValbyLanggade(game),
 				new Allegade(game),
 				new Jail(game),
 				new FrederiksbergAlle(game),
+				new Squash(game),
 				new Bulowsvej(game),
 				new GammelKongevej(game),
+				new Molslinien(game),
 				new Bernstorffsvej(game),
+				new Chance(game),
 				new Hellerupvej(game),
 				new Strandvejen(game),
+				new Parkering(game),
 				new Trianglen(game),
+				new Chance(game),
 				new Oesterbrogade(game),
 				new Groenningen(game),
+				new GedserRostock(game),
+				new Bredgade(game),
+				new KongensNytorv(game),
+				new CocaCola(game),
+				new Oestergade(game),
+				new GoToJail(game),
+				new Amagertorv(game),
+				new Vimmelskaftet(game),
+				new Chance(game),
+				new Nygade(game),
+				new RoedbyPuttgarden(game),
+				new Chance(game),
+				new Frederiksberggade(game),
+				new Tax(game),
+				new Raadhuspladsen(game),
 				new Bredgade(game),
 				new KongensNytorv(game),
 				new Oestergade(game),

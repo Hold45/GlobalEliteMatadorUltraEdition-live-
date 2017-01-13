@@ -48,6 +48,22 @@ public class CardPile extends Owner {
         this.addTradable(new PayForBuildings500(this));
         this.addTradable(new PayForBuildings800(this));
 
+        this.addCard(new MoveBack(this));
+        this.addCard(new MoveBack(this));
+        this.addCard(new MoveForward(this));
+        this.addCard(new MoveToFrederiksbergAlle(this));
+        this.addCard(new MoveToGroenningen(this));
+
+        this.addCard(new MoveToRaadhuspladsen(this));
+        this.addCard(new MoveToMolsLinien(this));
+        this.addCard(new MoveToVimmelskaftet(this));
+        this.addCard(new MoveToStrandvejen(this));
+        this.addCard(new MoveToStart(this));
+        this.addCard(new MoveToStart(this));
+        this.addCard (new MoveToShipX2 (this));
+        this.addCard (new MoveToShipX2 (this));
+        this.addCard(new MoveToShip(this));
+
         this.addTradable(new MoveBack(this));
         this.addTradable(new MoveBack(this));
         this.addTradable(new MoveForward(this));

@@ -10,4 +10,6 @@ public class Jail extends Field {
 	public Jail (Game game) {
         super(game, "Jail", "Jaildescription");
     }
+	
+
 }
