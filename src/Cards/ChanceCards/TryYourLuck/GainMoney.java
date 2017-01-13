@@ -14,6 +14,7 @@ public class GainMoney extends ChanceCard {
 
     @Override
     public void draw(Player player) {
+        super.draw(player);
         player.getAccount().deposit(this.amount);
     }
 }

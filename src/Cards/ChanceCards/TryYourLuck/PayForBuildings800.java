@@ -21,6 +21,7 @@ public class PayForBuildings800 extends ChanceCard {
      */
     @Override
     public void draw(Player player) {
+        super.draw(player);
         int sum = 0;
         for (Tradable tradable : player.getOwns()){
             if (tradable instanceof Deed){

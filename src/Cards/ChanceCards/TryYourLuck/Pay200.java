@@ -14,6 +14,7 @@ public class Pay200 extends ChanceCard {
      */
     @Override
     public void draw(Player player) {
+        super.draw(player);
         player.getAccount().transferTo(player.getGame().getBank().getAccount(),200);
     }
 }

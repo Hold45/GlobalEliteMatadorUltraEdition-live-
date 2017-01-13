@@ -36,6 +36,11 @@ public class DummyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public void addMessage(Player player, String message) {
+
+	}
+
+	@Override
 	public void setDice(MonopolyCup cup) {
 
 	}

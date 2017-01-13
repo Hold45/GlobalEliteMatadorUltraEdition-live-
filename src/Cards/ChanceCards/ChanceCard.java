@@ -15,7 +15,7 @@ public abstract class ChanceCard extends Tradable{
     }
 
     public void draw(Player player){
-
+		player.getGame().getGUI().addMessage(player, this.getDescription());
     }
 
 	@Override

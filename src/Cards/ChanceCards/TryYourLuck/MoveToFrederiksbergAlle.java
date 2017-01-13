@@ -15,6 +15,7 @@ public class MoveToFrederiksbergAlle extends ChanceCard {
  */
     @Override
     public void draw(Player player) {
+        super.draw(player);
         player.move((FrederiksbergAlle.class));
     }
 

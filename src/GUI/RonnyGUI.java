@@ -142,6 +142,11 @@ public class RonnyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public void addMessage(Player player, String message) {
+		GUI.showMessage(message);
+	}
+
+	@Override
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
 		return getBooleanFromPlayer(player, message);
 	}

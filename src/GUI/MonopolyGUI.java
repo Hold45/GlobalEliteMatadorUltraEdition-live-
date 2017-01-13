@@ -18,6 +18,8 @@ public interface MonopolyGUI {
 
 	boolean getBooleanFromPlayer(Player player, String message);
 
+	void addMessage(Player player, String message);
+
 	void setDice(MonopolyCup cup);
 
 	void setPosition(Player player);

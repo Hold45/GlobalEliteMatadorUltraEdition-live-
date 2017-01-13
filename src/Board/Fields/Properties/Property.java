@@ -43,8 +43,9 @@ public abstract class Property extends Field {
 		else if(!this.getDeed().isPlayerOwned()){
 			if(player.getGame().getGUI().acceptBuyProperty(player, "BuyProperty??", this.getDeed(), this.getDeed().getPrice())){
 				this.getDeed().tryPurchase(player);
+			}else{
+				this.deed.auctionOff(this.deed.getPrice()/2, 100);
 			}
-			//TODO: add auction.
 		}
 	}
 

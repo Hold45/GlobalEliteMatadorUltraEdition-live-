@@ -24,9 +24,6 @@ public class SmartGUI implements MonopolyGUI {
 		}
 	}
 
-
-
-
 	@Override
 	public Action chooseAction(Player player, String message, Action... options) {
 		return (Action) actionsStack.pop();
@@ -77,6 +74,11 @@ public class SmartGUI implements MonopolyGUI {
 	@Override
 	public boolean getBooleanFromPlayer(Player player, String message) {
 		return (boolean) actionsStack.pop();
+	}
+
+	@Override
+	public void addMessage(Player player, String message) {
+
 	}
 
 	@Override

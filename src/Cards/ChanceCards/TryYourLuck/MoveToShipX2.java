@@ -17,6 +17,7 @@ public class MoveToShipX2 extends ChanceCard {
      */
     @Override
     public void draw(Player player) {
+		super.draw(player);
 	    player.move(Ship.class);
 	    Ship ship = (Ship) player.getGame().getBoard().getField(player.getPosition());
 

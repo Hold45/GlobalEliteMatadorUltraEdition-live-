@@ -16,7 +16,8 @@ public class Gain500 extends ChanceCard {
     
     @Override
     public void draw(Player player) {
-        player.getGame().getBank().getAccount().transferTo(player.getAccount(), 500);
+		super.draw(player);
+		player.getGame().getBank().getAccount().transferTo(player.getAccount(), 500);
     }
 }
 

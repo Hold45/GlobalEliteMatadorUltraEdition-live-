@@ -130,7 +130,7 @@ public abstract class Tradable {
 				}else{
 					participants.remove(i);
 					i--;
-				}
+				}	
 			}
 		}
 		this.purchase(participants.get(0), price);

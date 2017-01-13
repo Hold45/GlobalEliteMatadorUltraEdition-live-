@@ -12,10 +12,11 @@ public class MoveToRaadhuspladsen extends ChanceCard {
     }
 
     /**
-     * Moves the player to Rådhuspladsen
+     * Moves the player to Raadhuspladsen
      */
     @Override
     public void draw(Player player) {
+        super.draw(player);
         player.move(Raadhuspladsen.class);
     }
 
