@@ -28,6 +28,14 @@ public abstract class ChanceCard extends Tradable{
 		return false;
 	}
 
+	public boolean canBePlayed(){
+		return false;
+	}
+
+	public void play(){
+		this.getOwner().transferTradableTo(this.getOwner().getGame().getCardPile(), this);
+	}
+
 	public String getDescription() {
         return this.description;
     }

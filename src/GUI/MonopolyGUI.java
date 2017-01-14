@@ -38,6 +38,8 @@ public interface MonopolyGUI {
 
 	void createBoard(Field... fields);
 
+	void update();
+
 	String getSelectionFromPlayer(Player player, String message, String... actions);
 
 
@@ -62,19 +64,7 @@ public interface MonopolyGUI {
 		return options[index];
 	}
 
-	default void update(){
-		this.setDice(this.getGame().getCup());
 
-		for (Player player: this.getGame().getPlayers()) {
-			this.setPosition(player);
-			this.setBalance(player);
-		}
-		for (Player player: this.getGame().getLosers()){
-			this.playerLoose(player);
-		}
-
-		this.setOwners(this.getGame().getBoard());
-	}
 
 	default Action chooseAction(Player player, String message, Action... options){
 		this.update();

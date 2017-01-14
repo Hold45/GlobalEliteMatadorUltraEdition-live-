@@ -49,5 +49,8 @@ public abstract class Field {
 		return tcol;
 	}
 
-
+	@Override
+	public String toString() {
+		return this.getName();
+	}
 }

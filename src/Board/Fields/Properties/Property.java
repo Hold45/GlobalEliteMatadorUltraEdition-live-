@@ -67,10 +67,17 @@ public abstract class Property extends Field {
 
 	public int getUpgradeValue() {
 		for (int i = this.upgradeSignature.length-1; i >= 0 ; i--) {
-			if(CollectionUtils.isSubCollection(Arrays.asList(this.upgradeSignature[i]), Arrays.asList(this.buildings.stream().map(Building::getClass).toArray(Class[]::new)))){
+			if(
+				CollectionUtils.isSubCollection(
+					Arrays.asList(this.upgradeSignature[i]),
+					Arrays.asList(this.buildings.stream().map(Building::getClass).toArray(Class[]::new))
+				)
+			){
 				return i;
 			}
 		}
+		System.out.println(this.buildings.toString());
+		System.out.println(Arrays.toString(this.upgradeSignature));
 		throw new AssertionError();
 	}
 

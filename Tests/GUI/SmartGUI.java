@@ -127,6 +127,11 @@ public class SmartGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public void update() {
+
+	}
+
+	@Override
 	public String getSelectionFromPlayer(Player player, String message, String... actions) {
 		return (String) actionsStack.poll();
 	}

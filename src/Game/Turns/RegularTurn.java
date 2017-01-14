@@ -19,6 +19,7 @@ public class RegularTurn extends Turn {
 	public void take(){
 		super.take();
 		this.getOwner().takeActions(
+				PlayCard.self,
 				Bail.self,
 				PawnDeed.self,
 				DowngradeProperty.self,

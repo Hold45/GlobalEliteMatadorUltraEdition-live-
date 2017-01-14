@@ -16,6 +16,4 @@ public class Chance extends Field {
 		super.onLand(player);
 		this.game.getCardPile().drawCard(player);
 	}
-
-	
 }
