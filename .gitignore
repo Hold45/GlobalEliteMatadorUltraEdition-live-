@@ -63,3 +63,4 @@ _mac/
 find.xml
 ide.general.xml
 /target/
+/src/Board/Fields/Properties/Property.java
