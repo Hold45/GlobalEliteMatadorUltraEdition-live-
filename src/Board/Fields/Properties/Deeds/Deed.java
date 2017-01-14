@@ -166,4 +166,9 @@ public class Deed extends Tradable {
 		this.unPawn();
 		return true;
 	}
+
+	@Override
+	public String toString(){
+		return this.property.getName();
+	}
 }

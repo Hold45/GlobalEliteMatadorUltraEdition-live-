@@ -70,6 +70,9 @@ public class CardPile extends Owner {
         this.addTradable(new MoveToFrederiksbergAlle(this));
         this.addTradable(new MoveToGroenningen(this));
 
+        this.addTradable(new GetOutOfJailFree(this));
+        this.addTradable(new GetOutOfJailFree(this));
+
         this.shuffle();
     }
 
@@ -89,4 +92,8 @@ public class CardPile extends Owner {
 		this.cards.add(card);
 	}
 
+	public boolean removeTradable(ChanceCard card){
+        this.cards.remove(card);
+        return super.removeTradable(card);
+    }
 }

@@ -62,6 +62,9 @@ public class SmartPropertyTest extends SmartTemplateTest {
 			hvid.getBuildings().add(new House());
 			assertThat(hvid.getUpgradeValue()).isEqualTo(i);
 		}
+		assertThat(roed.getUpgradeValue()).isEqualTo(0);
+		game.getBank().transferTradableTo(p1, roed.getDeed());
+		assertThat(roed.getUpgradeValue()).isEqualTo(0);
 	}
 
 	/**

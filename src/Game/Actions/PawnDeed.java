@@ -13,13 +13,13 @@ public class PawnDeed extends Action {
 	public void run(Player player) {
 		((Deed)player.getGame().getGUI().chooseTradable(
 				player,
-				"ChooseDeedPawn",
+				"Choose Deed to Pawn" ,
 				player.getOwns().stream()
-					.filter(tradable -> tradable instanceof Deed && ((Deed)tradable).canBePawned())
-						.toArray(Deed[]::new)
+					.filter(tradable -> tradable instanceof Deed  &&  ((Deed)tradable).canBePawned())
+						.toArray(Deed[]::new) 
 		)).tryPawn();
 	}
-
+	
 	@Override
 	public boolean runnable(Player player) {
 		return player.getOwns().stream()

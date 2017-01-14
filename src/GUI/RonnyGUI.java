@@ -24,6 +24,7 @@ public class RonnyGUI implements MonopolyGUI {
 	private ArrayList<desktop_fields.Field> fields;
 	private Stack<Color> colors = new Stack<>();
 	private ResourceBundle language;
+	private String message;
 
 	public RonnyGUI() {
 		this.fields = new ArrayList<>();
@@ -34,6 +35,7 @@ public class RonnyGUI implements MonopolyGUI {
 		colors.push(Color.MAGENTA);
 		colors.push(Color.LIGHT_GRAY);
 		this.language = ResourceBundle.getBundle("LabelsBundle", Locale.getDefault());
+		this.message = "";
 	}
 
 	@Override
@@ -46,6 +48,24 @@ public class RonnyGUI implements MonopolyGUI {
 	@Override
 	public Game getGame() {
 		return this.game;
+	}
+
+	@Override
+	public void update(){
+		this.setDice(this.getGame().getCup());
+
+		for (Player player: this.getGame().getPlayers()) {
+			this.setPosition(player);
+			this.setBalance(player);
+		}
+		for (Player player: this.getGame().getLosers()){
+			this.playerLoose(player);
+		}
+
+		this.setOwners(this.getGame().getBoard());
+
+		if (!this.message.isEmpty())
+			desktop_resources.GUI.showMessage(this.popMessage());
 	}
 
 	public static void main(String... args){
@@ -149,9 +169,15 @@ public class RonnyGUI implements MonopolyGUI {
 		return GUI.getUserLeftButtonPressed(player.getName()+": "+message, "Accept", "Decline");
 	}
 
+	private String popMessage(){
+		String message = this.message;
+		this.message = "";
+		return message;
+	}
+
 	@Override
 	public void addMessage(Player player, String message) {
-		GUI.showMessage(this.language.getString(message));
+		this.message += "\n"+this.language.getString(message);
 	}
 
 	@Override

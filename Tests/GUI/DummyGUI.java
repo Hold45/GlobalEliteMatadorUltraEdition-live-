@@ -86,6 +86,11 @@ public class DummyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public void update() {
+
+	}
+
+	@Override
 	public Game getGame() {
 		return this.game;
 	}

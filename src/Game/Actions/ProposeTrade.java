@@ -27,7 +27,7 @@ public class ProposeTrade extends Action{
 
 	@Override
 	public boolean runnable(Player player) {
-		return player.getOwns().stream().
-					anyMatch(Tradable::canBeTraded);
+		return player.getOwns().stream()
+					.anyMatch(Tradable::canBeTraded);
 	}
 }
