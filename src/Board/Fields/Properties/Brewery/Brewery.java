@@ -15,14 +15,8 @@ public abstract class Brewery extends Property {
 
     @Override
     public int getRent() {
-       // return (int) Math.pow(2, this.getOwnedFriends().count()-1);
-
-        if (getOwnedFriends().count() == 1)
-        {
-            return Math.abs(100 * getGame().getCup().getSum());
-        } else {
-            return Math.abs(200 * getGame().getCup().getSum());
-        }
+      
+            return getGame().getCup().getSum()*100*((int)this.getOwnedFriends().count());     
 
     }
 }

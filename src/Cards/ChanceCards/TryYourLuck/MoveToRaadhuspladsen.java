@@ -17,7 +17,7 @@ public class MoveToRaadhuspladsen extends ChanceCard {
     @Override
     public void draw(Player player) {
         super.draw(player);
-        player.move(Raadhuspladsen.class);
+        player.moveTo(Raadhuspladsen.class);
     }
 
 }

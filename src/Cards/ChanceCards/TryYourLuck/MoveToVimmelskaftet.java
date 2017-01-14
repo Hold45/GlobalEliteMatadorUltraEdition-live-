@@ -16,7 +16,7 @@ public class MoveToVimmelskaftet extends ChanceCard {
     @Override
     public void draw(Player player) {
         super.draw(player);
-        player.move(Vimmelskaftet.class);
+        player.moveTo(Vimmelskaftet.class);
     }
 
 }

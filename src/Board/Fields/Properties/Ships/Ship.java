@@ -13,7 +13,7 @@ public abstract class Ship extends Property {
 
     @Override
     public int getRent() {
-        return (int) Math.pow(2, this.getOwnedFriends().count()-1);
+        return (int) Math.pow(2, this.getOwnedFriends().count()-1)*500;
     }
 }
 

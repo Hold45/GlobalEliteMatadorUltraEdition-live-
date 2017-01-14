@@ -20,26 +20,26 @@ public class PlayerTest extends SmartTemplateTest{
 	public void testMoveToInt() {
 		//Test if getting the 4000 for passing setup.
 		assertThat(p1.getPosition()).isEqualTo(0);
-		p1.move(Start.class);
-		p1.move(Start.class);
+		p1.moveTo(Start.class);
+		p1.moveTo(Start.class);
 		assertThat(p1.getAccount().getBalance()).isEqualTo(14000);
 	}
 
 	/**
 	 * Moving forward to a specified field.
 	 *
-	 * @see Player#move(Field)
+	 * @see Player#moveTo(Field)
 	 */
 	@Test
 	public void testMoveToField() {
 		//Moving to field, passing setup first time.
 		gui.addActions(true);
-		p1.move(game.getBoard().getField(Hvidovrevej.class));
+		p1.moveTo(game.getBoard().getField(Hvidovrevej.class));
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200); //pay for purchasing Hvidovrevej.
 
 		//Moving to same field as standing on. Means moving all the way around
-		p1.move(game.getBoard().getField(Hvidovrevej.class));
+		p1.moveTo(game.getBoard().getField(Hvidovrevej.class));
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200+4000);
 	}
@@ -47,18 +47,18 @@ public class PlayerTest extends SmartTemplateTest{
 	/**
 	 * Moving forward to a specified class
 	 *
-	 * @see Player#move(Class)
+	 * @see Player#moveTo(Class)
 	 */
 	@Test
 	public void testMoveToClass() {
 		//Moving to field, passing setup first time.
 		gui.addActions(true);
-		p1.move(Hvidovrevej.class);
+		p1.moveTo(Hvidovrevej.class);
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200); //pay for purchasing Hvidovrevej.
 
 		//Moving to same field as standing on. Means moving all the way around
-		p1.move(Hvidovrevej.class);
+		p1.moveTo(Hvidovrevej.class);
 		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-1200+4000);
 	}

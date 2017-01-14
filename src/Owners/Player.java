@@ -107,7 +107,7 @@ public class Player extends Accountable{
 	 * @param field to move to
 	 * @return current player
 	 */
-	public Player move(Field field){
+	public Player moveTo(Field field){
 		return moveTo(this.getGame().getBoard().getIndex(field, this));
 	}
 
@@ -117,7 +117,7 @@ public class Player extends Accountable{
 	 * @param c which type to move to
 	 * @return current player
 	 */
-	public Player move(Class c){
+	public Player moveTo(Class c){
 		return moveTo(this.getGame().getBoard().getIndex(c, this));
 	}
 
@@ -153,7 +153,7 @@ public class Player extends Accountable{
 		this.getGame().getCup().roll();
 
 		if (this.getGame().getCup().triple() && !this.isJailed()){
-			this.move(this.getGame().getGUI().chooseField(this, "ChooseFieldMoveTo", this.getGame().getBoard().getFields()));
+			this.moveTo(this.getGame().getGUI().chooseField(this, "ChooseFieldMoveTo", this.getGame().getBoard().getFields()));
 		}else {
 			if (this.getGame().getCup().yahtzee()) {
 				if (this.isJailed()) {
@@ -199,7 +199,7 @@ public class Player extends Accountable{
 	 * This gives the player the option of choosing a field to move to when the player can move with the bus. 
 	 */
 	private void moveWithBus() {
-		this.move(this.getGame().getGUI().chooseField(
+		this.moveTo(this.getGame().getGUI().chooseField(
 				this,
 				"ChooseBusFieldMoveTo",
 				Arrays.stream(this.getGame().getCup().getCombinations())
@@ -217,7 +217,7 @@ public class Player extends Accountable{
 	}
 
 	public void arrest(){
-		this.move(Jail.class);
+		this.moveTo(Jail.class);
 		this.jailed = true;
 	}
 
