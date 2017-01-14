@@ -10,7 +10,7 @@ import java.awt.*;
 public abstract class Brewery extends Property {
 
     public Brewery(Game game, String name, Color color) {
-        super(game, name, "BreweryDesc", color, 3000);
+        super(game, name, "BreweryDesc", color, 1500);
     }
 
     @Override
