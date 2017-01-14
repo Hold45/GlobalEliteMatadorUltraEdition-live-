@@ -1,6 +1,7 @@
 package Board.Fields.Properties.Brewery;
 
 import Board.Fields.Properties.Property;
+import Dice.Die;
 import Game.Game;
 
 import java.awt.*;
