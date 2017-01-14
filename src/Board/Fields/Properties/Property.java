@@ -113,7 +113,7 @@ public abstract class Property extends Field {
 	}
 
 	/**
-	 * Upgrades an property
+	 * Upgrades a property
 	 *
 	 * Returns the buildings to the bank which are obsolete and gets the buildings which are required.
 	 */
@@ -139,7 +139,7 @@ public abstract class Property extends Field {
 	}
 
 	/**
-	 * Returns an Collection with buildings which are obsolete for the upgrade.
+	 * Returns a Collection with buildings which are obsolete for the upgrade.
 	 *
 	 * @return Buildings to remove when upgrading
 	 */

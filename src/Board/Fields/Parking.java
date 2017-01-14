@@ -2,7 +2,6 @@ package Board.Fields;
 
 import java.awt.Color;
 import Game.Game;
-import Owners.Player;
 
 
 public class Parking extends Field {
