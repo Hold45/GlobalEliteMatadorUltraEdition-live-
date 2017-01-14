@@ -22,7 +22,7 @@ public class PersonalAccount extends Account {
 
         if (value > this.balance){
             int beforeWithdraw = this.getBalance();
-            this.owner.getGame().addLoser(this.owner);
+            this.owner.lose();
             this.balance = 0;
             return beforeWithdraw;
         }

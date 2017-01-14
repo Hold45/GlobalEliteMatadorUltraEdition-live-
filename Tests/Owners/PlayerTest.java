@@ -1,7 +1,9 @@
 package Owners;
 
 import Board.Fields.Field;
+import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
+import Board.Fields.Properties.Property;
 import Board.Fields.Start;
 import Game.SmartTemplateTest;
 import org.junit.Test;
@@ -96,5 +98,22 @@ public class PlayerTest extends SmartTemplateTest{
 		assertThat(p1.getPosition()).isEqualTo(0);
 	}
 
-
+	@Test
+	public void testLose(){
+		Player p3 = new Player(game, "Player 3");
+		p3.getAccount().setBalance(10000);
+		game.addPlayers(p3);
+		Deed hvid = ((Property) game.getBoard().getField(game.getBoard().getIndex(Hvidovrevej.class))).getDeed();
+		game.getBank().transferTradableTo(p1, hvid);
+		assertThat(hvid.getOwner()).isEqualTo(p1);
+		assertThat(game.getPlayers().contains(p1)).isTrue();
+		gui.addActions(false, true, 100);
+		p1.lose();
+		assertThat(game.getPlayers().contains(p1)).isFalse();
+		assertThat(hvid.getOwner()).isEqualTo(p3);
+		assertThat(p3.getAccount().getBalance()).isEqualTo(10000-200);
+		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+10000+200);
+		// The original money from the bank, plus the money from the player who lost,
+		// plus the money gained from auctionong the deed.
+	}
 }

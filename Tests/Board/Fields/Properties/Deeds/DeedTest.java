@@ -67,7 +67,6 @@ public class DeedTest extends SmartTemplateTest{
 		//cannot be pawned if already pawned.
 		hvidovrevej.pawn();
 		assertThat(hvidovrevej.canBePawned()).isFalse();
-
 	}
 
 	/**
@@ -182,4 +181,28 @@ public class DeedTest extends SmartTemplateTest{
 		hvidovrevej.setOwner(p1);
 		assertThat(hvidovrevej.isPurchasable(p1, 1000)).isFalse();
 	}
+
+	/**
+	 * Tests auktioning of a tradable
+	 *
+	 * @see Cards.Tradable#auctionOff(int, int)
+	 */
+	@Test
+	public void testAuctionOff(){
+		assertThat(hvidovrevej.getOwner()).isEqualTo(game.getBank());
+		gui.addActions(false, false); //Both players decline to bid
+		hvidovrevej.auctionOff(100, 10);
+		assertThat(hvidovrevej.getOwner()).isEqualTo(game.getBank());
+		gui.addActions(true, 10, false); //Only first player bids
+		hvidovrevej.auctionOff(100, 10);
+		assertThat(hvidovrevej.getOwner()).isEqualTo(p1);
+		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-110);
+		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+110);
+		assertThat(roedovrevej.getOwner()).isEqualTo(game.getBank());
+		gui.addActions(true, 10, true, 10, false); //Both players bid, with first player declining to raise
+		roedovrevej.auctionOff(100, 10);
+		assertThat(roedovrevej.getOwner()).isEqualTo(p2);
+		assertThat(p2.getAccount().getBalance()).isEqualTo(10000-120);
+	}
+
 }

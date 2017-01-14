@@ -72,8 +72,8 @@ public class Board {
 				new Bredgade(game),
 				new KongensNytorv(game),
 				new CocaCola(game),
-				new Oestergade(game),
 				new GoToJail(game),
+				new Oestergade(game),
 				new Amagertorv(game),
 				new Vimmelskaftet(game),
 				new Chance(game),
@@ -82,17 +82,8 @@ public class Board {
 				new Chance(game),
 				new Frederiksberggade(game),
 				new Tax2000(game),
-				new Raadhuspladsen(game),
-				new Bredgade(game),
-				new KongensNytorv(game),
-				new Oestergade(game),
-				new Amagertorv(game),
-				new Vimmelskaftet(game),
-				new Nygade(game),
-				new Frederiksberggade(game),
 				new Raadhuspladsen(game)
 		};
-
 	}
 
 	public Field[] getFields() {

@@ -77,6 +77,11 @@ public class SmartGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public int getIntegerFromPlayer(Player player, String message, int min, int max) {
+		return (int) actionsStack.poll();
+	}
+
+	@Override
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
 		return (boolean) actionsStack.poll();
 	}

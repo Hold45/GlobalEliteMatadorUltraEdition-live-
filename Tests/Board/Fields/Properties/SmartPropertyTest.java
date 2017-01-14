@@ -2,6 +2,8 @@ package Board.Fields.Properties;
 
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
+import Board.Fields.Properties.Ships.RoedbyPuttgarden;
+import Board.Fields.Properties.Ships.Ship;
 import Buildings.Hotel;
 import Buildings.House;
 import Game.SmartTemplateTest;
@@ -14,11 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SmartPropertyTest extends SmartTemplateTest {
 	private Property hvid;
 	private Property roed;
+	private Ship faerge;
 
 	@Before
 	public void setup(){
 		hvid = (Property) game.getBoard().getField(game.getBoard().getIndex(Hvidovrevej.class));
 		roed = (Property) game.getBoard().getField(game.getBoard().getIndex(Roedovrevej.class));
+		faerge = (Ship) game.getBoard().getField(game.getBoard().getIndex(RoedbyPuttgarden.class));
 	}
 
 	@After
@@ -65,6 +69,7 @@ public class SmartPropertyTest extends SmartTemplateTest {
 		assertThat(roed.getUpgradeValue()).isEqualTo(0);
 		game.getBank().transferTradableTo(p1, roed.getDeed());
 		assertThat(roed.getUpgradeValue()).isEqualTo(0);
+		assertThat(faerge.getUpgradeValue()).isEqualTo(0);
 	}
 
 	/**

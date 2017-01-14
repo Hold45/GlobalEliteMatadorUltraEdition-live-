@@ -25,6 +25,7 @@ public class PlayCardTest extends SmartTemplateTest {
 		assertThat(PlayCard.self.runnable(p1)).isTrue();
 		gui.addActions(bailCard);
 		PlayCard.self.run(p1);
-		//assertThat(p1.isJailed()).isFalse();
+		assertThat(p1.isJailed()).isFalse();
+		assertThat(bailCard.getOwner()).isEqualTo(game.getCardPile());
 	}
 }

@@ -6,7 +6,6 @@ import Owners.Player;
 
 public abstract class ChanceCard extends Tradable{
     protected String description;
-    private Owner owner;
 
     public ChanceCard(Owner owner, String description){
     	super(0);

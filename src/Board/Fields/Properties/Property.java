@@ -25,13 +25,14 @@ public abstract class Property extends Field {
 		super(game, name, description, color, Color.black);
 		this.deed = new Deed(this, price, game.getBank());
 		this.buildings = new ArrayList<>();
-		this.upgradeSignature = new Class[][]{};
+		this.upgradeSignature = new Class[][]{
+				{}
+		};
 	}
 
 	@Override
 	public void onLand(Player player) {
 		super.onLand(player);
-
 		if (
 			this.getDeed().isPlayerOwned()
 			&& !this.getDeed().isPawned()
@@ -41,7 +42,7 @@ public abstract class Property extends Field {
 			player.getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getRent());
 		}
 		else if(!this.getDeed().isPlayerOwned()){
-			if(player.getGame().getGUI().acceptBuyProperty(player, "BuyProperty??", this.getDeed(), this.getDeed().getPrice())){
+			if(player.getGame().getGUI().acceptBuyProperty(player, "PurchasePropertyConfirm", this.getDeed(), this.getDeed().getPrice())){
 				this.getDeed().tryPurchase(player);
 			}else{
 				this.deed.auctionOff(this.deed.getPrice()/2, 100);
@@ -76,8 +77,6 @@ public abstract class Property extends Field {
 				return i;
 			}
 		}
-		System.out.println(this.buildings.toString());
-		System.out.println(Arrays.toString(this.upgradeSignature));
 		throw new AssertionError();
 	}
 

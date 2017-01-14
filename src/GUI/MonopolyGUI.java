@@ -18,6 +18,8 @@ public interface MonopolyGUI {
 
 	int getIntegerFromPlayer(Player player, String message);
 
+	int getIntegerFromPlayer(Player player, String message, int min, int max);
+
 	boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price);
 
 	boolean getBooleanFromPlayer(Player player, String message);
@@ -42,7 +44,6 @@ public interface MonopolyGUI {
 
 	String getSelectionFromPlayer(Player player, String message, String... actions);
 
-
 	Game getGame();
 
 	default void createPlayers(){
@@ -55,16 +56,11 @@ public interface MonopolyGUI {
 
 	default Object chooseOption(Player player, String message, Object[] options) {
 		this.update();
-	//	if(options.length == 1)
-	//		return options[0];
-
 		String[] actionsAsString = Arrays.stream(options).map(Object::toString).toArray(String[]::new);
 		String selected = getSelectionFromPlayer(player, message, actionsAsString);
 		int index = Arrays.asList(actionsAsString).indexOf(selected);
 		return options[index];
 	}
-
-
 
 	default Action chooseAction(Player player, String message, Action... options){
 		this.update();
@@ -86,6 +82,10 @@ public interface MonopolyGUI {
 		return getIntegerFromPlayer(player, message);
 	}
 
+	default int selectInteger(Player player, String message, int min, int max){
+		this.update();
+		return getIntegerFromPlayer(player, message, min, max);
+	}
 
 	default Field chooseField(Player player, String message, Field... fields){
 		this.update();

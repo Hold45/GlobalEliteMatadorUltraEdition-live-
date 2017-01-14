@@ -2,6 +2,7 @@ package Owners;
 
 import Board.Fields.Field;
 import Board.Fields.LawInforcment.Jail;
+import Cards.Tradable;
 import Finance.Account;
 import Finance.PersonalAccount;
 import Game.Actions.Action;
@@ -11,6 +12,7 @@ import Game.Turns.RegularTurn;
 import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -68,7 +70,7 @@ public class Player extends Accountable{
 	}
 
 	/**
-	 *This method checks which opportunities the player got on this turn. The player can keep choosing actions until the chosenAction is endActions.
+	 * Lets the player perform the given actions, for as long as they are available, in any order.
 	 *
 	 * @param actions that the player can take
 	 * @see Action
@@ -87,22 +89,25 @@ public class Player extends Accountable{
 	}
 	
 	/**
-	 * This move function makes it so the player can move on the board and checks what field the player will land on.
-	 * It also uses onMoveOver to check what fields it passes and onLand to check what happens with the field it lands on.
+	 * Moves the player a given amount forward.
 	 *
-	 * @param addToPos how many fields to move forward
+	 * All fields in between, including the one the player starts on, will be moved over.
+	 * Unless the player is moving backwards.
+	 * Calls onLand for the final field.
+	 *
+	 * @param offSet how many fields to move forward
 	 * @return the current player
 	 */
-	public Player move(int addToPos){
-		for(int i = 0; i < addToPos; i++)
+	public Player move(int offSet){
+		for(int i = 0; i < offSet; i++)
 			this.getGame().getBoard().getField(this.getOffsetPosition(i)).onMoveOver(this);
-		this.position = getOffsetPosition(addToPos);
-		this.game.getBoard().getFields()[this.position].onLand(this);
+		this.position = getOffsetPosition(offSet);
+		this.game.getBoard().getFields()[this.getPosition()].onLand(this);
 	    return this;
 	}
 
 	/**
-	 * This move is used to move to a specific field
+	 * Move to a specific field in positiv direction.
 	 *
 	 * @param field to move to
 	 * @return current player
@@ -112,7 +117,7 @@ public class Player extends Accountable{
 	}
 
 	/**
-	 * This move is used to move to a specific type of fields
+	 * Move to the first field of a given type in positiv direction.
 	 *
 	 * @param c which type to move to
 	 * @return current player
@@ -122,7 +127,7 @@ public class Player extends Accountable{
 	}
 
 	/**
-	 * This is used to move the player to a specific position, it also checks whether or not it has to move around the entire board.
+	 * Move to the field with the given index in positiv direction.
 	 *
 	 * @param moveToPos is a position of a field the players has to move to
 	 * @return current player 
@@ -195,6 +200,7 @@ public class Player extends Accountable{
 
 		return this;
 	}
+
 	/**
 	 * This gives the player the option of choosing a field to move to when the player can move with the bus. 
 	 */
@@ -216,6 +222,9 @@ public class Player extends Accountable{
 		return this.jailed;
 	}
 
+	/**
+	 * Set the jailed value to true and move the player to the nearest fail space.
+	 */
 	public void arrest(){
 		this.moveTo(Jail.class);
 		this.jailed = true;
@@ -236,6 +245,15 @@ public class Player extends Accountable{
 	@Override
 	public String toString() {
 		return this.getName();
+	}
+
+	public void lose(){
+		this.getGame().addLoser(this);
+		this.getAccount().transferTo(this.getGame().getBank().getAccount(), this.getAccount().getBalance());
+		for (Tradable tradable: new ArrayList<>(this.getOwns())) {
+			this.transferTradableTo(this.getGame().getBank(), tradable);
+			tradable.auctionOff(100, 100);
+		}
 	}
 }
 

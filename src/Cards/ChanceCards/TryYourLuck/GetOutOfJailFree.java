@@ -18,6 +18,7 @@ public class GetOutOfJailFree extends ChanceCard {
 	@Override
 	public void play() {
 		((Player) this.getOwner()).release();
+		super.play();
 	}
 
 	@Override

@@ -36,6 +36,11 @@ public class DummyGUI implements MonopolyGUI {
 	}
 
 	@Override
+	public int getIntegerFromPlayer(Player player, String message, int min, int max) {
+		return 0;
+	}
+
+	@Override
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
 		return new Random().nextBoolean();
 	}

@@ -56,7 +56,6 @@ public class Game {
 		while (!this.turns.isEmpty() && !this.hasWinner()){
 			this.turns.pop().take();
 		}
-
 	}
 
 	public Player nextPlayer(Player player){

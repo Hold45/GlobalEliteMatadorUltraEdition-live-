@@ -16,7 +16,6 @@ public abstract class Plot extends Property {
 	public Plot(Game game, String name, Color color, int price, int[] rentScheme) {
 		super(game, name, "PlotDescription", color, price);
 		this.rentScheme = rentScheme;
-
 		this.upgradeSignature = new Class[][]{
 				{},
 				{House.class},
@@ -25,7 +24,6 @@ public abstract class Plot extends Property {
 				{House.class, House.class, House.class, House.class},
 				{Hotel.class}
 		};
-
 	}
 
 	@Override

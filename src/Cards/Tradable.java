@@ -114,6 +114,15 @@ public abstract class Tradable {
 		purchase(buyer, this.price);
 	}
 
+	/**
+	 * Auktion off the tradable amongst eligible players.
+	 *
+	 * The participating players will be asked in turn order to increase the bid or leave the auction.
+	 * Highest bid stands, and the winner buys the tradable from the current owner for the bid price.
+	 *
+	 * @param startPrice the initial price of the tradable being auctioned off
+	 * @param minimumBidIncrease the minimum bid increase for a player to claim highest bid
+	 */
 	public void auctionOff(int startPrice, int minimumBidIncrease){
 		int price = startPrice;
 		ArrayList<Player> participants;
@@ -121,21 +130,30 @@ public abstract class Tradable {
 			participants = this.owner.getGame().getOtherPlayers((Player) this.owner);
 		else
 			participants = new ArrayList<>(this.owner.getGame().getPlayers());
+		Player lastBidder = null;
 		while (participants.size()>1){
-			for (int i = 0; i < participants.size(); i++) {
+			for (Player player : new ArrayList<>(participants)) {
+				if (participants.size()==1 && lastBidder != null)
+					break;
 				if (
-					participants.get(i).getAccount().getBalance() >= price+minimumBidIncrease
-					&& this.owner.getGame().getGUI().getBooleanFromPlayer(participants.get(i), "ChooseOverbid")){
-					price += this.owner.getGame().getGUI().getIntegerFromPlayer(participants.get(i), "ChooseOverbidValue");
+					player.getAccount().getBalance() >= price+minimumBidIncrease
+					&& this.owner.getGame().getGUI().getBooleanFromPlayer(player, "ChooseOverbid"))
+				{
+					lastBidder = player;
+					price += this.owner.getGame().getGUI().getIntegerFromPlayer(
+						player,
+						"ChooseOverbidValue",
+						minimumBidIncrease,
+						player.getAccount().getBalance()
+					);
 				}else{
-					participants.remove(i);
-					if (participants.size()==1)
+					participants.remove(player);
+					if (participants.size()==0)
 						break;
-					i--;
 				}	
 			}
 		}
-		if(participants.size() == 1)
-			this.purchase(participants.get(0), price);
+		if(lastBidder != null)
+			this.purchase(lastBidder, price);
 	}
 }
