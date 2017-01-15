@@ -83,7 +83,7 @@ public abstract class Tradable {
 	 * @see Tradable#tryPurchase(Accountable, int)
 	 */
 	public boolean tryPurchase(Accountable buyer){
-		return tryPurchase(buyer, this.price);
+		return tryPurchase(buyer, this.getPrice());
 	}
 
 
@@ -111,7 +111,7 @@ public abstract class Tradable {
 	 * @see Tradable#purchase(Accountable, int)
 	 */
 	public void purchase(Accountable buyer){
-		purchase(buyer, this.price);
+		purchase(buyer, this.getPrice());
 	}
 
 	/**
@@ -165,4 +165,9 @@ public abstract class Tradable {
 	public boolean isPlayerOwned(){
 		return this.getOwner() instanceof Player;
 	}
+
+	public int getPrice() {
+		return this.price;
+	}
+
 }

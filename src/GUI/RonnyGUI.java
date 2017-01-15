@@ -57,6 +57,9 @@ public class RonnyGUI implements MonopolyGUI {
 		return this.game;
 	}
 
+	/**
+	 * Updates the gui with relevant information from the game.
+	 */
 	@Override
 	public void update(){
 		this.setDice(this.getGame().getCup());
@@ -90,6 +93,11 @@ public class RonnyGUI implements MonopolyGUI {
 		);
 	}
 
+	/**
+	 * Updates the gui to display the buildings on the property.
+	 *
+	 * @param property being updated
+	 */
 	private void setBuildings(Property property){
 		int index = this.getGame().getBoard().getIndex(property)+1;
 		desktop_resources.GUI.setHouses(
@@ -117,6 +125,11 @@ public class RonnyGUI implements MonopolyGUI {
 		gui.game.start();
 	}
 
+	/**
+	 * Create gui fields based on given fields.
+	 *
+	 * @param fields from the game used to create the fields in the gui.
+	 */
 	@Override
 	public void createBoard(Field... fields) {
 		assert fields.length <= 40;
@@ -152,30 +165,40 @@ public class RonnyGUI implements MonopolyGUI {
 	}
 
 	private void addField(Field field){
-		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).setSubText("").build();
+		desktop_fields.Field guiField =
+				new Street.Builder()
+				.setBgColor(field.getColor())
+				.setFgColor(field.getTcol())
+				.setSubText("").build();
 		guiField.setTitle(this.language.getString(field.getName()));
 		if (field instanceof Plot){
 			guiField.setDescription(
 				this.language.getString(field.getName())
 				+ "<br>Price: "
 				+ Integer.toString(
-					((Plot)field).getDeed().getPrice()
+					((Plot) field).getDeed().getPrice()
 				)
 				+ "<br>Rent: "
-				+ Arrays.toString(((Plot)field).getRentScheme())
+				+ Arrays.toString(((Plot) field).getRentScheme())
 			);
 		} else if (field instanceof Ship) {
 			guiField.setDescription(
 					this.language.getString(field.getName())
 						+ "<br>Price: "
 						+ Integer.toString(
-						((Plot)field).getDeed().getPrice()
+						((Property) field).getDeed().getPrice()
 					)
-						+ "<br>Rent: "
-						+ "[]"
+						+ "<br>Rent: [500, 1000, 2000, 4000]"
 			);
 		} else if (field instanceof Brewery) {
-
+			guiField.setDescription(
+					this.language.getString(field.getName())
+							+ "<br>Price: "
+							+ Integer.toString(
+							((Property) field).getDeed().getPrice()
+					)
+							+ "<br>Rent: 100 times the sum of dice times the amount of breweries owned"
+			);
 		} else {
 			guiField.setDescription(this.language.getString(field.getDescription()));
 		}

@@ -19,7 +19,6 @@ public class GetOutOfJailFreeTest extends CardTemplateTest{
 	@Test
 	public void testDraw() {
 		card.draw(p1);
-		System.out.println(p1.getOwns());
 		assertThat(p1.getOwns()).contains(card);
 		assertThat(cardPile.getOwns()).doesNotContain(card);
 	}

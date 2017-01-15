@@ -8,8 +8,7 @@ public class SpeedDie extends Die{
     }
 
     @Override
-    public String toString(){
-		System.out.println(this.getValue());
+    public String toString() {
 		switch (this.getValue()) {
             case 1:
 				return "SpeedDie1Face";

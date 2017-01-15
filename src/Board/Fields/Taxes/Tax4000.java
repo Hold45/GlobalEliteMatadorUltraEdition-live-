@@ -11,6 +11,6 @@ public class Tax4000 extends Tax {
 
 	@Override
 	public int getTax(Player player) {
-		return 4000;
+		return Math.min(player.getTotalCaptialValue()/10, 4000);
 	}
 }

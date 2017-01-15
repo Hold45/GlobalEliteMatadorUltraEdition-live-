@@ -20,7 +20,7 @@ public class SellDeedToBank extends Action {
 							.filter(Tradable::canBeTraded)
 								.toArray(Tradable[]::new));
 
-		chosenTradable.purchase(player.getGame().getBank());
+		chosenTradable.purchase(player.getGame().getBank(), (int) (chosenTradable.getPrice()*0.7));
 	}
 
 	@Override
