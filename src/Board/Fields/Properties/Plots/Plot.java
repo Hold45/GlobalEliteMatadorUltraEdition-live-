@@ -28,7 +28,7 @@ public abstract class Plot extends Property {
 
 	@Override
 	public int getRent() {
-		return this.rentScheme[getUpgradeValue()]*rentMultiplier();
+		return this.getRentScheme()[getUpgradeValue()]*rentMultiplier();
 	}
 
 	private int rentMultiplier(){
