@@ -151,6 +151,7 @@ public class SmartPropertyTest extends SmartTemplateTest {
 		for (int i = 1; i < hvid.upgradeSignature.length; i++) {
 			assertThat(hvid.tryUpgrade()).isTrue();
 			assertThat(roed.tryUpgrade()).isTrue();
+			assertThat(p1.getAccount().getBalance()).isEqualTo(10000-(hvid.getDeed().getUpgradePrice()*2*i));
 		}
 		assertThat(hvid.tryUpgrade()).isFalse();
 		assertThat(roed.tryUpgrade()).isFalse();

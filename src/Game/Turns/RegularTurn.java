@@ -14,7 +14,7 @@ public class RegularTurn extends Turn {
 	
 	/**
 	 * Gives the player options to do on their turn. It also calls the rollAndMove
-	 * @see rollAndMove
+	 * @see Player#rollAndMove()
 	 */
 	public void take(){
 		super.take();

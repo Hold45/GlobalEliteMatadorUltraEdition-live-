@@ -3,9 +3,12 @@ package Owners;
 import Board.Fields.Field;
 import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
+import Board.Fields.Properties.Plots.OrangePlots.Allegade;
 import Board.Fields.Properties.Property;
+import Board.Fields.Properties.Ships.HelsingoerHelsingborg;
 import Board.Fields.Start;
 import Game.SmartTemplateTest;
+import Game.Turns.RegularTurn;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -91,6 +94,10 @@ public class PlayerTest extends SmartTemplateTest{
 	@Test
 	public void testToString() {
 		assertThat(p1.toString()).isEqualTo(p1.getName());
+
+		//change name and test tostring
+		p1.setName("new name");
+		assertThat(p1.toString()).isEqualTo("new name");
 	}
 
 	@Test
@@ -116,4 +123,101 @@ public class PlayerTest extends SmartTemplateTest{
 		// The original money from the bank, plus the money from the player who lost,
 		// plus the money gained from auctionong the deed.
 	}
+
+	@Test
+	public void testBusTurn() {
+		//Take an Bus turn.
+		random.add(4, 3, 6);
+		gui.addActions(game.getBoard().getField(Allegade.class), true);
+		p1.rollAndMove();
+		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Allegade.class));
+	}
+
+	@Test
+	public void testNormalTurn() {
+		//Take an normal turn.
+		random.add(5, 3, 2);
+		int offset = p1.getOffsetPosition(10);
+		gui.addActions(true);
+		p1.rollAndMove();
+		assertThat(p1.getPosition()).isEqualTo(offset);
+	}
+
+	@Test
+	public void testMrMonopolyTurn() {
+		//Take a Mr. Monopoly turn.
+		random.add(2, 3, 4);
+		int offset = p1.getOffsetPosition(5);
+		gui.addActions(true);
+		p1.rollAndMove();
+		assertThat(p1.getPosition()).isEqualTo(offset);
+	}
+
+	@Test
+	public void testYahtzeeFromJail() {
+		//Roll a yahtzee when in jail.
+		p1.arrest();
+		random.add(2, 2, 5);
+		gui.addActions(true);
+		p1.rollAndMove();
+		assertThat(p1.isJailed()).isFalse();
+	}
+
+	@Test
+	public void testTripleRoll() {
+		//Take a triple turn
+		random.add(2,2,2);
+		gui.addActions(game.getBoard().getField(Hvidovrevej.class), true);
+		p1.rollAndMove();
+		assertThat(p1.getPosition()).isEqualTo(game.getBoard().getIndex(Hvidovrevej.class));
+	}
+
+	@Test
+	public void testTakeExtraTurnOnDoubleRoll() {
+		random.add(2, 2, 1);
+		gui.addActions(true, game.getBoard().getField(HelsingoerHelsingborg.class));
+		p1.rollAndMove();
+		assertThat(game.getTurns().pop()).isInstanceOf(RegularTurn.class);
+	}
+
+	/**
+	 * @see Player#isBailable()
+	 */
+	@Test
+	public void testIsBailable(){
+		//Not in jail, has money
+		assertThat(p1.isBailable()).isFalse();
+
+		//In jail, has money.
+		p1.arrest();
+		assertThat(p1.isBailable()).isTrue();
+
+		//In jail, no money.
+		p1.getAccount().setBalance(0);
+		assertThat(p1.isBailable()).isFalse();
+
+		//Not in jail, no money.
+		p1.release();
+		assertThat(p1.isBailable()).isFalse();
+	}
+
+	/**
+	 * @see Player#tryBail()
+	 */
+	@Test
+	public void testTryBail(){
+		//Not in jail, has money.
+		assertThat(p1.tryBail()).isFalse();
+
+		//In jail, has money.
+		p1.arrest();
+		assertThat(p1.tryBail()).isTrue();
+		assertThat(p1.getAccount().getBalance()).isEqualTo(9000);
+
+		//In jail, no money.
+		p1.getAccount().setBalance(0);
+		assertThat(p1.isBailable()).isFalse();
+	}
+
+
 }

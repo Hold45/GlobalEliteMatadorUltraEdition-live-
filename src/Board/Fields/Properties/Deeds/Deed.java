@@ -96,7 +96,7 @@ public class Deed extends Tradable {
 	 * @return true if player owns it
 	 */
 	public boolean isPlayerOwned(){
-		return this.owner instanceof Player;
+		return this.getOwner() instanceof Player;
 	}
 
 	/**

@@ -223,7 +223,31 @@ public class Player extends Accountable{
 	}
 
 	/**
-	 * Set the jailed value to true and move the player to the nearest fail space.
+	 * Checks if the player can be bailed.
+	 *
+	 * This include checking if the player is jailed and has enough money.
+	 *
+	 * @return true if bailable
+	 */
+	public boolean isBailable(){
+		return this.isJailed() && this.getAccount().getBalance() >= 1000;
+	}
+
+	/**
+	 * Checks if the player is bailable, and bails the player.
+	 *
+	 * @return true if bailed
+	 */
+	public boolean tryBail(){
+		if (!this.isBailable())
+			return false;
+		this.getAccount().payTo(this.getGame().getBank().getAccount(), 1000);
+		this.release();
+		return true;
+	}
+
+	/**
+	 * Set the jailed value to true and move the player to the nearest jail space.
 	 */
 	public void arrest(){
 		this.moveTo(Jail.class);
