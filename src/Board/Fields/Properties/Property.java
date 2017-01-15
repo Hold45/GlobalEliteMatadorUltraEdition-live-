@@ -43,13 +43,20 @@ public abstract class Property extends Field {
 			&& !(((Player)this.getDeed().getOwner()).isJailed())
 			&& this.getDeed().getOwner() != player
 		){
-			player.getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getRent());
+			player.getAccount().transferTo(((Accountable) this.getDeed().getOwner()).getAccount(), this.getRent());
 		}
-		else if(!this.getDeed().isPlayerOwned()){
-			if(player.getGame().getGUI().acceptBuyProperty(player, "PurchasePropertyConfirm", this.getDeed(), this.getDeed().getPrice())){
+		else if (!this.getDeed().isPlayerOwned()){
+			if (
+				player.getGame().getGUI().acceptBuyProperty(
+					player,
+					"PurchasePropertyConfirm",
+					this.getDeed(),
+					this.getDeed().getPrice()
+				)
+			){
 				this.getDeed().tryPurchase(player);
-			}else{
-				this.deed.auctionOff(this.deed.getPrice()/2, 100);
+			} else {
+				this.deed.auctionOff(player, this.deed.getPrice()/2, 100);
 			}
 		}
 	}
@@ -143,7 +150,10 @@ public abstract class Property extends Field {
 
 	public void downgrade() {
 		Collection<Class> requiredBuildingsForDowngrade = this.requiredBuildingsForDowngrade();
-		this.getGame().getBank().getAccount().transferTo(((Accountable)this.getDeed().getOwner()).getAccount(), this.getDeed().getUpgradePrice()/2);
+		this.getGame().getBank().getAccount().transferTo(
+			((Accountable)this.getDeed().getOwner()).getAccount(),
+			this.getDeed().getUpgradePrice()/2
+		);
 		this.getGame().getBank().giveBuildings(this, this.obsoleteBuildingsForDowngrade());
 		this.getGame().getBank().takeBuildings(this, requiredBuildingsForDowngrade);
 	}
@@ -192,5 +202,16 @@ public abstract class Property extends Field {
 		return this.getFriends()
 			.filter(field -> ((Property)field).getDeed().getOwner() == this.getDeed().getOwner());
 	}
+
+	/**
+	 * Gives all buildings back to the bank.
+	 */
+	public void raze() {
+		this.getGame().getBank().giveBuildings(
+			this,
+			this.getBuildings().stream().map(Building::getClass).collect(Collectors.toList())
+		);
+	}
+
 }
 

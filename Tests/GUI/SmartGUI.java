@@ -10,7 +10,6 @@ import Owners.Player;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class SmartGUI implements MonopolyGUI {
 	public Game game;

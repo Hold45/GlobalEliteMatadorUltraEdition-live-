@@ -120,16 +120,17 @@ public abstract class Tradable {
 	 * The participating players will be asked in turn order to increase the bid or leave the auction.
 	 * Highest bid stands, and the winner buys the tradable from the current owner for the bid price.
 	 *
+	 * @param initiator the player initiating the auction
 	 * @param startPrice the initial price of the tradable being auctioned off
 	 * @param minimumBidIncrease the minimum bid increase for a player to claim highest bid
 	 */
-	public void auctionOff(int startPrice, int minimumBidIncrease){
+	public void auctionOff(Player initiator, int startPrice, int minimumBidIncrease){
 		int price = startPrice;
 		ArrayList<Player> participants;
-		if (this.owner instanceof Player)
-			participants = this.owner.getGame().getOtherPlayers((Player) this.owner);
+		if (this.getOwner().equals(initiator))
+			participants = this.owner.getGame().getOtherPlayers(initiator, initiator);
 		else
-			participants = new ArrayList<>(this.owner.getGame().getPlayers());
+			participants = new ArrayList<>(this.owner.getGame().getPlayers(initiator));
 		Player lastBidder = null;
 		while (participants.size()>1){
 			for (Player player : new ArrayList<>(participants)) {

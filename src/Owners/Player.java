@@ -13,6 +13,7 @@ import Game.Turns.RegularTurn;
 import Game.Turns.ScheduledTurn;
 import Game.Turns.Turn;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -79,15 +80,16 @@ public class Player extends Accountable{
 	public void takeActions(Action... actions){
 		Action chosenAction;
 		do {
-		    Action[] options =
+			Action[] options =
 				Arrays.stream(actions)
 					.filter(action -> action.runnable(this) && !this.getGame().hasWinner())
 						.toArray(Action[]::new);
-		    options = Arrays.copyOf(options, options.length+1);
+			options = Arrays.copyOf(options, options.length+1);
 		    options[options.length-1] = options[0];
-		    options[0] = EndActions.self;
+
+			options[0] = EndActions.self;
 			chosenAction = this.game.getGUI().chooseAction(this, "ChooseAction", options);
-		    chosenAction.run(this);
+			chosenAction.run(this);
 		}
     	while (!(chosenAction instanceof EndActions));
 	}
@@ -275,11 +277,14 @@ public class Player extends Accountable{
 	}
 
 	public void lose(){
+		Player nextPlayer = this.getGame().nextPlayer(this);
 		this.getGame().addLoser(this);
-		this.getAccount().transferTo(this.getGame().getBank().getAccount(), this.getAccount().getBalance());
 		for (Tradable tradable: new ArrayList<>(this.getOwns())) {
+			if (tradable instanceof Deed)
+				((Deed) tradable).getProperty().raze();
+				((Deed) tradable).tryUnpawn();
 			this.transferTradableTo(this.getGame().getBank(), tradable);
-			tradable.auctionOff(100, 100);
+			tradable.auctionOff(nextPlayer, 100, 100);
 		}
 		this.getGame().getGUI().addMessage(this, "PlayerLose");
 	}

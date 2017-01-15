@@ -84,8 +84,33 @@ public class Game {
 		return this.players;
 	}
 
-	public ArrayList<Player> getOtherPlayers(Player player) {
-		return this.getPlayers().stream().filter(other -> !player.equals(other)).collect(Collectors.toCollection(ArrayList::new));
+	/**
+	 * @param firstPlayer the player to start from
+	 * @return a copy of players, rotated so the given player is first
+	 */
+	public ArrayList<Player> getPlayers(Player firstPlayer){
+		ArrayList<Player> playersCopy = new ArrayList<>(this.getPlayers());
+		Collections.rotate(playersCopy, -this.getPlayers().indexOf(firstPlayer));
+		return playersCopy;
+	}
+
+	/**
+	 * @param excluded player to exclude
+	 * @return all players except the given player
+	 */
+	public ArrayList<Player> getOtherPlayers(Player excluded) {
+		return this.getPlayers().stream().filter(other -> !excluded.equals(other)).collect(Collectors.toCollection(ArrayList::new));
+	}
+
+	/**
+	 * @param excluded player to exclude
+	 * @param firstPlayer the player to start from
+	 * @return all players except the excluded player, rotated so the given player is first
+	 */
+	public ArrayList<Player> getOtherPlayers(Player excluded, Player firstPlayer) {
+		ArrayList<Player> playersCopy = new ArrayList<>(this.getOtherPlayers(excluded));
+		Collections.rotate(playersCopy, -this.getPlayers().indexOf(firstPlayer));
+		return playersCopy;
 	}
 
 	public ArrayList<Player> getLosers() {

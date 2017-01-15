@@ -193,12 +193,12 @@ public class DeedTest extends SmartTemplateTest{
 		assertThat(hvid.getOwner()).isEqualTo(game.getBank());
 		//Both players decline to bid
 		gui.addActions(false, false);
-		hvid.auctionOff(100, 10);
+		hvid.auctionOff(p1, 100, 10);
 		assertThat(hvid.getOwner()).isEqualTo(game.getBank());
 
 		//Only first player bids
 		gui.addActions(true, 10, false);
-		hvid.auctionOff(100, 10);
+		hvid.auctionOff(p1, 100, 10);
 		assertThat(hvid.getOwner()).isEqualTo(p1);
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-110);
 		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+110);
@@ -206,13 +206,13 @@ public class DeedTest extends SmartTemplateTest{
 		//Both players bid, with first player declining to raise
 		assertThat(roed.getOwner()).isEqualTo(game.getBank());
 		gui.addActions(true, 10, true, 10, false);
-		roed.auctionOff(100, 10);
+		roed.auctionOff(p1, 100, 10);
 		assertThat(roed.getOwner()).isEqualTo(p2);
 		assertThat(p2.getAccount().getBalance()).isEqualTo(10000-120);
 
 		//Player auction off his deed, all decline
 		gui.addActions(false);
-		roed.auctionOff(100000, 100);
+		roed.auctionOff(p1, 100000, 100);
 		assertThat(roed.getOwner()).isEqualTo(p2);
 	}
 

@@ -66,12 +66,6 @@ public class CardPile extends Owner {
         this.addTradable (new MoveToShipX2 (this));
         this.addTradable(new MoveToShip(this));
 
-        this.addTradable(new MoveBack(this));
-        this.addTradable(new MoveBack(this));
-        this.addTradable(new MoveForward(this));
-        this.addTradable(new MoveToFrederiksbergAlle(this));
-        this.addTradable(new MoveToGroenningen(this));
-
         this.addTradable(new GetOutOfJailFree(this));
         this.addTradable(new GetOutOfJailFree(this));
     }

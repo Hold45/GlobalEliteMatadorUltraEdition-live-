@@ -22,4 +22,5 @@ public class Start extends Field {
 		else
 			this.hasPassed.add(player);
 	}
+
 }

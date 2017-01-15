@@ -86,7 +86,11 @@ public class PlayerTest extends SmartTemplateTest{
 		assertThat(p1.getOffsetPosition(-(game.getBoard().getFields().length*2))).isEqualTo(0);
 	}
 
-
+	@Test
+	public void getPlayersTest(){
+		assertThat(game.getPlayers().get(0)).isEqualTo(p1);
+		assertThat(game.getPlayers(p2).get(0)).isEqualTo(p2);
+	}
 
 	/**
 	 * @see Player#toString()
@@ -115,7 +119,6 @@ public class PlayerTest extends SmartTemplateTest{
 		Player p3 = new Player(game, "Player 3");
 		p3.getAccount().setBalance(10000);
 		game.addPlayers(p3);
-		Deed hvid = ((Property) game.getBoard().getField(game.getBoard().getIndex(Hvidovrevej.class))).getDeed();
 		game.getBank().transferTradableTo(p1, hvid);
 		assertThat(hvid.getOwner()).isEqualTo(p1);
 		assertThat(game.getPlayers().contains(p1)).isTrue();
@@ -124,9 +127,29 @@ public class PlayerTest extends SmartTemplateTest{
 		assertThat(game.getPlayers().contains(p1)).isFalse();
 		assertThat(hvid.getOwner()).isEqualTo(p3);
 		assertThat(p3.getAccount().getBalance()).isEqualTo(10000-200);
-		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+10000+200);
-		// The original money from the bank, plus the money from the player who lost,
-		// plus the money gained from auctionong the deed.
+		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+200);
+		// The original money from the bank plus the money gained from auctioning the deed.
+		// The rest of the players money disappears. In a normal game, they till be transferred to someone else.
+	}
+
+	@Test
+	public void testLoseWithPawnedDeed() {
+		Player p3 = new Player(game, "Player 3");
+		p3.getAccount().setBalance(10000);
+		game.addPlayers(p3);
+		game.getBank().transferTradableTo(p1, hvid);
+		assertThat(hvid.getOwner()).isEqualTo(p1);
+		hvid.tryPawn();
+		assertThat(game.getPlayers().contains(p1)).isTrue();
+		gui.addActions(false, true, 100);
+		p1.lose();
+		assertThat(game.getPlayers().contains(p1)).isFalse();
+		assertThat(hvid.getOwner()).isEqualTo(p3);
+		assertThat(p3.getAccount().getBalance()).isEqualTo(10000-200);
+		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+200+60);
+		// Bank has the original money, plus the money from the auction,
+		// plus the money gained from p1 pawning and unpawning hvid.
+
 	}
 
 	@Test

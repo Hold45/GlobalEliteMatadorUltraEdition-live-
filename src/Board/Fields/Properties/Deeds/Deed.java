@@ -99,8 +99,8 @@ public class Deed extends Tradable {
 	 * @see Deed#canBePawned()
 	 * @see Deed#tryPawn()
 	 */
-	void pawn() {
-		((Player)this.owner).getGame().getBank().getAccount().transferTo(
+	public void pawn() {
+		this.owner.getGame().getBank().getAccount().transferTo(
 				((Player)this.owner).getAccount(),
 				this.getPrice()/2
 		);
@@ -116,9 +116,9 @@ public class Deed extends Tradable {
 	 * @see Deed#canBeUnpawned()
 	 * @see Deed#tryUnpawn()
 	 */
-	void unPawn(){
+	public void unPawn(){
 		((Accountable)this.owner).getAccount().transferTo(
-				((Player)this.owner).getGame().getBank().getAccount(),
+				this.owner.getGame().getBank().getAccount(),
 				(int) (this.getPrice()* 0.55)
 		);
 		this.pawned = false;
