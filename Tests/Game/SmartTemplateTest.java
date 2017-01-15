@@ -13,6 +13,8 @@ import Owners.Player;
 import org.junit.After;
 import org.junit.Before;
 
+import java.util.Random;
+
 /**
  *
  */
@@ -34,6 +36,10 @@ public abstract class SmartTemplateTest {
 		System.setProperty("java.awt.headless", "true");
 		gui = new SmartGUI();
 		random = new SmartRandom();
+		for (int i = 1; i < new CardPile(new Game(gui), new Random()).getCards().size(); i++) {
+			random.add(1);
+		}
+
 		game = new Game(gui, random);
 		gui.game = game;
 		p1 = new Player(game, "Player 1");
@@ -47,6 +53,9 @@ public abstract class SmartTemplateTest {
 		board = game.getBoard();
 		hvid = ((Property) game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		roed = ((Property) game.getBoard().getField(Roedovrevej.class)).getDeed();
+
+
+
 	}
 
 	@After

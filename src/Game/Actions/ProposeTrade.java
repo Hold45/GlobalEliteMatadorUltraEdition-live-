@@ -17,7 +17,7 @@ public class ProposeTrade extends Action{
 				player.getOwns().stream().
 						filter(Tradable::canBeTraded).
 							toArray(Tradable[]::new));
-		Player tradePartner = chooseOtherPlayer(player);
+		Player tradePartner = this.chooseOtherPlayer(player);
 		int price = player.getGame().getGUI().selectInteger(player,"ChooseSellPrice", 0, tradePartner.getTotalCaptialValue());
 		if(tradePartner.getGame().getGUI().acceptBuyProperty(tradePartner, "AcceptTrade", chosenTradable, price)){
 			chosenTradable.tryPurchase(tradePartner, price);

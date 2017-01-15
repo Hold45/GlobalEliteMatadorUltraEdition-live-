@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PlotTest extends SmartTemplateTest {
 
 	@Test
-	public void getRent() {
+	public void testGetRent() {
 		//Rent when only one is owned
 		game.getBank().transferTradableTo(p1, hvid);
 		assertThat(hvid.getProperty().getRent()).isEqualTo(50);

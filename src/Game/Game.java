@@ -37,10 +37,11 @@ public class Game {
 		this.bank = new Bank(this);
 		this.gui = gui;
 		this.board = new Board(this);
-		this.cardPile = new CardPile(this);
 		this.random = rng;
+		this.cardPile = new CardPile(this, this.random);
 		this.cup = new MonopolyCup(this.random);
 		this.turnLog = new ArrayList<>();
+		this.cardPile.shuffle();
 	}
 
 	public Game(MonopolyGUI gui) {

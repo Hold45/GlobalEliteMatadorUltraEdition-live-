@@ -34,4 +34,8 @@ public class SmartRandom extends Random {
 	public int nextInt(int bound) {
 		return integers.poll();
 	}
+
+	public Queue<Integer> getIntegers() {
+		return this.integers;
+	}
 }
