@@ -9,16 +9,15 @@ public class Gain500 extends ChanceCard {
     public Gain500(Owner owner) {
         super(owner, "Gain500CardDescription");
     }
-    
-    /**
-	 * Transfers 500 kr. from the bank to the player
+
+	/**
+	 * Transfers 500 from the bank to the player
+	 *
+	 * @param player who draws
 	 */
-    
-    @Override
+	@Override
     public void draw(Player player) {
 		super.draw(player);
 		player.getGame().getBank().getAccount().transferTo(player.getAccount(), 500);
     }
 }
-
-//2 kort

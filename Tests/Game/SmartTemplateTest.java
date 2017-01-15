@@ -4,6 +4,8 @@ import Board.Fields.Properties.Deeds.Deed;
 import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
 import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
 import Board.Fields.Properties.Property;
+import Board.Board;
+import Cards.CardPile;
 import Dice.MonopolyCup;
 import GUI.SmartGUI;
 import Owners.Bank;
@@ -22,6 +24,8 @@ public abstract class SmartTemplateTest {
 	protected MonopolyCup cup;
 	protected SmartRandom random;
 	protected Bank bank;
+	protected CardPile cardPile;
+	protected Board board;
 	protected Deed hvid;
 	protected Deed roed;
 
@@ -39,6 +43,8 @@ public abstract class SmartTemplateTest {
 		game.addPlayers(p1, p2);
 		cup = game.getCup();
 		bank = game.getBank();
+		cardPile = game.getCardPile();
+		board = game.getBoard();
 		hvid = ((Property) game.getBoard().getField(Hvidovrevej.class)).getDeed();
 		roed = ((Property) game.getBoard().getField(Roedovrevej.class)).getDeed();
 	}
@@ -52,6 +58,8 @@ public abstract class SmartTemplateTest {
 		cup = null;
 		random = null;
 		bank = null;
+		cardPile = null;
+		board = null;
 		hvid = null;
 		roed = null;
 	}

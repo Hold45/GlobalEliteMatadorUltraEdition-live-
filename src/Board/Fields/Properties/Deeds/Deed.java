@@ -91,15 +91,6 @@ public class Deed extends Tradable {
 	}
 
 	/**
-	 * Checks if deed is owned by a player.
-	 *
-	 * @return true if player owns it
-	 */
-	public boolean isPlayerOwned(){
-		return this.getOwner() instanceof Player;
-	}
-
-	/**
 	 * Pawns a deed
 	 *
 	 * Pawns a deed and transfer half the cost of the deed to the owner from the bank.

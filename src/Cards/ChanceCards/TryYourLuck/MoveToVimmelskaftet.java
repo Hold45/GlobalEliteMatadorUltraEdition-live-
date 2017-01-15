@@ -11,7 +11,9 @@ public class MoveToVimmelskaftet extends ChanceCard {
         super(owner, "MoveToVimmelskaftetCardDescription");
     }
     /**
-     * Moves the player to Vimmelskaftet
+     * Moves the player to Vimmelskaftet.
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

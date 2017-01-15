@@ -10,6 +10,11 @@ public class MoveBack extends ChanceCard {
         super(owner, "MoveBackCardDescription");
     }
 
+    /**
+     * Moves the player 3 spaces back.
+     *
+     * @param player who draws
+     */
     @Override
     public void draw(Player player) {
         super.draw(player);

@@ -18,5 +18,3 @@ public class MoveToStart extends ChanceCard {
     }
 
 }
-
-// 2 Kort

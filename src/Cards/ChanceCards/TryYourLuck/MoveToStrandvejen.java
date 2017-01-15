@@ -10,8 +10,12 @@ public class MoveToStrandvejen extends ChanceCard {
     public MoveToStrandvejen(Owner owner) {
         super(owner, "MoveToStrandvejenCardDescription");
     }
+
+
     /**
-     * Moves the player to Strandvejen
+     * Moves the player to Strandvejen.
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

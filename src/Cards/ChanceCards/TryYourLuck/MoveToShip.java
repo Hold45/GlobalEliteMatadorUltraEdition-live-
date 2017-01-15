@@ -13,6 +13,8 @@ public class MoveToShip extends ChanceCard {
 
     /**
      * Moves the player to the nearest ship
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

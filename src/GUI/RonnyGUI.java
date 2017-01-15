@@ -2,6 +2,7 @@ package GUI;
 
 import Board.Board;
 import Board.Fields.Field;
+import Board.Fields.Properties.Brewery.Brewery;
 import Board.Fields.Properties.Plots.Plot;
 import Board.Fields.Properties.Property;
 import Board.Fields.Properties.Ships.Ship;
@@ -12,7 +13,6 @@ import Dice.MonopolyCup;
 import Game.Game;
 import Owners.Player;
 import desktop_codebehind.Car;
-import desktop_fields.Brewery;
 import desktop_fields.Empty;
 import desktop_fields.Street;
 import desktop_resources.GUI;
@@ -174,7 +174,7 @@ public class RonnyGUI implements MonopolyGUI {
 						+ "<br>Rent: "
 						+ "[]"
 			);
-		} else if (field instanceof Board.Fields.Properties.Brewery.Brewery) {
+		} else if (field instanceof Brewery) {
 
 		} else {
 			guiField.setDescription(this.language.getString(field.getDescription()));

@@ -42,12 +42,12 @@ public class DummyGUI implements MonopolyGUI {
 
 	@Override
 	public boolean getBooleanFromPlayer(Player player, String message, Tradable tradable, int price) {
-		return new Random().nextBoolean();
+		return true;
 	}
 
 	@Override
 	public boolean getBooleanFromPlayer(Player player, String message) {
-		return new Random().nextBoolean();
+		return true;
 	}
 
 	@Override

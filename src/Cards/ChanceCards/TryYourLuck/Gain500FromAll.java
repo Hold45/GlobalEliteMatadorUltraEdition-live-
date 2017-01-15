@@ -10,12 +10,15 @@ public class Gain500FromAll extends ChanceCard {
         super(owner, "Gain500CardFromAllDescription");
     }
 
-    @Override
+	/**
+	 * Gains 500 from all players
+	 *
+	 * @param player who draws
+	 */
+	@Override
     public void draw(Player player) {
         super.draw(player);
-        for (Player other : player.getGame().getOtherPlayers(player)) {
-            other.getAccount().transferTo(player.getAccount(), 500);
-
-        }
+        player.getGame().getOtherPlayers(player)
+                .forEach(other -> other.getAccount().transferTo(player.getAccount(), 500));
     }
 }

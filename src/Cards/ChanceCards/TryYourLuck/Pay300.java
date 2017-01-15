@@ -9,8 +9,11 @@ public class Pay300 extends ChanceCard {
     public Pay300(Owner owner) {
         super(owner, "Pay300CardDescription");
     }
+
     /**
-     * Withdraws 300 kr. from the player and deposits them in the bank
+     * Withdraws 300 from the player and deposits them in the bank
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

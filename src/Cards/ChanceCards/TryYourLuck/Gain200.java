@@ -10,8 +10,11 @@ public class Gain200 extends ChanceCard {
     public Gain200(Owner owner) {
         super(owner, "Gain200CardDescription");
     }
+
     /**
-	 * Transfers 200 kr. from the bank to the player
+	 * Transfers 200 from the bank to the player
+     *
+     * @param player who draws
 	 */
     @Override
     public void draw(Player player) {

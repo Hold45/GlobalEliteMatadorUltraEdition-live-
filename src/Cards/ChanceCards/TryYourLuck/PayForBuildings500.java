@@ -14,15 +14,19 @@ public class PayForBuildings500 extends ChanceCard {
     public PayForBuildings500(Owner owner) {
         super(owner, "PayForBuildings500CardDescription");
     }
-/**
- * Makes the player pay for every house and hotel they own
- * The player pays 500 kr. for each house
- * The player pays 2000 kr. for each hotel
- */
+
+    /**
+     * Makes the player pay for every house and hotel they own
+     * The player pays 500 for each house
+     * The player pays 2000 for each hotel
+     *
+     * @param player who draws
+     */
     @Override
     public void draw(Player player) {
         super.draw(player);
         int sum = 0;
+
         for (Tradable tradable : player.getOwns()){
             if (tradable instanceof Deed){
                 for (Building building : ((Deed) tradable).getProperty().getBuildings()){

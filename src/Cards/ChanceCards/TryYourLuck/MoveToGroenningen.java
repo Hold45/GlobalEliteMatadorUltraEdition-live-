@@ -14,6 +14,8 @@ public class MoveToGroenningen extends ChanceCard {
 
     /**
      * Moves the player to Groenningen.
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

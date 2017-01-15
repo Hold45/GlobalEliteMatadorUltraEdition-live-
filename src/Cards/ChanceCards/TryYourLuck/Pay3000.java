@@ -9,8 +9,12 @@ public class Pay3000 extends ChanceCard {
     public Pay3000(Owner owner) {
         super(owner, "Pay3000CardDescription");
     }
+
+
     /**
-     * Withdraws 3000 kr. from the player and deposits them in the bank
+     * Withdraws 3000 from the player and deposits them in the bank.
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {
@@ -18,5 +22,3 @@ public class Pay3000 extends ChanceCard {
         player.getAccount().transferTo(player.getGame().getBank().getAccount(),3000);
     }
 }
-
-//2 kort

@@ -156,4 +156,13 @@ public abstract class Tradable {
 		if(lastBidder != null)
 			this.purchase(lastBidder, price);
 	}
+
+	/**
+	 * Checks if tradable is owned by a player.
+	 *
+	 * @return true if player owns it
+	 */
+	public boolean isPlayerOwned(){
+		return this.getOwner() instanceof Player;
+	}
 }

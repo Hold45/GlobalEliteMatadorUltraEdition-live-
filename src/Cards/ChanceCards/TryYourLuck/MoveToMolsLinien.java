@@ -14,6 +14,8 @@ public class MoveToMolsLinien extends ChanceCard {
 
     /**
      * Moves the player to Molslinien
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {

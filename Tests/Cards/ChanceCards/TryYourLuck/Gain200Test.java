@@ -1,26 +1,14 @@
 package Cards.ChanceCards.TryYourLuck;
 
-import Cards.ChanceCards.ChanceCard;
-import Game.SmartTemplateTest;
 import Owners.Player;
-import org.apache.commons.lang3.ArrayUtils;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class Gain200Test extends SmartTemplateTest {
-	ChanceCard card;
+public class Gain200Test extends CardTemplateTest {
 
-	@Before
 	public void setup(){
-		card = new Gain200(game.getCardPile());
-	}
-
-	@After
-	public void tearDown(){
-		card = null;
+		card = new Gain200(cardPile);
 	}
 
 	/**
@@ -28,5 +16,8 @@ public class Gain200Test extends SmartTemplateTest {
 	 */
 	@Test
 	public void testDraw() {
+		card.draw(p1);
+		assertThat(p1.getAccount().getBalance()).isEqualTo(10000+200);
+		assertThat(bank.getAccount().getBalance()).isEqualTo(10000-200);
 	}
 }

@@ -13,7 +13,9 @@ public class MoveToShipX2 extends ChanceCard {
 
     /**
      * Moves the player to the nearest ship, checks if owned by another player
-     * if it is, the player pays double rent
+     * if it is, the player pays double rent.
+     *
+     * @param player who draws
      */
     @Override
     public void draw(Player player) {
@@ -22,7 +24,7 @@ public class MoveToShipX2 extends ChanceCard {
 	    Ship ship = (Ship) player.getGame().getBoard().getField(player.getPosition());
 
     	if(ship.getDeed().isPlayerOwned() && !ship.getDeed().getOwner().equals(player))
-    		player.getAccount().transferTo( ((Player)ship.getDeed().getOwner()).getAccount(), ship.getRent());
+		    player.getAccount().transferTo( ((Player)ship.getDeed().getOwner()).getAccount(), ship.getRent());
     }
 
 }

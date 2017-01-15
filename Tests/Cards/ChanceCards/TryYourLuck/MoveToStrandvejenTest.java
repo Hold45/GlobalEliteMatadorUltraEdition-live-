@@ -1,0 +1,25 @@
+package Cards.ChanceCards.TryYourLuck;
+
+import Board.Fields.Properties.Plots.GreyPlots.Strandvejen;
+import Owners.Player;
+import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+public class MoveToStrandvejenTest extends CardTemplateTest{
+
+	@Override
+	public void setup() {
+		card = new MoveToStrandvejen(cardPile);
+	}
+
+	/**
+	 * @see MoveToStrandvejen#draw(Player)
+	 */
+	@Test
+	public void testDraw() {
+		card.draw(p1);
+		assertThat(p1.getPosition()).isEqualTo(board.getIndex(Strandvejen.class));
+	}
+
+}
