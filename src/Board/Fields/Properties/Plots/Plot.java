@@ -32,7 +32,10 @@ public abstract class Plot extends Property {
 	}
 
 	private int rentMultiplier(){
-		if (this.getFriends().count() == this.getOwnedFriends().count()){
+		if (
+			this.getFriends().count() == this.getOwnedFriends().count()
+			&& this.getUpgradeValue() == 0
+		){
 			return 2;
 		}
 		return 1;

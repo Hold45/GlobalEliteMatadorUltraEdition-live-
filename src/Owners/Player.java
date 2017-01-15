@@ -2,6 +2,7 @@ package Owners;
 
 import Board.Fields.Field;
 import Board.Fields.LawInforcment.Jail;
+import Board.Fields.Properties.Deeds.Deed;
 import Cards.Tradable;
 import Finance.Account;
 import Finance.PersonalAccount;
@@ -197,7 +198,6 @@ public class Player extends Accountable{
 					break;
 			}
 		}
-
 		return this;
 	}
 
@@ -278,6 +278,18 @@ public class Player extends Accountable{
 			this.transferTradableTo(this.getGame().getBank(), tradable);
 			tradable.auctionOff(100, 100);
 		}
+	}
+
+	/**
+	 * @return the total value of all the players deeds and money
+	 */
+	public int getTotalCaptialValue(){
+		return
+			this.getOwns().stream()
+				.filter(tradable -> tradable instanceof Deed)
+					.mapToInt(deed -> ((Deed)deed).totalValue())
+						.sum()
+			+ this.getAccount().getBalance();
 	}
 }
 

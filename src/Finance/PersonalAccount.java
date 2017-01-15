@@ -16,7 +16,15 @@ public class PersonalAccount extends Account {
 
     @Override
     public int withdraw(int value){
-    	while (value > this.balance && PawnDeed.self.runnable(this.owner) && DowngradeProperty.self.runnable(this.owner) && SellDeedToBank.self.runnable(this.owner)){
+    	while (
+            value > this.balance
+			&& this.owner.getTotalCaptialValue() >= value
+            && (
+                PawnDeed.self.runnable(this.owner)
+                || DowngradeProperty.self.runnable(this.owner)
+            	|| SellDeedToBank.self.runnable(this.owner)
+			)
+        ){
 		    this.owner.takeActions(PawnDeed.self, DowngradeProperty.self, SellDeedToBank.self);
 	    }
 

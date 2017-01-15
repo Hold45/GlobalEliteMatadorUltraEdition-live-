@@ -149,8 +149,6 @@ public class Deed extends Tradable {
 		return true;
 	}
 
-
-
 	/**
 	 * Unpawns a deed with check
 	 *
@@ -170,5 +168,16 @@ public class Deed extends Tradable {
 	@Override
 	public String toString(){
 		return this.property.getName();
+	}
+
+	/**
+	 * @return the total value of this, including all buildings on the linked property, and pawn status
+	 */
+	public int totalValue(){
+		if (this.isPawned()){
+			return this.getPrice()/2;
+		} else {
+			return this.getPrice() + this.getProperty().getUpgradeValue()*this.getUpgradePrice();
+		}
 	}
 }

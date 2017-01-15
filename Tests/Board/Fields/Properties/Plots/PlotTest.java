@@ -1,29 +1,24 @@
 package Board.Fields.Properties.Plots;
 
-import Board.Fields.Properties.Plots.BluePlots.BluePlot;
 import Game.SmartTemplateTest;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlotTest extends SmartTemplateTest {
 
 	@Test
-	public void getRent() throws Exception {
-		Plot[] plots = Arrays.stream(game.getBoard().getFields())
-				.filter(field -> field instanceof BluePlot)
-					.toArray(Plot[]::new);
+	public void getRent() {
+		//Rent when only one is owned
+		game.getBank().transferTradableTo(p1, hvid);
+		assertThat(hvid.getProperty().getRent()).isEqualTo(50);
 
+		//Rent when all of the same type is owned
+		game.getBank().transferTradableTo(p1, roed);
+		assertThat(roed.getProperty().getRent()).isEqualTo(100);
 
-		plots[0].getDeed().setOwner(p1);
-		assertThat(plots[0].getRent()).isEqualTo(plots[0].getRentScheme()[0]);
-
-		plots[1].getDeed().setOwner(p1);
-		assertThat(plots[1].getRent()).isEqualTo(plots[1].getRentScheme()[0]*2);
+		//Rent With one house with all owned
+		hvid.getProperty().upgrade();
+		assertThat(hvid.getProperty().getRent()).isEqualTo(250);
 	}
-
-
-
 }

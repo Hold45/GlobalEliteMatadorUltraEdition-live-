@@ -1,5 +1,9 @@
 package Game;
 
+import Board.Fields.Properties.Deeds.Deed;
+import Board.Fields.Properties.Plots.BluePlots.Hvidovrevej;
+import Board.Fields.Properties.Plots.BluePlots.Roedovrevej;
+import Board.Fields.Properties.Property;
 import Dice.MonopolyCup;
 import GUI.SmartGUI;
 import Owners.Bank;
@@ -18,6 +22,8 @@ public abstract class SmartTemplateTest {
 	protected MonopolyCup cup;
 	protected SmartRandom random;
 	protected Bank bank;
+	protected Deed hvid;
+	protected Deed roed;
 
 	@Before
 	public void baseSetUp() throws Exception {
@@ -33,6 +39,8 @@ public abstract class SmartTemplateTest {
 		game.addPlayers(p1, p2);
 		cup = game.getCup();
 		bank = game.getBank();
+		hvid = ((Property) game.getBoard().getField(Hvidovrevej.class)).getDeed();
+		roed = ((Property) game.getBoard().getField(Roedovrevej.class)).getDeed();
 	}
 
 	@After
@@ -44,5 +52,7 @@ public abstract class SmartTemplateTest {
 		cup = null;
 		random = null;
 		bank = null;
+		hvid = null;
+		roed = null;
 	}
 }

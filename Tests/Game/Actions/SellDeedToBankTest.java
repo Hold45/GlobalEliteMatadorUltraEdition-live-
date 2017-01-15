@@ -12,21 +12,11 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 public class SellDeedToBankTest extends SmartTemplateTest{
-	private Deed hvid;
-	private Deed roed;
 	private Action sellDeedToBank;
 
 	@Before
 	public void setup(){
-		hvid = ((Property)game.getBoard().getField(Hvidovrevej.class)).getDeed();
-		roed = ((Property)game.getBoard().getField(Roedovrevej.class)).getDeed();
 		sellDeedToBank = SellDeedToBank.self;
-	}
-
-	@After
-	public void tearDown(){
-		hvid = null;
-		roed = null;
 	}
 
 	/**
@@ -35,7 +25,6 @@ public class SellDeedToBankTest extends SmartTemplateTest{
 	@Test
 	public void testRun() {
 		gui.addActions(hvid);
-
 		hvid.tryPurchase(p1);
 		sellDeedToBank.run(p1);
 		assertThat(p1.getOwns()).doesNotContain(hvid);

@@ -2,7 +2,9 @@ package GUI;
 
 import Board.Board;
 import Board.Fields.Field;
+import Board.Fields.Properties.Plots.Plot;
 import Board.Fields.Properties.Property;
+import Board.Fields.Properties.Ships.Ship;
 import Buildings.Hotel;
 import Buildings.House;
 import Cards.Tradable;
@@ -10,11 +12,13 @@ import Dice.MonopolyCup;
 import Game.Game;
 import Owners.Player;
 import desktop_codebehind.Car;
+import desktop_fields.Brewery;
 import desktop_fields.Empty;
 import desktop_fields.Street;
 import desktop_resources.GUI;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,12 +35,12 @@ public class RonnyGUI implements MonopolyGUI {
 
 	public RonnyGUI() {
 		this.fields = new ArrayList<>();
-		colors.push(Color.GREEN);
-		colors.push(Color.PINK);
+		colors.push(Color.BLACK);
 		colors.push(Color.CYAN);
 		colors.push(Color.MAGENTA);
-		colors.push(Color.LIGHT_GRAY);
-		colors.push(Color.BLACK);
+		colors.push(Color.YELLOW);
+		colors.push(Color.GREEN);
+		colors.push(Color.RED);
 		this.language = ResourceBundle.getBundle("LabelsBundle", Locale.getDefault());
 		this.message = "";
 	}
@@ -124,7 +128,7 @@ public class RonnyGUI implements MonopolyGUI {
 
 	@Override
 	public String getSelectionFromPlayer(Player player, String message, String... actions) {
-		return GUI.getUserSelection(player.getName()+": "+message, actions);
+		return GUI.getUserSelection(player.getName()+": "+this.language.getString(message), actions);
 	}
 
 	@Override
@@ -137,7 +141,7 @@ public class RonnyGUI implements MonopolyGUI {
 	}
 
 	public ArrayList<String> getPlayerNames() {
-		ArrayList<String> names =  new ArrayList<String>();
+		ArrayList<String> names =  new ArrayList<>();
 		int playerNum = desktop_resources.GUI.getUserInteger(this.language.getString("NUMPLAYER"), 2,6);
 		while (names.size() < playerNum){
 			String name = this.getString("CHOOSEPLAYERNAME");
@@ -148,9 +152,33 @@ public class RonnyGUI implements MonopolyGUI {
 	}
 
 	private void addField(Field field){
-		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).build();
+		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).setSubText("").build();
 		guiField.setTitle(this.language.getString(field.getName()));
-		guiField.setDescription(this.language.getString(field.getDescription()));
+		if (field instanceof Plot){
+			guiField.setDescription(
+				this.language.getString(field.getName())
+				+ "<br>Price: "
+				+ Integer.toString(
+					((Plot)field).getDeed().getPrice()
+				)
+				+ "<br>Rent: "
+				+ Arrays.toString(((Plot)field).getRentScheme())
+			);
+		} else if (field instanceof Ship) {
+			guiField.setDescription(
+					this.language.getString(field.getName())
+						+ "<br>Price: "
+						+ Integer.toString(
+						((Plot)field).getDeed().getPrice()
+					)
+						+ "<br>Rent: "
+						+ "[]"
+			);
+		} else if (field instanceof Board.Fields.Properties.Brewery.Brewery) {
+
+		} else {
+			guiField.setDescription(this.language.getString(field.getDescription()));
+		}
 		this.fields.add(guiField);
 	}
 

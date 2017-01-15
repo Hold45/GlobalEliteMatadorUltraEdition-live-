@@ -17,9 +17,7 @@ public class MonopolyCupTest extends SmartTemplateTest{
 		cup.roll();
 		Arrays.stream(cup.getDice()).forEach(die -> assertThat(die.getValue()).isEqualTo(1));
 		assertThat(cup.getSpeedDie().getValue()).isEqualTo(1);
-
 	}
-
 
 	@Test
 	public void testTriple() throws Exception {
@@ -30,8 +28,6 @@ public class MonopolyCupTest extends SmartTemplateTest{
 		random.add(1,2,3);
 		cup.roll();
 		assertThat(cup.triple()).isFalse();
-
-
 	}
 
 	@Test
@@ -45,7 +41,6 @@ public class MonopolyCupTest extends SmartTemplateTest{
 		assertThat(cup.yahtzee()).isFalse();
 	}
 
-
 	@Test
 	public void testGetCombinations() throws Exception {
 		random.add(1,2,5);
@@ -54,7 +49,6 @@ public class MonopolyCupTest extends SmartTemplateTest{
 		assertThat(combinations).contains(1,3,2);
 		assertThat(new int[]{1,2,3}).contains(combinations);
 	}
-
 
 	@Test
 	public void testGetSum() throws Exception {

@@ -35,7 +35,6 @@ import Board.Fields.Taxes.Tax2000;
 import Board.Fields.Taxes.Tax4000;
 import Game.Game;
 import Owners.Player;
-import com.sun.deploy.util.ArrayUtil;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
@@ -74,8 +73,8 @@ public class Board {
 				new Bredgade(game),
 				new KongensNytorv(game),
 				new CocaCola(game),
-				new GoToJail(game),
 				new Oestergade(game),
+				new GoToJail(game),
 				new Amagertorv(game),
 				new Vimmelskaftet(game),
 				new Chance(game),
