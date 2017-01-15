@@ -166,9 +166,9 @@ public class Deed extends Tradable {
 	 */
 	public int totalValue(){
 		if (this.isPawned()){
-			return this.getPrice()/2;
+			return (int) (this.getPrice()*0.15);
 		} else {
-			return this.getPrice() + this.getProperty().getUpgradeValue()*this.getUpgradePrice();
+			return (int) (this.getPrice()*0.7) + this.getProperty().getUpgradeValue()*this.getUpgradePrice();
 		}
 	}
 }

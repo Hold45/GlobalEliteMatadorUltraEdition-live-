@@ -79,7 +79,10 @@ public class Player extends Accountable{
 	public void takeActions(Action... actions){
 		Action chosenAction;
 		do {
-		    Action[] options = Arrays.stream(actions).filter(action -> action.runnable(this) && !this.getGame().hasWinner()).toArray(Action[]::new);
+		    Action[] options =
+				Arrays.stream(actions)
+					.filter(action -> action.runnable(this) && !this.getGame().hasWinner())
+						.toArray(Action[]::new);
 		    options = Arrays.copyOf(options, options.length+1);
 		    options[options.length-1] = options[0];
 		    options[0] = EndActions.self;
@@ -278,6 +281,7 @@ public class Player extends Accountable{
 			this.transferTradableTo(this.getGame().getBank(), tradable);
 			tradable.auctionOff(100, 100);
 		}
+		this.getGame().getGUI().addMessage(this, "PlayerLose");
 	}
 
 	/**
