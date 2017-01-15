@@ -61,7 +61,8 @@ public class RonnyGUI implements MonopolyGUI {
 			this.setPosition(player);
 			this.setBalance(player);
 		}
-		for (Player player : this.getGame().getPlayers()){
+
+		for (Player player : this.getGame().getLosers()){
 			this.playerLoose(player);
 		}
 
@@ -71,16 +72,21 @@ public class RonnyGUI implements MonopolyGUI {
 				.filter(field -> field instanceof Property)
 				.collect(Collectors.toCollection(ArrayList::new))
 		){
-			this.setBuiildings((Property) field);
+			this.setBuildings((Property) field);
 		}
 
 		this.setOwners(this.getGame().getBoard());
 
 		if (!this.message.isEmpty())
 			desktop_resources.GUI.showMessage(this.popMessage());
+
+		desktop_resources.GUI.displayChanceCard(
+			"The speeddie rolled: </br>"
+			+ this.language.getString(this.getGame().getCup().getSpeedDie().toString())
+		);
 	}
 
-	private void setBuiildings(Property property){
+	private void setBuildings(Property property){
 		int index = this.getGame().getBoard().getIndex(property)+1;
 		desktop_resources.GUI.setHouses(
 			index,

@@ -7,7 +7,7 @@ import Owners.Player;
 public class Pay2000 extends ChanceCard {
 
     public Pay2000(Owner owner) {
-        super(owner, "Card20Desc");
+        super(owner, "Pay2000CardDescription");
     }
     /**
      * Withdraws 2000 kr. from the player and deposits them in the bank

@@ -8,7 +8,7 @@ public class Gain3000 extends ChanceCard {
 	
 
     public Gain3000(Owner owner) {
-        super(owner, "Card7Desc");
+        super(owner, "Gain3000CardDescription");
     }
     
     /**

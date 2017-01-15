@@ -35,6 +35,8 @@ import Board.Fields.Taxes.Tax2000;
 import Board.Fields.Taxes.Tax4000;
 import Game.Game;
 import Owners.Player;
+import com.sun.deploy.util.ArrayUtil;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 
@@ -93,19 +95,14 @@ public class Board {
 	private int getIndex(Class field, int startFrom){
 		for (int i = 0; i < this.fields.length; i++){
 			int x = Math.floorMod(i + startFrom,this.fields.length);
-			if(field.isAssignableFrom(this.fields[x].getClass()))
+			if (field.isAssignableFrom(this.fields[x].getClass()))
 				return x;
 		}
 		throw new ArrayIndexOutOfBoundsException();
 	}
 
-	private int getIndex(Field field, int startFrom){
-		for (int i = 0; i < this.fields.length; i++){
-			int x = Math.floorMod(i + startFrom,this.fields.length);
-			if(this.fields[x].equals(field))
-				return x;
-		}
-		throw new ArrayIndexOutOfBoundsException();
+	public int getIndex(Field field){
+		return ArrayUtils.indexOf(this.getFields(), field);
 	}
 
 	public int getIndex(Class field, Player player){
@@ -115,15 +112,6 @@ public class Board {
 	public int getIndex(Class field){
 		return getIndex(field, 0);
 	}
-
-	public int getIndex(Field field){
-		return getIndex(field, 0);
-	}
-
-	public int getIndex(Field field, Player player){
-		return getIndex(field, player.getPosition());
-	}
-
 
 	public Field getField(Class c){
 		return Arrays.stream(this.fields).filter(field -> field.getClass().isAssignableFrom(c)).findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new);

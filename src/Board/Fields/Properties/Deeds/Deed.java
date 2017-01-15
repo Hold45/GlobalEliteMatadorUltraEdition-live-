@@ -26,12 +26,12 @@ public class Deed extends Tradable {
 	 * @param price of the deed
 	 * @param owner of the deed
 	 */
-	public Deed(Property property, int price, Accountable owner){
+	public Deed(Property property, int price, int upgradePrice, Accountable owner){
 		super(price);
 		this.property = property;
 		this.setOwner(owner);
 		owner.addTradable(this);
-		this.upgradePrice = 1000;
+		this.upgradePrice = upgradePrice;
 	}
 
 

@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * Bank
  * 
- * Bank is the bank of the game and is seperat from player because Bank can not lose.
+ * Bank is the bank of the game and is separate from player because Bank can not lose.
  * 
  */
 public class Bank extends Accountable {
@@ -28,10 +28,12 @@ public class Bank extends Accountable {
         super(game);
         this.account = new Account(10000);
         this.buildings = new ArrayList<>();
-        for (int i=0; i<22; i++){
+        for (int i=0; i < 32; i++) {
             this.buildings.add(new House());
-            this.buildings.add(new Hotel());
         }
+		for (int i = 0; i < 12; i++) {
+			this.buildings.add(new Hotel());
+		}
 
     }
     

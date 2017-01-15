@@ -6,8 +6,8 @@ import Owners.Player;
 
 public class Gain1000 extends ChanceCard {
 
-    public Gain1000(Owner owner, String description) {
-        super(owner, description);
+    public Gain1000(Owner owner) {
+        super(owner, "Gain1000CardDescription");
     }
 
 /**

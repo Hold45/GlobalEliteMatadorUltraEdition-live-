@@ -18,29 +18,29 @@ public class CardPile extends Owner {
 
 
         this.addTradable(new Gain200(this));
-	    this.addTradable(new Gain1000(this, "Card3Desc"));
-        this.addTradable(new Gain1000(this, "Card3Desc"));
-        this.addTradable(new Gain1000(this, "Card2Desc"));
-        this.addTradable(new Gain1000(this, "Card2Desc"));
-        this.addTradable(new Gain1000(this, "Card35Desc"));
-        this.addTradable(new Gain1000(this, "Card8Desc"));
-        this.addTradable(new Gain1000(this, "Card6Desc"));
-        this.addTradable(new Gain1000(this, "Card5Desc"));
+	    this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
+        this.addTradable(new Gain1000(this));
         this.addTradable(new Gain500(this));
         this.addTradable(new Gain500(this));
         this.addTradable(new Gain3000(this));
 
         this.addTradable(new Gain200FromAll(this));
-        this.addTradable(new Gain500FromAll(this, "Card27Desc"));
-        this.addTradable(new Gain500FromAll(this, "Card29Desc"));
+        this.addTradable(new Gain500FromAll(this));
+        this.addTradable(new Gain500FromAll(this));
 
-        this.addTradable(new Pay200(this, "Card14Desc"));
-        this.addTradable(new Pay200(this, "Card18Desc"));
-        this.addTradable(new Pay200(this, "Card13Desc"));
+        this.addTradable(new Pay200(this));
+        this.addTradable(new Pay200(this));
+        this.addTradable(new Pay200(this));
         this.addTradable(new Pay300(this));
-        this.addTradable(new Pay1000(this, "Card12Desc"));
-        this.addTradable(new Pay1000(this, "Card19Desc"));
-        this.addTradable(new Pay1000(this, "Card15Desc"));
+        this.addTradable(new Pay1000(this));
+        this.addTradable(new Pay1000(this));
+        this.addTradable(new Pay1000(this));
         this.addTradable(new Pay2000(this));
         this.addTradable(new Pay3000(this));
         this.addTradable(new Pay3000(this));

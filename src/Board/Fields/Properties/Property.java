@@ -21,13 +21,17 @@ public abstract class Property extends Field {
 	protected ArrayList<Building> buildings;
 	protected Class[][] upgradeSignature;
 
-	public Property(Game game, String name, String description, Color color, int price) {
+	public Property(Game game, String name, String description, Color color, int price, int upgradePrice) {
 		super(game, name, description, color, Color.black);
-		this.deed = new Deed(this, price, game.getBank());
+		this.deed = new Deed(this, price, upgradePrice, game.getBank());
 		this.buildings = new ArrayList<>();
 		this.upgradeSignature = new Class[][]{
 				{}
 		};
+	}
+
+	public Property(Game game, String name, String description, Color color, int price){
+		this(game, name, description, color, price, 0);
 	}
 
 	@Override

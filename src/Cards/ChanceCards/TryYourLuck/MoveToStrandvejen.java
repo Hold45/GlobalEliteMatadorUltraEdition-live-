@@ -8,7 +8,7 @@ import Owners.Player;
 public class MoveToStrandvejen extends ChanceCard {
 
     public MoveToStrandvejen(Owner owner) {
-        super(owner, "Card42Desc");
+        super(owner, "MoveToStrandvejenCardDescription");
     }
     /**
      * Moves the player to Strandvejen

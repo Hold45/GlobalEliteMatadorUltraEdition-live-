@@ -113,7 +113,7 @@ public class Player extends Accountable{
 	 * @return current player
 	 */
 	public Player moveTo(Field field){
-		return moveTo(this.getGame().getBoard().getIndex(field, this));
+		return moveTo(this.getGame().getBoard().getIndex(field));
 	}
 
 	/**

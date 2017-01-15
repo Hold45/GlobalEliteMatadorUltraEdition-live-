@@ -16,6 +16,7 @@ public abstract class Die{
 	Die(int sides, Random rng){
         this.sides = sides;
         this.rng = rng;
+        this.value = 1;
     }
 
 	/**

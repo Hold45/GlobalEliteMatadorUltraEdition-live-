@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MonopolyCupTest extends SmartTemplateTest{
 	@Test
 	public void testRoll() throws Exception {
-		Arrays.stream(cup.getDice()).forEach(die -> assertThat(die.getValue()).isEqualTo(0));
-		assertThat(cup.getSpeedDie().getValue()).isEqualTo(0);
+		Arrays.stream(cup.getDice()).forEach(die -> assertThat(die.getValue()).isEqualTo(1));
+		assertThat(cup.getSpeedDie().getValue()).isEqualTo(1);
 
 		random.add(1,1,1);
 		cup.roll();

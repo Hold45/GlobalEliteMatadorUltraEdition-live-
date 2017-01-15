@@ -8,7 +8,7 @@ import Owners.Player;
 public class MoveToVimmelskaftet extends ChanceCard {
 
     public MoveToVimmelskaftet(Owner owner) {
-        super(owner, "Card41Desc");
+        super(owner, "MoveToVimmelskaftetCardDescription");
     }
     /**
      * Moves the player to Vimmelskaftet

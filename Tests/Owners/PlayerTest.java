@@ -105,6 +105,11 @@ public class PlayerTest extends SmartTemplateTest{
 		assertThat(p1.getPosition()).isEqualTo(0);
 	}
 
+	/**
+	 * Test whether the losing player is successfully removed from the game,
+	 * and their funds are distributed and auctioned off correctly.
+	 *
+	 */
 	@Test
 	public void testLose(){
 		Player p3 = new Player(game, "Player 3");

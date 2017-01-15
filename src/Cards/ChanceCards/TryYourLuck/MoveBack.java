@@ -7,7 +7,7 @@ import Owners.Player;
 public class MoveBack extends ChanceCard {
 
     public MoveBack(Owner owner) {
-        super(owner, "Card22Desc");
+        super(owner, "MoveBackCardDescription");
     }
 
     @Override

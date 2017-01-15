@@ -13,8 +13,8 @@ import java.awt.*;
 public abstract class Plot extends Property {
 	private int[] rentScheme;
 
-	public Plot(Game game, String name, Color color, int price, int[] rentScheme) {
-		super(game, name, "PlotDescription", color, price);
+	public Plot(Game game, String name, Color color, int price, int upgradePrice, int[] rentScheme) {
+		super(game, name, "PlotDescription", color, price, upgradePrice);
 		this.rentScheme = rentScheme;
 		this.upgradeSignature = new Class[][]{
 				{},

@@ -7,7 +7,7 @@ import Owners.Player;
 public class Gain200FromAll extends ChanceCard {
 
     public Gain200FromAll(Owner owner) {
-        super(owner, "Card28Desc");
+        super(owner, "Gain200CardFromAllDescription");
     }
 
     @Override

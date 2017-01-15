@@ -11,11 +11,11 @@ import java.awt.*;
 abstract class OrangePlot extends Plot {
 	
 	OrangePlot(Game game, String name, int price, int[] rentScheme) {
-		super(game, name, Color.orange, price, rentScheme);
+		super(game, name, Color.orange, price, 1000, rentScheme);
 	}
 
 	OrangePlot(Game game, String name){
-		super(game, name,Color.orange, 2000, new int[]{100, 600, 1800, 5400, 8000, 11000});
+		super(game, name,Color.orange, 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000});
 	}
 
 }

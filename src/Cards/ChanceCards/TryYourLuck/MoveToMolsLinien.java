@@ -9,7 +9,7 @@ import Owners.Player;
 public class MoveToMolsLinien extends ChanceCard {
 
     public MoveToMolsLinien(Owner owner) {
-        super(owner, "Card40Desc");
+        super(owner, "MoveToMolsLinienCardDescription");
     }
 
     /**
