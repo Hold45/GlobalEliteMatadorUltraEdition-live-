@@ -163,27 +163,57 @@ public class DeedTest extends SmartTemplateTest{
 		assertThat(hvid.isPurchasable(p1, 1000)).isFalse();
 	}
 
+
 	/**
-	 * Tests auktioning of a tradable
+	 * @see Deed#tryPurchase(Accountable)
+	 * @see Deed#tryPurchase(Accountable, int)
+	 */
+	@Test
+	public void testTryPurchase(){
+		//Is not owner, but does not have enough money.
+		assertThat(hvid.tryPurchase(p1, 11000)).isFalse();
+
+		//Has enough money and is not owner.
+		assertThat(hvid.tryPurchase(p1, 1000)).isTrue();
+		assertThat(hvid.getOwner()).isEqualTo(p1);
+
+		//has enough money but is owner.
+		hvid.setOwner(p1);
+		assertThat(hvid.isPurchasable(p1, 1000)).isFalse();
+
+	}
+
+	/**
+	 * Tests auctioning of a tradable
 	 *
 	 * @see Cards.Tradable#auctionOff(int, int)
 	 */
 	@Test
 	public void testAuctionOff(){
 		assertThat(hvid.getOwner()).isEqualTo(game.getBank());
-		gui.addActions(false, false); //Both players decline to bid
+		//Both players decline to bid
+		gui.addActions(false, false);
 		hvid.auctionOff(100, 10);
 		assertThat(hvid.getOwner()).isEqualTo(game.getBank());
-		gui.addActions(true, 10, false); //Only first player bids
+
+		//Only first player bids
+		gui.addActions(true, 10, false);
 		hvid.auctionOff(100, 10);
 		assertThat(hvid.getOwner()).isEqualTo(p1);
 		assertThat(p1.getAccount().getBalance()).isEqualTo(10000-110);
 		assertThat(game.getBank().getAccount().getBalance()).isEqualTo(10000+110);
+
+		//Both players bid, with first player declining to raise
 		assertThat(roed.getOwner()).isEqualTo(game.getBank());
-		gui.addActions(true, 10, true, 10, false); //Both players bid, with first player declining to raise
+		gui.addActions(true, 10, true, 10, false);
 		roed.auctionOff(100, 10);
 		assertThat(roed.getOwner()).isEqualTo(p2);
 		assertThat(p2.getAccount().getBalance()).isEqualTo(10000-120);
+
+		//Player auction off his deed, all decline
+		gui.addActions(false);
+		roed.auctionOff(100000, 100);
+		assertThat(roed.getOwner()).isEqualTo(p2);
 	}
 
 }

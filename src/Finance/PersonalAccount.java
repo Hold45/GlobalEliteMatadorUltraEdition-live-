@@ -22,7 +22,6 @@ public class PersonalAccount extends Account {
             && (
                 PawnDeed.self.runnable(this.owner)
                 || DowngradeProperty.self.runnable(this.owner)
-            	|| SellDeedToBank.self.runnable(this.owner)
 			)
         ){
 		    this.owner.takeActions(PawnDeed.self, DowngradeProperty.self, SellDeedToBank.self);

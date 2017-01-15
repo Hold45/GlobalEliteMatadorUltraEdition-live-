@@ -8,14 +8,16 @@ import Owners.Player;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class CardPile extends Owner {
     private LinkedList<ChanceCard> cards;
+    private Random random;
 
-    public CardPile(Game game){
+    public CardPile(Game game, Random random){
         super(game);
         this.cards = new LinkedList<>();
-
+        this.random = random;
 
         this.addTradable(new Gain200(this));
 	    this.addTradable(new Gain1000(this));
@@ -72,18 +74,16 @@ public class CardPile extends Owner {
 
         this.addTradable(new GetOutOfJailFree(this));
         this.addTradable(new GetOutOfJailFree(this));
-
-        this.shuffle();
     }
 
     public void shuffle(){
-        Collections.shuffle(this.cards);
+	    Collections.shuffle(this.cards, random);
     }
 
     public void drawCard(Player drawer){
         ChanceCard card = this.cards.poll();
         card.draw(drawer);
-        if (this.isOwnerOf(card))
+	    if (this.isOwnerOf(card))
             this.addTradable(card);
     }
 
@@ -92,8 +92,13 @@ public class CardPile extends Owner {
 		this.cards.add(card);
 	}
 
-	public boolean removeTradable(ChanceCard card){
+	@Override
+	public boolean removeTradable(Tradable card){
         this.cards.remove(card);
         return super.removeTradable(card);
     }
+
+	public LinkedList<ChanceCard> getCards() {
+		return this.cards;
+	}
 }
