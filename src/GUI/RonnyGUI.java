@@ -145,7 +145,7 @@ public class RonnyGUI implements MonopolyGUI {
 		desktop_fields.Field guiField = new Street.Builder().setBgColor(field.getColor()).setFgColor(field.getTcol()).build();
 		guiField.setTitle(this.language.getString(field.getName()));
 		guiField.setDescription(this.language.getString(field.getDescription()));
-		this.fields.add(guiField);		
+		this.fields.add(guiField);
 	}
 
 	@Override

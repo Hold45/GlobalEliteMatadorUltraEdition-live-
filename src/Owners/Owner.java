@@ -26,7 +26,7 @@ public abstract class Owner {
 	}
 	/**
 	 * Adds a tradable to the ArrayList and sets owner to this owner.
-	 * @param tradeable to add
+	 * @param tradable to add
 	 */
 	public void addTradable(Tradable tradable){
 		tradable.setOwner(this);
